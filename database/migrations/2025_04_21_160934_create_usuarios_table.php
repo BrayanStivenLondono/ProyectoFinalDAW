@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
+            $table->string("nombre_usuario")->unique();
+            $table->string("nombre")->unique();
+            $table->string("apellido")->nullable();
+            $table->string("correo")->unique();
+            $table->timestamp("fecha_registro")->useCurrent();
+            $table->enum("tipo", ["artista","visitante", "administrador"]);
+            $table->text("biografia")->nullable();
+            $table->text("enlaces_sociales")->nullable();
+            $table->string("ruta_imagen");
             $table->timestamps();
         });
     }
