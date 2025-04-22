@@ -17,11 +17,12 @@ return new class extends Migration
             $table->string("nombre")->unique();
             $table->string("apellido")->nullable();
             $table->string("correo")->unique();
+            $table->string("contrasena");
             $table->timestamp("fecha_registro")->useCurrent();
             $table->enum("tipo", ["artista","visitante", "administrador"]);
             $table->text("biografia")->nullable();
             $table->text("enlaces_sociales")->nullable();
-            $table->string("ruta_imagen");
+            $table->string("imagen_perfil");
             $table->timestamps();
         });
     }
