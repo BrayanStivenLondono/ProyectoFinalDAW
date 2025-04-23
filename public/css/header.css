@@ -1,0 +1,63 @@
+body{
+    background-image: url('../imagenes/black_space.jpg');
+    background-size: cover;
+    margin: 0;
+}
+
+.main-header {
+    padding: 30px 0;
+    background-color: grey; /* negro translúcido */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centramos todos los elementos horizontalmente */
+    gap: 50px; /* separación entre bloques (botones y logo) */
+    position: relative;
+}
+
+/* Listas de botones */
+.left-buttons,
+.right-buttons {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo de los botones (sin tocar colores) */
+.left-buttons a,
+.right-buttons a {
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+}
+
+/* Logo centrado naturalmente (sin absolute esta vez) */
+.logo img {
+    height: 80px;
+    max-height: 100%;
+    border-radius: 50%;
+}
+
+
+.left-buttons a,
+.right-buttons a {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1); /* fondo semitransparente */
+    color: #fff; /* texto blanco para contrastar con el fondo oscuro */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* borde sutil */
+    transition: background-color 0.3s, transform 0.3s;
+    backdrop-filter: blur(4px); /* efecto de vidrio escarchado */
+}
+
+.left-buttons a:hover,
+.right-buttons a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05); /* animación al pasar el ratón */
+}
+

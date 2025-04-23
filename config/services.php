@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'harvard' => [
+        'key' => env('HARVARD_API_KEY'),
+    ],
+
 ];
