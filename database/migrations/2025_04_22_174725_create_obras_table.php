@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer("año_creacion")->nullable();
             $table->text("descripcion")->nullable();
             $table->string("imagen")->nullable();
-            $table->text("metadatos_seo");
+            $table->text("metadatos_seo")->nullable();
             $table->timestamps();
         });
     }

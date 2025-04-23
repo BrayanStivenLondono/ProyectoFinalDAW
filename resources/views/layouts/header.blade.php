@@ -13,18 +13,27 @@
     <header class="main-header">
         <nav class="container">
             <ul class="left-buttons">
-                <li><a href="#">Botón 1</a></li>
-                <li><a href="#">Botón 2</a></li>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Colecciones</a></li>
             </ul>
             <div class="logo">
                 <a href="/">
-                    <img src="{{ asset('imagenes/galeria_virtual_logo.png') }}" alt="Tu Galería Virtual">
+                    <img src="{{ asset('imagenes/galeria_virtual_logo.png') }}" alt="Galería Virtual">
                 </a>
             </div>
             <ul class="right-buttons">
-                <li><a href="#">Botón 3</a></li>
-                <li><a href="#">Botón 4</a></li>
+                <li><a href="#">Mi Arte</a></li>
+                <li><a href="#">Historia</a></li>
             </ul>
+
+            <div class="language-switcher">
+                <label for="language-select">Idioma:</label>
+                <select id="language-select" onchange="cambiarIdioma(this.value)">
+                    <option value="es" {{ app()->getLocale() == 'es' ? 'selected' : '' }}>Español</option>
+                    <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
+                    <option value="fr" {{ app()->getLocale() == 'fr' ? 'selected' : '' }}>Français</option>
+                </select>
+            </div>
         </nav>
     </header>
 </body>

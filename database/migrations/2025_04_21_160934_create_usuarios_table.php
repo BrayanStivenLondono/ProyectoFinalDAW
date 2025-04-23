@@ -19,10 +19,12 @@ return new class extends Migration
             $table->string("correo")->unique();
             $table->string("contrasena");
             $table->timestamp("fecha_registro")->useCurrent();
+            $table->timestamp('correo_verified_at')->nullable();
             $table->enum("tipo", ["artista","visitante", "administrador"]);
             $table->text("biografia")->nullable();
             $table->text("enlaces_sociales")->nullable();
             $table->string("imagen_perfil");
+            $table->rememberToken(); // Añade esta línea para la columna remember_token
             $table->timestamps();
         });
     }

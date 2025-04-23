@@ -17,7 +17,7 @@ class ObraFactory extends Factory
      */
     public function definition(): array
     {
-        $artista = Usuario::where('tipo_usuario', 'artista')->inRandomOrder()->first() ?? Usuario::factory()->create(['tipo_usuario' => 'artista']);
+        $artista = Usuario::where('tipo', 'artista')->inRandomOrder()->first() ?? Usuario::factory()->create(['tipo' => 'artista']);
 
         return [
            "id_artista" => $artista->id,
@@ -26,8 +26,8 @@ class ObraFactory extends Factory
             "tecnica" => $this->faker->optional()->word(),
             "año_creacion" => $this->faker->optional()->year(),
             "descripcion" => $this->faker->optional()->paragraph(4),
-            "imagen" => $this->faker->optional()->imageUrl(640, 480, "art", true),
-            "metadato_seo" => $this->faker->optional()->sentence(5),
+            "imagen" => "imagenes/obra_default.jpg",
+            "metadatos_seo" => $this->faker->optional()->sentence(5),
             "created_at" => now(),
             "updated_at" => now(),
 

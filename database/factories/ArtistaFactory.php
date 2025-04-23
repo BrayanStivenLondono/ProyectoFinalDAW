@@ -18,7 +18,7 @@ class ArtistaFactory extends Factory
     public function definition(): array
     {
         // Crear un nuevo usuario y asegurarse de que sea artista
-        $usuarioArtista = Usuario::factory()->create(['tipo_usuario' => 'artista']);
+        $usuarioArtista = Usuario::factory()->create(['tipo' => 'artista']);
 
         return [
             "id_artista" => $usuarioArtista->id,

@@ -14,5 +14,7 @@
     <div class="fondo">
         Esto es el index
     </div>
+
+    @include("layouts.footer")
 </body>
 </html>

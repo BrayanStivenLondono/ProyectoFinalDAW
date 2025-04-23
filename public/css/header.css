@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 body{
     background-image: url('../imagenes/black_space.jpg');
     background-size: cover;
@@ -5,19 +7,20 @@ body{
 }
 
 .main-header {
-    padding: 30px 0;
-    background-color: grey; /* negro translúcido */
+    padding: 15px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+
 }
 
 .container {
     display: flex;
     align-items: center;
-    justify-content: center; /* centramos todos los elementos horizontalmente */
-    gap: 50px; /* separación entre bloques (botones y logo) */
-    position: relative;
+    justify-content: center;
+    gap: 50px;
+
 }
 
-/* Listas de botones */
+
 .left-buttons,
 .right-buttons {
     display: flex;
@@ -27,15 +30,39 @@ body{
     margin: 0;
 }
 
-/* Estilo de los botones (sin tocar colores) */
+
 .left-buttons a,
 .right-buttons a {
-    text-decoration: none;
-    padding: 10px 16px;
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 1.2em;
+    padding: 10px 20px;
     border-radius: 8px;
+    text-decoration: none;
+    color: #222;
+    position: relative;
 }
 
-/* Logo centrado naturalmente (sin absolute esta vez) */
+.left-buttons a::after,
+.right-buttons a::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    width: 0;
+    height: 2px;
+    background-color: #222;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.left-buttons a:hover::after,
+.right-buttons a:hover::after {
+    width: calc(100% - 20px);
+    left: 10px;
+}
+
+
 .logo img {
     height: 80px;
     max-height: 100%;
@@ -43,21 +70,36 @@ body{
 }
 
 
-.left-buttons a,
-.right-buttons a {
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.1); /* fondo semitransparente */
-    color: #fff; /* texto blanco para contrastar con el fondo oscuro */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* borde sutil */
-    transition: background-color 0.3s, transform 0.3s;
-    backdrop-filter: blur(4px); /* efecto de vidrio escarchado */
+
+.language-switcher {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: lighter;
+    position: absolute;
+    top: 10px; /* Ajusta la distancia desde la parte superior */
+    right: 20px; /* Ajusta la distancia desde la derecha */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espacio entre la etiqueta y el selector */
 }
 
-.left-buttons a:hover,
-.right-buttons a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05); /* animación al pasar el ratón */
+.language-switcher label {
+    font-size: 0.9em;
+    color: #222; /* Color del texto de la etiqueta */
 }
 
+.language-switcher select {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: lighter;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9em;
+    appearance: none; /* Para quitar los estilos predeterminados del navegador */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>'); /* Flecha desplegable */
+    background-repeat: no-repeat;
+    background-position: right 5px top 50%;
+    background-size: 12px;
+    cursor: pointer;
+}
