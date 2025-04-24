@@ -24,7 +24,7 @@ return new class extends Migration
             $table->text("biografia")->nullable();
             $table->text("enlaces_sociales")->nullable();
             $table->string("imagen_perfil");
-            $table->rememberToken(); // Añade esta línea para la columna remember_token
+            $table->rememberToken();
             $table->timestamps();
         });
     }
