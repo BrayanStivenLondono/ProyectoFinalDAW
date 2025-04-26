@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("titulo");
             $table->string("estilo")->nullable();
             $table->string("tecnica")->nullable();
+            $table->string("tipo")->nullable();
             $table->integer("año_creacion")->nullable();
             $table->text("descripcion")->nullable();
             $table->string("imagen")->nullable();

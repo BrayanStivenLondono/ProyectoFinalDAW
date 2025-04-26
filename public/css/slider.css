@@ -1,0 +1,67 @@
+.carrusel {
+    width: 100%;
+    max-width: 600px; /* Ajusta el tamaño máximo */
+    overflow: hidden;
+    margin: auto;
+    position: relative;
+}
+
+.slides {
+    display: flex;
+    width: 100%;
+}
+
+.slide {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+img{
+    border-radius: 35px;
+}
+
+/* Botones de navegación */
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 30px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+
+.carrusel .slides .slide img {
+    width: 100%;         /* Asegura que las imágenes ocupen todo el espacio disponible */
+    height: 400px;       /* O cualquier altura que desees */
+    object-fit: cover;   /* Asegura que la imagen mantenga su proporción */
+    object-position: center; /* Centra la imagen dentro del contenedor */
+}
+
+.carrusel{
+    width: 50%;
+    height: 90%;
+    background-color: grey;
+}

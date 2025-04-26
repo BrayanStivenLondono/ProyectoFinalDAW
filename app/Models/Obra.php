@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 class Obra extends Model
 {
     use HasFactory;
+
+    public $timestamps = true;
+
     protected $table = 'obras';
 
     protected $fillable = [
@@ -18,12 +21,13 @@ class Obra extends Model
         'titulo',
         'estilo',
         'tecnica',
-        'tamaño',
+        'tipo',
         'año_creacion',
         'descripcion',
         'imagen',
         'metadatos_seo',
     ];
+
 
     /**
      * Relacion con el artista que creo la obra.
