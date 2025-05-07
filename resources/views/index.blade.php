@@ -1,37 +1,43 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset("css/index.css") }}">
-    <link rel="stylesheet" href="{{ asset("css/slider.css") }}">
-    @vite(['resources/js/app.js'])
-    <title>Inicio | Galeria Virtual</title>
-</head>
-<body>
-    @include("layouts.header")
+@extends('layouts.app')
 
-    <div class="fondo">
-    <!-- CARRUSEL DE IMAGENES -->
-        <br>
+@section('title', 'Inicio | Galería Virtual')
+
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/slider.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/slider_tipo.css') }}">
+@endsection
+
+@section('content')
+    <div class="carrusel-container">
+        <button class="prev">
+            <img src="{{ asset("imagenes/fle.png") }}" alt="Anterior">
+        </button>
         <div class="carrusel">
             <div class="slides">
                 @foreach($obras as $obra)
                     <div class="slide">
                         <img src="{{ asset($obra->imagen) }}" alt="{{$obra->titulo}}">
-                        <h3>{{ $obra->titulo }}</h3>
                     </div>
                 @endforeach
             </div>
         </div>
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-
-        Esto es el index
+        <button class="next">
+            <img src="{{ asset("imagenes/fle.png") }}" alt="Siguiente" class="rotate">
+        </button>
     </div>
 
-    @include("layouts.footer")
-</body>
-</html>
+    <h1 class="colecciones">Colecciones</h1>
+    <div class="carrisel-tipo">
+        <div class="obras">
+            @foreach($obrasPorTipo as $obra)
+                <div class="obra">
+                    <a href="{{ route("obras.coleccion", $obra->tipo) }}">
+                        <img src=" {{ asset($obra->imagen) }}" alt="{{ $obra->titulo }}">
+                        <h4 class="tipo-obra">{{ $obra->tipo }}</h4>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </div>
+@endsection

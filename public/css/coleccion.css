@@ -1,0 +1,114 @@
+body {
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #222;
+}
+
+/* Zona de filtros translúcida */
+.zona-filtros {
+    max-width: 1200px;
+    margin: 30px auto 0;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.75); /* fondo blanco translúcido */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.zona-filtros form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.zona-filtros input,
+.zona-filtros select,
+.zona-filtros button {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #222;
+}
+
+.zona-filtros button {
+    background-color: rgba(51, 51, 51, 0.8);
+    color: white;
+    cursor: pointer;
+}
+
+.zona-filtros button:hover {
+    background-color: rgba(85, 85, 85, 0.9);
+}
+
+/* Contenedor principal translúcido */
+.contenedor {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.82); /* translúcido */
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.contenedor h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #111;
+}
+
+/* Grid de obras */
+.listado-obras {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.obra-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Centra las imágenes */
+    text-align: center;
+}
+
+.obra-item:hover {
+    transform: scale(1.02);
+}
+
+.imagen-obra {
+    max-width: 100%;       /* La imagen no puede ser más ancha que el contenedor */
+    height: auto;          /* Mantiene la relación de aspecto original */
+    object-fit: contain;   /* Ajusta la imagen dentro del contenedor, sin perder la relación de aspecto */
+    margin-bottom: 15px;   /* Espacio entre la imagen y la información */
+}
+
+.info-obra {
+    padding: 15px;
+}
+
+.titulo-obra {
+    font-size: 1.2rem;
+    margin: 0 0 10px;
+}
+
+.id-obra,
+.tipo-obra {
+    margin: 4px 0;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.mensaje-sin-obras {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+}
+
+.paginacion {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}

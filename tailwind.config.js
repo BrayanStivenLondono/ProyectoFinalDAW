@@ -8,6 +8,7 @@ export default {
         './resources/**/*.blade.php',
         './resources/**/*.js',
         './resources/**/*.vue',
+        './public/css/**/*.css',  // Agrega esta línea para procesar los archivos CSS en la carpeta public
     ],
     theme: {
         extend: {

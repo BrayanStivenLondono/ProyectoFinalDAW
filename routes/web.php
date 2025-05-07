@@ -13,5 +13,14 @@ Route::get('/', function () {
 Route::get('/apis', [App\Http\Controllers\HarvardController::class, 'index']);
 
 //carrusel
-Route::get('/', [ObraController::class, 'obtenerObrasCarrusel'])->name('carrusel.imagenes');
+Route::get('/', [ObraController::class, 'carresulColecciones']);
+
+//coleccion
+Route::get('/coleccion/{tipo}', [ObraController::class, 'obtenerObrasPorTipo'])->name('obras.coleccion');
+Route::get('/colecciones', [ObraController::class, 'verTodasLasColecciones'])->name('obra.colecciones');
+Route::get('/colecciones/{tipo}', [ObraController::class, 'obtenerObrasPorTipo'])->name('obra.verColeccion');
+
+
+
+
 

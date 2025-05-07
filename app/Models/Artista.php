@@ -44,4 +44,9 @@ class Artista extends Model
     {
         return $this->belongsToMany(Usuario::class, 'seguidores', 'id_seguido', 'id_seguidor')->withTimestamps();
     }
+
+    public function artista()
+    {
+        return $this->belongsTo(Artista::class);
+    }
 }
