@@ -1,70 +1,52 @@
-body {
-    font-family: 'Outfit', sans-serif;
+.colecciones-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    box-sizing: border-box;
 }
 
-.filtros-colectivos {
-    width: 100%;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.6); /* semitransparente */
-    text-align: center;
-    border-radius: 10px;
-}
-
-.colecciones-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-.coleccion-card {
-    background-color: rgba(255, 255, 255, 0.8);
+.coleccion-item {
+    background-color: rgba(255, 255, 255, 0.85); /* Semitransparente */
     border-radius: 15px;
-    overflow: hidden;
-    width: 200px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: transform 0.3s;
-}
-
-.coleccion-card:hover {
-    transform: scale(1.05);
-}
-
-.coleccion-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-.coleccion-card h3 {
-    margin: 10px 0;
-    font-size: 1.2em;
-}
-
-
-
-.seccion-titulo {
-    font-family: "Bebas Neue", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2em;
-    text-align: center;
-    margin: 30px 0;
-    gap: 10px; /* Espacio entre las líneas y el texto */
+    text-decoration: none;
     color: #000;
-
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
 }
 
-.seccion-titulo::before,
-.seccion-titulo::after {
-    content: "";
-    width: 40%;
-    height: 1px;
-    background-color: #c7c7c7;
+.coleccion-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.imagen-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.imagen-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.texto-coleccion {
+    padding: 15px;
+}
+
+.texto-coleccion h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    margin: 0;
+}
+
+.texto-coleccion h4 {
+    font-size: 16px;
+    margin-top: 8px;
+    font-weight: normal;
+    color: #555;
 }

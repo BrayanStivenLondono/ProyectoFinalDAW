@@ -47,4 +47,10 @@ class ObraController extends Controller
         return view('obra.colecciones', compact('obrasPorTipo'));
     }
 
+    public function verObra($titulo)
+    {
+        $obra = Obra::where('titulo', $titulo)->firstOrFail();
+        return view('obra.verObra', compact('obra'));
+    }
+
 }

@@ -1,8 +1,6 @@
-
 .main-header {
-    padding: 15px 0;
+    position: relative;
     background-color: rgba(255, 255, 255, 0.8);
-
 }
 
 .container {
@@ -10,9 +8,10 @@
     align-items: center;
     justify-content: center;
     gap: 50px;
-
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-
 
 .left-buttons,
 .right-buttons {
@@ -22,7 +21,6 @@
     padding: 0;
     margin: 0;
 }
-
 
 .left-buttons a,
 .right-buttons a {
@@ -55,53 +53,77 @@
     left: 10px;
 }
 
-
 .logo img {
     height: 80px;
     max-height: 100%;
     border-radius: 50%;
 }
 
+.logo {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(16px); /* empuja hacia abajo visualmente */
+}
 
+.logo h1 {
+    font-size: 1.5em;
+    margin-top: 5px;
+    color: #222;
+    font-family: "Outfit", sans-serif;
+    font-weight: 300;
+}
 
 .language-switcher {
-    font-family: "Outfit", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: lighter;
     position: absolute;
-    top: 10px; /* Ajusta la distancia desde la parte superior */
-    right: 20px; /* Ajusta la distancia desde la derecha */
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
-    gap: 5px; /* Espacio entre la etiqueta y el selector */
+    font-family: "Outfit", sans-serif;
+    font-weight: lighter;
+    gap: 10px;
 }
 
 .language-switcher label {
     font-size: 0.9em;
-    color: #222; /* Color del texto de la etiqueta */
+    color: #222;
 }
 
 .language-switcher select {
     font-family: "Outfit", sans-serif;
-    font-optical-sizing: auto;
     font-weight: lighter;
     padding: 5px 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 0.9em;
-    appearance: none; /* Para quitar los estilos predeterminados del navegador */
-    background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>'); /* Flecha desplegable */
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
     background-repeat: no-repeat;
     background-position: right 5px top 50%;
     background-size: 12px;
     cursor: pointer;
 }
 
+.user-configuration {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+}
 
-.fondo {
-    margin: 30px;
-    height: calc(100% - 90px);
-    width: calc(100% - 60px);
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
+.user-configuration img {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 50%;
+    object-fit: contain;
+    background-color: transparent;
+    padding: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
 }

@@ -21,6 +21,9 @@ Route::get('/colecciones', [ObraController::class, 'verTodasLasColecciones'])->n
 Route::get('/colecciones/{tipo}', [ObraController::class, 'obtenerObrasPorTipo'])->name('obra.verColeccion');
 
 
+//Obras
+Route::get('/obra/{slug}', [ObraController::class, 'verObra'])->name("obra.ver");
+
 
 
 

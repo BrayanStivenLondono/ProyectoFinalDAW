@@ -5,74 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <style>
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .main-footer {
-            font-family: "Outfit", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: lighter;
-            font-style: normal;
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #222;
-            padding: 15px 0;
-            border-top: 1px solid #eee;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        .footer-left p {
-            font-size: 0.9em;
-            margin: 0;
-        }
-
-        .footer-right ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-
-        .footer-right li {
-            margin-left: 20px;
-        }
-
-        .footer-right li:first-child {
-            margin-left: 0;
-        }
-
-        .footer-right a {
-            font-size: 1em;
-            color: #555;
-            position: relative;
-        }
-
-        .footer-right a::after {
-            content: "";
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: #222;
-            transition: width 0.3s ease-in-out;
-        }
-
-        .footer-right a:hover::after {
-            width: 100%;
-        }
-
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <title></title>
 </head>
 <body>
     <footer class="main-footer complex-footer">

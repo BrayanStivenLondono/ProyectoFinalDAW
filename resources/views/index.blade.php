@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/slider.css') }}">
     <link rel="stylesheet" href="{{ asset('css/slider_tipo.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
 @endsection
 
 @section('content')
@@ -18,6 +19,7 @@
                 @foreach($obras as $obra)
                     <div class="slide">
                         <img src="{{ asset($obra->imagen) }}" alt="{{$obra->titulo}}">
+                        <h3>{{ $obra->titulo }}</h3>
                     </div>
                 @endforeach
             </div>
@@ -27,7 +29,7 @@
         </button>
     </div>
 
-    <h1 class="colecciones">Colecciones</h1>
+    <h1 class="titulo">Colecciones</h1>
     <div class="carrisel-tipo">
         <div class="obras">
             @foreach($obrasPorTipo as $obra)

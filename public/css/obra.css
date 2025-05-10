@@ -1,0 +1,55 @@
+.obra-detalle {
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+}
+
+.obra-imagen{
+    max-width: 100%;      /* Limita el ancho máximo al 100% del contenedor */
+    max-height: 100%;     /* Limita la altura máxima al 100% del contenedor */
+    overflow: hidden;
+}
+
+.obra-imagen img {
+    width: auto;          /* Mantiene el tamaño original */
+    height: auto;         /* Mantiene la proporción original */
+    max-width: 100%;      /* No sobrepasará el tamaño del contenedor */
+    max-height: 100%;     /* No sobrepasará el tamaño del contenedor */
+    border-radius: 10px;
+}
+
+.obra-info {
+    max-width: 600px;
+}
+
+.obra-info h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.acciones {
+    margin-top: 20px;
+}
+
+.btn-volver {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.comentarios {
+    margin-top: 40px;
+}
+
+.comentario {
+    padding: 10px;
+    background-color: #f8f8f8;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.comentario p {
+    margin: 5px 0;
+}

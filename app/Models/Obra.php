@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Str;
 
 class Obra extends Model
 {
@@ -51,5 +52,14 @@ class Obra extends Model
     public function reportes(): MorphMany
     {
         return $this->morphMany(Reporte::class, 'reportable');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($obra) {
+            $obra->titulo = Str::slug($obra->titulo);
+        });
     }
 }

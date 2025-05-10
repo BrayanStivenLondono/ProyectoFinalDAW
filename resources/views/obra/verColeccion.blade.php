@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="{{ asset('css/coleccion.css') }}">
 @endsection
 
+@section('breadcrumbs')
+    <a href="{{ url('/') }}">Inicio</a> &gt;
+    <a href="{{ route('obra.colecciones') }}">Colecciones</a> &gt;
+    <a href="{{ route('obra.verColeccion', $tipo) }}">{{ $tipo }}</a>
+@endsection
+
 @section('content')
     <!-- Filtros fuera del contenedor principal -->
     <div class="zona-filtros">
@@ -26,11 +32,13 @@
         <div class="listado-obras">
             @forelse ($obrasPorTipo as $obra)
                 <div class="obra-item">
-                    <img src="{{ asset($obra->imagen) }}" class="imagen-obra" alt="{{ $obra->titulo }}">
-                    <div class="info-obra">
-                        <h5 class="titulo-obra">{{ $obra->titulo }}</h5>
-                        <p class="autor-obra">Artista: {{ $obra->artista->nombre }}</p>
-                    </div>
+                    <a href="{{ route('obra.ver', ['slug' => $obra->titulo]) }}">
+                        <img src="{{ asset($obra->imagen) }}" class="imagen-obra" alt="{{ $obra->titulo }}">
+                        <div class="info-obra">
+                            <h5 class="titulo-obra">{{ $obra->titulo }}</h5>
+                            <p class="autor-obra">Artista: {{ $obra->artista->nombre }}</p>
+                        </div>
+                    </a>
                 </div>
             @empty
                 <p class="mensaje-sin-obras">No hay obras disponibles del tipo {{ ucfirst($tipo) }}.</p>

@@ -5,11 +5,16 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/colecciones.css') }}">
     <link rel="stylesheet" href="{{ asset('css/slider_tipo.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
+@endsection
 
+@section('breadcrumbs')
+    <a href="{{ url('/') }}">Inicio</a> &gt;
+    <a href="{{ route('obra.colecciones') }}">Colecciones</a>
 @endsection
 
 @section('content')
-    <h1 class="colecciones">Colecciones</h1>
+    <h1 class="titulo">Colecciones</h1>
     <div class="colecciones-lista">
         @forelse ($obrasPorTipo as $obra)
             <a href="{{ route('obras.coleccion', $obra->tipo) }}" class="coleccion-item">

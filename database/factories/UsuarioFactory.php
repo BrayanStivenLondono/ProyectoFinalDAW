@@ -31,7 +31,7 @@ class UsuarioFactory extends Factory
             'correo_verified_at' => now(),
             'contrasena' => Hash::make('12345'), // Puedes cambiar la contraseña por defecto si lo deseas
             'remember_token' => Str::random(10),
-            'tipo' => $this->faker->randomElement(['artista', 'visitante', 'administrador']),
+            'tipo' => $this->faker->randomElement(['usuario', 'artista', 'administrador']),
             'biografia' => $this->faker->paragraph(),
             'enlaces_sociales' => $this->faker->optional()->url(),
             'imagen_perfil' => 'imagenes/user_default.jpg', // Asegúrate de que esta ruta sea correcta para tus assets

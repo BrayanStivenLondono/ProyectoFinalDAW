@@ -1,0 +1,29 @@
+.breadcrumbs {
+    margin-left: 25px;
+    font-size: 1em;
+    color: #555;
+    padding: 8px 0;
+}
+
+.breadcrumbs a {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    color: #007BFF;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumbs span {
+    color: #000;
+}
+
+.breadcrumbs-separator {
+    margin: 0 5px;
+    color: #999;
+}
