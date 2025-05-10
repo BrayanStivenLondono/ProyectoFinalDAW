@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Usuario extends Model
+
+class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
-    //
+
     protected $fillable = [
         "nombre_usuario",
         "nombre",
@@ -38,7 +39,6 @@ class Usuario extends Model
     public function comentarios(): HasMany
     {
         return $this->hasMany(Comentario::class);
-
     }
 
     public function siguiendo(): BelongsToMany
@@ -51,10 +51,19 @@ class Usuario extends Model
         return $this->hasMany(Reporte::class, "id_usuario");
     }
 
-    public function artistaInfo(): HasOne
+    public function likes()
     {
-        return $this->hasOne(Artista::class, "id_artista");
+        return $this->belongsToMany(Obra::class, 'likes', 'id_usuario', 'id_obra');
+    }
 
+    // Métodos para distinguir entre artista y visitante
+    public function esArtista()
+    {
+        return $this->tipo === 'artista';
+    }
+
+    public function esVisitante()
+    {
+        return $this->tipo === 'visitante';
     }
 }
-

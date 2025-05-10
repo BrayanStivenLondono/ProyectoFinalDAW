@@ -30,9 +30,10 @@
         <h1> {{ ucfirst($tipo) }}</h1>
 
         <div class="listado-obras">
+            @php use Illuminate\Support\Str; @endphp
             @forelse ($obrasPorTipo as $obra)
                 <div class="obra-item">
-                    <a href="{{ route('obra.ver', ['slug' => $obra->titulo]) }}">
+                    <a href="{{ url('/obra/' . Str::slug($obra->titulo)) }}">
                         <img src="{{ asset($obra->imagen) }}" class="imagen-obra" alt="{{ $obra->titulo }}">
                         <div class="info-obra">
                             <h5 class="titulo-obra">{{ $obra->titulo }}</h5>

@@ -24,9 +24,39 @@
     </div>
 
     <!-- Usuario también fuera del .container -->
-    <div class="user-configuration">
-        <img src="{{ asset('imagenes/user_face.png') }}">
+    <div class="user-configuration" id="userMenuToggle">
+        <img src="{{ Auth::check() ? asset(Auth::user()->imagen_perfil) : asset('imagenes/user_face.png') }}" id="userImage" alt="">
+        <div class="dropdown-menu" id="userDropdown" style="display: none;">
+            <ul>
+                <li><a href="{{ route("perfil") }}">Perfil</a></li>
+                <li><a href="{{ route("configuracion") }}">Configuración</a></li>
+                @if(Auth::check())
+                    <form action="{{ route('logout') }}" method="POST" style="text-decoration: none">
+                        @csrf
+                        <button type="submit" class="boton-cerrar-sesion">Cerrar Sesión</button>
+                    </form>
+                @else
+                    <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
+                @endif
+            </ul>
+        </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('userMenuToggle');
+            const dropdown = document.getElementById('userDropdown');
+
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
+            });
+
+            document.addEventListener('click', function () {
+                dropdown.style.display = 'none';
+            });
+        });
+    </script>
+
 
     <!-- Menú y logo centrado -->
     <nav class="container">

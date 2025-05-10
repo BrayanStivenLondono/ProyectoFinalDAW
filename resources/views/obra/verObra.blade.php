@@ -4,14 +4,14 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/obra.css') }}">
-
 @endsection
 
 @section('breadcrumbs')
+    @php use Illuminate\Support\Str; @endphp
     <a href="{{ url('/') }}">Inicio</a> &gt;
     <a href="{{ route('obra.colecciones') }}">Colecciones</a> &gt;
     <a href="{{ route('obra.verColeccion', $obra->tipo) }}">{{ $obra->tipo }}</a>  &gt;
-    <a href="{{ route('obra.ver',['slug' => $obra->titulo]) }}">{{ $obra->titulo }}</a>
+    <a href="{{ url('/obra/' . Str::slug($obra->titulo)) }}">{{ $obra->titulo }}</a>
 @endsection
 
 @section('content')

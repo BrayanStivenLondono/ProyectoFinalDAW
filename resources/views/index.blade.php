@@ -10,6 +10,12 @@
 @endsection
 
 @section('content')
+    @if (Auth::check())
+        <p>Bienvenido, {{ Auth::user()->nombre_usuario }}!</p>
+    @else
+        <p>Por favor, inicie sesión.</p>
+    @endif
+
     <div class="carrusel-container">
         <button class="prev">
             <img src="{{ asset("imagenes/fle.png") }}" alt="Anterior">

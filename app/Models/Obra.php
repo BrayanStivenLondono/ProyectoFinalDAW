@@ -29,7 +29,6 @@ class Obra extends Model
         'metadatos_seo',
     ];
 
-
     /**
      * Relacion con el artista que creo la obra.
      */
@@ -54,12 +53,13 @@ class Obra extends Model
         return $this->morphMany(Reporte::class, 'reportable');
     }
 
-    public static function boot()
-    {
-        parent::boot();
+    /**
+     * Relacion con los usuarios que han dado like a la obra.
+     */
 
-        static::creating(function ($obra) {
-            $obra->titulo = Str::slug($obra->titulo);
-        });
+    public function likes()
+    {
+        return $this->belongsToMany(Usuario::class, 'likes', 'id_obra', 'id_usuario');
     }
+
 }

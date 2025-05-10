@@ -59,16 +59,16 @@ class UsuarioSeeder extends Seeder
         ]);
 
         Usuario::create([
-            "nombre_usuario" => "Brayan27",
+            "nombre_usuario" => "brayan27",
             "nombre" => "Brayan",
             "apellido" => "Londoño",
             "correo" => "brayanlondono227@gmail.com",
-            "contrasena" => Hash::make("12345"),
+            "contrasena" => Hash::make("123456"),
             "tipo" => "administrador",
             "fecha_registro" => now(),
             "correo_verified_at" => now(),
             'remember_token' => Str::random(10),
-            'imagen_perfil' => 'imagenes/user_default.jpg',
+            'imagen_perfil' => 'imagenes/logo-ico.ico',
             'biografia' => 'Apasionado artista especializado en paisajes naturales.',
             'enlaces_sociales' => 'https://instagram.com/brayanlondono',
             'created_at' => now(),

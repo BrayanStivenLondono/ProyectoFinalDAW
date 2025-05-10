@@ -1,0 +1,77 @@
+.perfil-container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+}
+
+.perfil-container h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.perfil-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.perfil-imagen {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid #ddd;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.perfil-info p {
+    margin-bottom: 10px;
+    color: #555;
+    text-align: center;
+}
+
+.perfil-info p strong {
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+}
+
+.perfil-info a.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.perfil-info a.btn:hover {
+    background-color: #0056b3;
+}
+
+.perfil-info form {
+    margin-top: 15px;
+}
+
+.perfil-info button.boton-cerrar-sesion {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+}
+
+.perfil-info button.boton-cerrar-sesion:hover {
+    background-color: #c82333;
+}

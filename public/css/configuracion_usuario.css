@@ -1,0 +1,42 @@
+.configuracion-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: rgba(255, 255, 255, 0.97);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.configuracion-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.configuracion-opciones ul {
+    list-style: none;
+    padding: 0;
+}
+
+.configuracion-opciones li {
+    margin-bottom: 15px;
+}
+
+.configuracion-opciones a,
+.configuracion-opciones button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #1a1a1a;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+.configuracion-opciones a:hover,
+.configuracion-opciones button:hover {
+    background-color: #444;
+}

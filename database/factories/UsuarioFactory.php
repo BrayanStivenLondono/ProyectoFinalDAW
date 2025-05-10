@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Usuario>
  */
@@ -22,7 +21,6 @@ class UsuarioFactory extends Factory
 
     public function definition(): array
     {
-
         return [
             'nombre_usuario' => $this->faker->userName(),
             'nombre' => $this->faker->firstName(),
@@ -31,8 +29,8 @@ class UsuarioFactory extends Factory
             'correo_verified_at' => now(),
             'contrasena' => Hash::make('12345'), // Puedes cambiar la contraseña por defecto si lo deseas
             'remember_token' => Str::random(10),
-            'tipo' => $this->faker->randomElement(['usuario', 'artista', 'administrador']),
-            'biografia' => $this->faker->paragraph(),
+            'tipo' => $this->faker->randomElement(['visitante', 'artista', 'administrador']), // Ajustamos los valores posibles
+            'biografia' => $this->faker->optional()->paragraph(),
             'enlaces_sociales' => $this->faker->optional()->url(),
             'imagen_perfil' => 'imagenes/user_default.jpg', // Asegúrate de que esta ruta sea correcta para tus assets
             'fecha_registro' => now(),

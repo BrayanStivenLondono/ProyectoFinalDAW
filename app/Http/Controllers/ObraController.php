@@ -47,9 +47,18 @@ class ObraController extends Controller
         return view('obra.colecciones', compact('obrasPorTipo'));
     }
 
-    public function verObra($titulo)
+    public function verObra($slug)
     {
-        $obra = Obra::where('titulo', $titulo)->firstOrFail();
+        // Convierte el slug a texto normal: 'la-noche-estrellada' → 'la noche estrellada'
+        $titulo = str_replace('-', ' ', $slug);
+
+        // Busca una obra cuyo título coincida (ignorando mayúsculas/minúsculas)
+        $obra = Obra::whereRaw('LOWER(titulo) = ?', [strtolower($titulo)])->first();
+
+        if (!$obra) {
+            abort(404);
+        }
+
         return view('obra.verObra', compact('obra'));
     }
 
