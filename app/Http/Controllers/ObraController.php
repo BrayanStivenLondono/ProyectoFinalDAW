@@ -49,10 +49,8 @@ class ObraController extends Controller
 
     public function verObra($slug)
     {
-        // Convierte el slug a texto normal: 'la-noche-estrellada' → 'la noche estrellada'
         $titulo = str_replace('-', ' ', $slug);
 
-        // Busca una obra cuyo título coincida (ignorando mayúsculas/minúsculas)
         $obra = Obra::whereRaw('LOWER(titulo) = ?', [strtolower($titulo)])->first();
 
         if (!$obra) {

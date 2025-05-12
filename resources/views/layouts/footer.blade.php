@@ -14,19 +14,19 @@
             <div class="footer-column">
                 <h3>Descubre</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Artistas</a></li>
+                    <li><a href="{{ route("artistas.index") }}">Artistas</a></li>
                     <li><a href="#">Obras Destacadas</a></li>
-                    <li><a href="#">Colecciones</a></li>
-                    <li><a href="#">Exposiciones Virtuales</a></li>
+                    <li><a href="#">Colecciones Destacadas</a></li>
+                    <li><a href="{{ route("obra.colecciones") }}">Colecciones</a></li>
                 </ul>
             </div>
             <div class="footer-column">
                 <h3>Mi Cuenta</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Perfil</a></li>
+                    <li><a href="{{ route("perfil") }}">Perfil</a></li>
                     <li><a href="#">Mis Favoritos</a></li>
-                    <li><a href="#">Historial de Vistas</a></li>
-                    <li><a href="#">Alertas de Artistas</a></li>
+                    <li><a href="#">Artistas Destacados</a></li>
+                    <li><a href="#">Panel de Artista</a></li>
                 </ul>
             </div>
             <div class="footer-column">

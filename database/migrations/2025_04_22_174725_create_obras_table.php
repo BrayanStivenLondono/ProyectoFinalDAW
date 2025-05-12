@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId("id_artista")->constrained("usuarios")->onDelete("cascade");
             $table->string("titulo");
-            $table->string("estilo")->nullable();
-            $table->string("tecnica")->nullable();
+            $table->string("estilo");
+            $table->string("tecnica");
             $table->string("tipo")->nullable();
-            $table->integer("año_creacion")->nullable();
-            $table->text("descripcion")->nullable();
+            $table->integer("año_creacion");
+            $table->text("descripcion");
             $table->string("imagen")->nullable();
             $table->text("metadatos_seo")->nullable();
             $table->timestamps();

@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comentarios', function (Blueprint $table) {
+        Schema::create('comentarios', function (Blueprint $table) { // Nombre de la tabla debe ser comentarios (plural)
             $table->id();
             $table->foreignId('id_usuario')->constrained('usuarios')->onDelete('cascade');
             $table->foreignId('id_obra')->constrained('obras')->onDelete('cascade');
             $table->text('contenido');
             $table->timestamp('fecha_comentario')->useCurrent();
+            $table->foreignId('id_comentario_respuesta')->nullable()->constrained('comentarios')->onDelete('cascade');
             $table->timestamps();
         });
     }

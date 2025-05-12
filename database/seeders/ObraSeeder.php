@@ -19,7 +19,12 @@ class ObraSeeder extends Seeder
             'estilo' => 'Impresionismo',
             'tecnica' => 'Óleo sobre lienzo',
             'año_creacion' => 2021,
-            'descripcion' => 'Una escena serena al atardecer en el humedal valenciano, con reflejos dorados sobre el agua.',
+            'descripcion' => 'Una escena serena al atardecer en el humedal valenciano, con reflejos dorados sobre el agua.
+                            Una escena serena al atardecer en el humedal valenciano, con reflejos dorados sobre el agua.
+                            Una escena serena al atardecer en el humedal valenciano, con reflejos dorados sobre el agua.
+                            Una escena serena al atardecer en el humedal valenciano, con reflejos dorados sobre el agua.
+                            Una escena serena al atardecer en el humedal valenciano, con reflejos dorados sobre el agua.
+                            Una escena serena al atardecer en el humedal valenciano, con reflejos dorados sobre el agua.',
             'imagen' => 'imagenes/obra1.jpg',
             'metadatos_seo' => 'obra impresionista, paisaje al atardecer, óleo valenciano',
         ]);
@@ -31,7 +36,13 @@ class ObraSeeder extends Seeder
             'tecnica' => 'Acrílico sobre madera',
             'tipo' => 'Clasico',
             'año_creacion' => 2023,
-            'descripcion' => 'Composición abstracta basada en las líneas y formas de la arquitectura urbana moderna.',
+            'descripcion' => 'Composición abstracta basada en las líneas y formas de la arquitectura urbana moderna.
+                            Composición abstracta basada en las líneas y formas de la arquitectura urbana moderna.
+                            Composición abstracta basada en las líneas y formas de la arquitectura urbana moderna.
+                            Composición abstracta basada en las líneas y formas de la arquitectura urbana moderna.
+                            Composición abstracta basada en las líneas y formas de la arquitectura urbana moderna.
+                            Composición abstracta basada en las líneas y formas de la arquitectura urbana moderna.
+                            Composición abstracta basada en las líneas y formas de la arquitectura urbana moderna.',
             'imagen' => 'imagenes/obra2.jpg',
             'metadatos_seo' => 'arte abstracto, formas geométricas, acrílico moderno',
         ]);
@@ -43,7 +54,12 @@ class ObraSeeder extends Seeder
             'tecnica' => 'Carboncillo sobre papel',
             'tipo' => 'Moderno',
             'año_creacion' => 2022,
-            'descripcion' => 'Retrato expresivo de una bailaora flamenca capturada en pleno taconeo.',
+            'descripcion' => 'Retrato expresivo de una bailaora flamenca capturada en pleno taconeo.
+                            Retrato expresivo de una bailaora flamenca capturada en pleno taconeo
+                            Retrato expresivo de una bailaora flamenca capturada en pleno taconeo
+                            Retrato expresivo de una bailaora flamenca capturada en pleno taconeo
+                            Retrato expresivo de una bailaora flamenca capturada en pleno taconeo
+                            Retrato expresivo de una bailaora flamenca capturada en pleno taconeo',
             'imagen' => 'imagenes/obra3.jpg',
             'metadatos_seo' => 'retrato flamenco, arte realista, carboncillo',
         ]);
@@ -55,7 +71,12 @@ class ObraSeeder extends Seeder
             'tecnica' => 'Ilustración digital',
             'tipo' => 'Clasico',
             'año_creacion' => 2024,
-            'descripcion' => 'Exploración onírica de un paisaje surrealista creado íntegramente con herramientas digitales.',
+            'descripcion' => 'Exploración onírica de un paisaje surrealista creado íntegramente con herramientas digitales.
+                            Exploración onírica de un paisaje surrealista creado íntegramente con herramientas digitales.
+                            Exploración onírica de un paisaje surrealista creado íntegramente con herramientas digitales.
+                            Exploración onírica de un paisaje surrealista creado íntegramente con herramientas digitales.
+                            Exploración onírica de un paisaje surrealista creado íntegramente con herramientas digitales.
+                            Exploración onírica de un paisaje surrealista creado íntegramente con herramientas digitales.',
             'imagen' => 'imagenes/obra4.jpg',
             'metadatos_seo' => 'arte digital, ilustración surrealista, paisaje onírico',
         ]);

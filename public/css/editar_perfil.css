@@ -1,72 +1,86 @@
 /* actualizar_perfil.css */
 
-.perfil-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.perfil-editar-container {
     max-width: 600px;
     margin: 40px auto;
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
     font-family: 'Outfit', sans-serif;
 }
 
-.perfil-container h2 {
+.perfil-editar-container h2 {
+    text-align: center;
     margin-bottom: 25px;
     font-size: 28px;
     color: #333;
 }
 
 .form-group {
-    width: 100%;
     margin-bottom: 20px;
 }
 
 .form-group label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #222;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #444;
 }
 
-.form-group input,
-.form-group select,
+.form-group input[type="text"],
+.form-group input[type="file"],
+.form-group input[type="email"],
 .form-group textarea {
     width: 100%;
     padding: 10px 12px;
+    font-size: 15px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 15px;
+    background-color: #fff;
     box-sizing: border-box;
+    transition: border-color 0.3s;
 }
 
-.form-group input[type="file"] {
-    padding: 6px;
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #3f51b5;
+    outline: none;
 }
 
-.btn-actualizar {
-    padding: 12px 25px;
-    background-color: #3f51b5;
-    color: white;
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button.btn{
+    padding: 10px 20px;
     border: none;
     border-radius: 8px;
-    cursor: pointer;
     font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
     transition: background-color 0.3s ease;
 }
 
-.btn-actualizar:hover {
-    background-color: #303f9f;
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
 }
 
-/* Imagen previa del perfil */
-.perfil-imagen-preview {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    border: 2px solid #aaa;
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    background-color: darkred;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #555;
 }

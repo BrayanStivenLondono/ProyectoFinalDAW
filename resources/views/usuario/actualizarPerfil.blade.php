@@ -4,13 +4,19 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/editar_perfil.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
 @endsection
 
 @section('content')
     <div class="perfil-editar-container">
-        <h2>Editar Perfil</h2>
+        <h1 class="titulo">Editar Perfil</h1>
         <form action="{{ route('perfil.actualizar') }}" method="POST" enctype="multipart/form-data">
             @csrf
+
+            <div class="form-group">
+                <label for="nombre_usuario">Nombre de Usuario:</label>
+                <input type="text" name="nombre_usuario" value="{{ old('nombre_usuario', $usuario->nombre_usuario) }}" class="form-control" required>
+            </div>
 
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
@@ -23,8 +29,8 @@
             </div>
 
             <div class="form-group">
-                <label for="biografia">Biografía:</label>
-                <textarea name="biografia" class="form-control">{{ old('biografia', $usuario->biografia) }}</textarea>
+                <label for="correo">Correo:</label>
+                <input type="email" name="correo" value="{{ old('correo', $usuario->correo) }}" class="form-control" required>
             </div>
 
             <div class="form-group">
@@ -32,8 +38,11 @@
                 <input type="file" name="imagen_perfil" class="form-control" accept="image/*">
             </div>
 
-            <button type="submit" class="btn btn-success">Guardar Cambios</button>
-            <a href="{{ route('perfil') }}" class="btn btn-secondary">Cancelar</a>
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                <button type="button" class="btn btn-cancel" onclick="window.history.back()">Cancelar</button>
+            </div>
         </form>
     </div>
+    <br>
 @endsection

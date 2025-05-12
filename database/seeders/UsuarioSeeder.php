@@ -52,7 +52,9 @@ class UsuarioSeeder extends Seeder
             'correo_verified_at' => now(),
             'remember_token' => Str::random(10),
             'imagen_perfil' => 'imagenes/user_default.jpg',
-            'biografia' => 'Apasionada artista especializada en paisajes urbanos.',
+            'biografia' => 'Apasionada artista especializada en paisajes urbanos.
+                            Apasionada artista especializada en paisajes urbanos.Apasionada artista especializada en paisajes urbanos.
+                            Apasionada artista especializada en paisajes urbanos.Apasionada artista especializada en paisajes urbanos.',
             'enlaces_sociales' => 'https://instagram.com/elenapintora',
             'created_at' => now(),
             'updated_at' => now(),
@@ -64,12 +66,14 @@ class UsuarioSeeder extends Seeder
             "apellido" => "Londoño",
             "correo" => "brayanlondono227@gmail.com",
             "contrasena" => Hash::make("123456"),
-            "tipo" => "administrador",
+            "tipo" => "artista",
             "fecha_registro" => now(),
             "correo_verified_at" => now(),
             'remember_token' => Str::random(10),
             'imagen_perfil' => 'imagenes/logo-ico.ico',
-            'biografia' => 'Apasionado artista especializado en paisajes naturales.',
+            'biografia' => 'Apasionado artista especializado en paisajes naturales.
+                            Apasionado artista especializado en paisajes naturales. Apasionado artista especializado en paisajes naturales.
+                            Apasionado artista especializado en paisajes naturales.Apasionado artista especializado en paisajes naturales.',
             'enlaces_sociales' => 'https://instagram.com/brayanlondono',
             'created_at' => now(),
             'updated_at' => now(),

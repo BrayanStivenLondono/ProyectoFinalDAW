@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ObraController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\Usuario;
@@ -44,3 +47,22 @@ Route::post('/perfil/actualizar', [UsuarioController::class, 'actualizarPerfil']
 Route::get('/configuracion', [UsuarioController::class, 'mostrarConfiguracionUsuario'])->middleware('auth')->name('configuracion');
 
 //mostrarEditorPerfil
+
+
+//artista
+Route::get('/artista/{slug}', [UsuarioController::class, 'verPerfilArtista'])->name('artista.perfil');
+Route::get('/artistas', [UsuarioController::class, 'artistas'])->name('artistas.index');
+Route::get('/panel-artista', [UsuarioController::class, 'mostrarPanelArtista'])
+    ->middleware('auth')
+    ->name('panel.artista');
+
+
+
+//cambio de idioma
+Route::post('/set-language', [LanguageController::class, 'setLanguage'])->name('setLanguage');
+
+//likes
+Route::post('/obras/{obra}/like', [LikeController::class, 'toggleLike'])->name('obras.like');
+
+//comentarios
+Route::post('/comentarios', [ComentarioController::class, 'store'])->name('crearComentario');

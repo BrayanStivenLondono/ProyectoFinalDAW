@@ -38,7 +38,7 @@ class Usuario extends Authenticatable
 
     public function comentarios(): HasMany
     {
-        return $this->hasMany(Comentario::class);
+        return $this->hasMany(Comentario::class, 'id_usuario');
     }
 
     public function siguiendo(): BelongsToMany
@@ -53,7 +53,8 @@ class Usuario extends Authenticatable
 
     public function likes()
     {
-        return $this->belongsToMany(Obra::class, 'likes', 'id_usuario', 'id_obra');
+        return $this->belongsToMany(Obra::class, 'likes', 'usuario_id', 'obra_id');  // Cambiado el nombre de la clave foránea
+
     }
 
     // Métodos para distinguir entre artista y visitante
@@ -65,5 +66,15 @@ class Usuario extends Authenticatable
     public function esVisitante()
     {
         return $this->tipo === 'visitante';
+    }
+
+    protected static function booted()
+    {
+        static::saving(function ($usuario) {
+            // Si el tipo no es artista, vaciamos la biografía
+            if ($usuario->tipo !== 'artista') {
+                $usuario->biografia = null;
+            }
+        });
     }
 }

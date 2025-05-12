@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comentario;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -24,5 +25,7 @@ class DatabaseSeeder extends Seeder
             UsuarioSeeder::class,
             ObraSeeder::class,
         ]);
+
+        Comentario::factory(15)->create();
     }
 }

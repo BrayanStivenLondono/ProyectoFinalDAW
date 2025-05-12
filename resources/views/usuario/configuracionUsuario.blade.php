@@ -4,11 +4,12 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/configuracion_usuario.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
 @endsection
 
 @section('content')
     <div class="configuracion-container">
-        <h2>Configuración de Usuario</h2>
+        <h1 class="titulo">Configuración</h1>
 
         <div class="configuracion-opciones">
             <ul>
@@ -17,9 +18,14 @@
                 <li><a href="#">Notificaciones</a></li>
                 <li><a href="#">Redes Sociales</a></li>
                 <li>
-                    <form action="{{ route('logout') }}" method="POST">
+                    <a href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                       class="btn btn-danger">
+                        Cerrar Sesión
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
-                        <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
                     </form>
                 </li>
             </ul>

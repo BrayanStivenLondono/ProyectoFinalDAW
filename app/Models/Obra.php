@@ -32,7 +32,8 @@ class Obra extends Model
     /**
      * Relacion con el artista que creo la obra.
      */
-    public function artista(): BelongsTo
+
+    public function artista()
     {
         return $this->belongsTo(Usuario::class, 'id_artista');
     }
@@ -42,7 +43,8 @@ class Obra extends Model
      */
     public function comentarios(): HasMany
     {
-        return $this->hasMany(Comentario::class);
+        return $this->hasMany(Comentario::class, 'id_obra');
+
     }
 
     /**
@@ -57,9 +59,10 @@ class Obra extends Model
      * Relacion con los usuarios que han dado like a la obra.
      */
 
-    public function likes()
+    public function usuarioDaLike()
     {
-        return $this->belongsToMany(Usuario::class, 'likes', 'id_obra', 'id_usuario');
+        return $this->belongsToMany(Usuario::class, 'likes', 'obra_id', 'usuario_id');  // Cambiado el nombre de la clave foránea
+
     }
 
 }

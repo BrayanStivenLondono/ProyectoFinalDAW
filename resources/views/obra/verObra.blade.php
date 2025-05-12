@@ -21,11 +21,109 @@
         </div>
         <div class="obra-info">
             <h1>{{ str_replace(".","",$obra->titulo) }}</h1>
-            <p><strong>Autor:</strong> <a href="#"></a></p>
+            <p><strong>Autor:</strong>
+                <a href="{{ route('artista.perfil', ['slug' => Str::slug($obra->artista->nombre . ' ' . $obra->artista->apellido)]) }}">
+                    {{ $obra->artista->nombre }} {{ $obra->artista->apellido }}
+                </a>
+            </p>
             <p><strong>Estilo:</strong> {{ $obra->estilo }}</p>
             <p><strong>Técnica:</strong> {{ $obra->tecnica }}</p>
             <p><strong>Año de Creación:</strong> {{ $obra->año_creacion }}</p>
             <p><strong>Descripción:</strong> {{ $obra->descripcion }}</p>
+
+            @auth
+                <!-- Si el usuario está autenticado, mostrar el formulario para dar/ quitar like -->
+            <div class="acciones">
+                <form action="{{ route('obras.like', $obra->id) }}" method="POST">
+                    @csrf
+                    <button type="submit">
+                        @if(auth()->user()->likes->contains('obra_id', $obra->id))
+                            💔 Quitar like
+                        @else
+                            ❤️ Dar like
+                        @endif
+                    </button>
+                    <!-- boton para compartir -->
+                </form>
+            </div>
+                <!-- Mostrar la cantidad de likes solo si el usuario está autenticado -->
+                <p>{{ $obra->usuarioDaLike()->count() }} likes</p>
+            @else
+                <!-- Si el usuario no está autenticado, mostrar un mensaje invitando a iniciar sesión -->
+                <p>Para dar like o comentar esta obra, debes <a style="color: #0056b3" href="{{ route('login') }}">iniciar sesión</a>.</p>
+            @endauth
         </div>
     </div>
+    <div class="comentarios-lista">
+        <h3>Deja tu comentario:</h3>
+        @auth
+            <div class="comentario">
+                <form action="{{ route('crearComentario') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id_obra" value="{{ $obra->id }}">
+                    <textarea name="contenido" rows="4" placeholder="Escribe tu comentario aquí..." required></textarea>
+                    <button type="submit">Comentar</button>
+                </form>
+            </div>
+        @else
+            <p>Debes <a href="{{ route('login') }}">iniciar sesión</a> para comentar.</p>
+        @endauth
+    </div>
+
+    <div class="comentarios-lista">
+        <h3>Comentarios:</h3>
+        @forelse ($obra->comentarios->whereNull('id_comentario_respuesta') as $comentario)
+            <div class="comentario">
+                @php
+                    $usuario = $comentario->usuario;
+                    $nombreCompleto = $usuario->nombre . ' ' . $usuario->apellido;
+                    $slug = Str::slug($nombreCompleto);
+                @endphp
+
+                <p><strong>
+                        <a href="{{ $usuario->tipo === 'artista'
+                ? route('artista.perfil', ['slug' => $slug])
+                : route('perfil', ['slug' => $slug]) }}"
+                           style="color: black; text-decoration: none;">
+                            {{ $nombreCompleto }}
+                            @if ($usuario->tipo === 'artista')
+                                <span class="artista-icono" title="Artista">&#127912;</span>
+                            @endif
+                        </a>:
+                    </strong> {{ $comentario->contenido }}</p>
+                <p><small>Publicado el {{ $comentario->fecha_comentario }}</small></p>
+
+
+                <!-- Formulario de respuesta -->
+                @auth
+                    <form action="#" method="POST">
+                        @csrf
+                        <input type="hidden" name="id_comentario" value="{{ $obra->id }}">
+                        <input type="hidden" name="id_comentario_respuesta" value="{{ $comentario->id }}">
+                        <textarea name="contenido" rows="2" placeholder="Escribe tu respuesta..." required></textarea>
+                        <button type="submit">Responder</button>
+                        <button style="background-color: darkred">Reportar</button>
+                    </form>
+                @else
+                    <p>Debes <a href="#">iniciar sesión</a> para responder.</p>
+                @endauth
+
+                <div class="respuestas">
+                    @foreach ($comentario->respuestas as $respuesta)
+                        <div class="respuesta">
+                            <p><strong>
+                                    <a href="#">
+                                        {{ $respuesta->usuario->nombre_usuario }}
+                                    </a>:
+                                </strong> {{ $respuesta->contenido }}</p>
+                            <p><small>Publicado el {{ $respuesta->fecha_creacion }}</small></p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @empty
+            <p>No hay comentarios para esta obra. ¡Sé el primero en comentar!</p>
+        @endforelse
+    </div> <!-- Cerrar el div de comentarios-lista -->
+
 @endsection

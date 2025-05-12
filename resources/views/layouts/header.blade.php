@@ -12,33 +12,29 @@
 <body>
 <header class="main-header">
     <!-- Selector de idioma fuera del .container -->
-    <div class="language-switcher">
-        <div class="language-select-wrapper">
-            <label for="language-select">Idioma:</label>
-            <select id="language-select" onchange="cambiarIdioma(this.value)">
-                <option value="es" {{ app()->getLocale() == 'es' ? 'selected' : '' }}>Español</option>
-                <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
-                <option value="fr" {{ app()->getLocale() == 'fr' ? 'selected' : '' }}>Français</option>
-            </select>
-        </div>
-    </div>
+
 
     <!-- Usuario también fuera del .container -->
-    <div class="user-configuration" id="userMenuToggle">
-        <img src="{{ Auth::check() ? asset(Auth::user()->imagen_perfil) : asset('imagenes/user_face.png') }}" id="userImage" alt="">
-        <div class="dropdown-menu" id="userDropdown" style="display: none;">
-            <ul>
-                <li><a href="{{ route("perfil") }}">Perfil</a></li>
-                <li><a href="{{ route("configuracion") }}">Configuración</a></li>
-                @if(Auth::check())
-                    <form action="{{ route('logout') }}" method="POST" style="text-decoration: none">
-                        @csrf
-                        <button type="submit" class="boton-cerrar-sesion">Cerrar Sesión</button>
-                    </form>
-                @else
-                    <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
-                @endif
-            </ul>
+    <div class="user-config-wrapper">
+        <div class="user-configuration" id="userMenuToggle">
+            <img src="{{ Auth::check() ? asset(Auth::user()->imagen_perfil) : asset('imagenes/user_face.png') }}" id="userImage" alt="">
+            <div class="dropdown-menu" id="userDropdown" style="display: none;">
+                <ul>
+                    <li><a href="{{ route('perfil') }}">Perfil</a></li>
+                    <li><a href="{{ route('configuracion') }}">Configuración</a></li>
+                    <li><a href="{{ route('panel.artista') }}">Panel de Artista</a></li>
+                    @if(Auth::check())
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
+                                @csrf
+                                <button type="submit" class="boton-cerrar-sesion">Cerrar Sesión</button>
+                            </form>
+                        </li>
+                    @else
+                        <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
+                    @endif
+                </ul>
+            </div>
         </div>
     </div>
     <script>
@@ -71,7 +67,7 @@
             </a>
         </div>
         <ul class="right-buttons">
-            <li><a href="#">Mi Arte</a></li>
+            <li><a href="{{ route("artistas.index") }}">Artistas</a></li>
             <li><a href="#">Historia</a></li>
         </ul>
     </nav>

@@ -7,6 +7,7 @@ use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UsuarioController extends Controller
 {
@@ -83,33 +84,34 @@ class UsuarioController extends Controller
 
     public function actualizarPerfil(Request $request)
     {
-        $validate = $request->validate([
-            'nombre_usuario'   => 'required|max:255|unique:usuarios,nombre_usuario,' . auth()->id(),
-            'nombre'           => 'required|max:255',
-            'apellido'         => 'nullable|max:255',
-            'correo'           => 'required|email|unique:usuarios,correo,' . auth()->id(),
-            'contrasena'       => 'nullable|min:5',
-            'imagen_perfil'      => 'nullable|image|mimes:jpg,jpeg,png',
-        ]);
-
         $usuario = Auth::user();
-        dd($usuario->nombre_usuario);
+
+        $validate = $request->validate([
+            'nombre_usuario' => [
+                'required',
+                'max:255',
+                Rule::unique('usuarios')->ignore($usuario->id),
+            ],
+            'nombre' => 'required|max:255',
+            'apellido' => 'nullable|max:255',
+            'correo' => [
+                'required',
+                'email',
+                Rule::unique('usuarios')->ignore($usuario->id),
+            ],
+            'imagen_perfil' => 'nullable|image|mimes:jpg,jpeg,png',
+        ]);
 
         $usuario->nombre_usuario = $validate['nombre_usuario'];
         $usuario->nombre = $validate['nombre'];
         $usuario->apellido = $validate['apellido'] ?? '';
         $usuario->correo = $validate['correo'];
 
-
-        if (!empty($validate['contrasena'])) {
-            $usuario->contrasena = Hash::make($validate['contrasena']);
-        }
-
-        if ($request->hasFile('ruta_imagen')) {
-            $imagen = $request->file('ruta_imagen');
+        if ($request->hasFile('imagen_perfil')) {
+            $imagen = $request->file('imagen_perfil');
             $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
             $imagen->move(public_path('imagenes'), $nombreImagen);
-            $usuario->ruta_imagen = 'imagenes/' . $nombreImagen;
+            $usuario->imagen_perfil = 'imagenes/' . $nombreImagen;
         }
 
         $usuario->save();
@@ -152,5 +154,53 @@ class UsuarioController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function verPerfilArtista($slug)
+    {
+        $nombre = str_replace('-', ' ', $slug);
+
+        $artista = Usuario::whereRaw("LOWER(CONCAT(nombre, ' ', apellido)) = ?", [strtolower($nombre)])
+            ->where('tipo', 'artista')
+            ->with('obras')
+            ->firstOrFail();
+
+        return view('usuario.verPerfilArtista', compact('artista'));
+    }
+
+    public function artistas(Request $request)
+    {
+        $query = Usuario::where('tipo', 'artista');
+
+        if ($request->filled('nombre')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('nombre', 'like', '%' . $request->nombre . '%')
+                    ->orWhere('apellido', 'like', '%' . $request->nombre . '%');
+            });
+        }
+
+        $artistas2 = Usuario::where('tipo', 'artista')->get();
+        //return view('artistas.index', compact('artistas'));
+
+        $artistas = $query->get();
+
+        return view('usuario.artistas', compact('artistas', 'artistas2'));
+    }
+
+    public function mostrarPanelArtista()
+    {
+        $usuario = Auth::user();
+
+        if ($usuario->tipo !== 'artista') {
+            abort(403);
+        }
+
+        $obras = $usuario->obras;
+
+        // Aquí es clave: asegúrate de pasar la variable con el nombre que usas en la vista
+        return view('usuario.panelArtista', [
+            'artista' => $usuario,
+            'obras' => $obras
+        ]);
     }
 }
