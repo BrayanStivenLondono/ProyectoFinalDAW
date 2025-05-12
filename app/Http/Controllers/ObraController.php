@@ -9,9 +9,22 @@ use Illuminate\Support\Facades\DB;
 
 class ObraController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //logica para el index de obra
+        if (!auth()->user() || auth()->user()->tipo !== 'administrador') {
+            return redirect("/");
+        }
+
+        $busqueda = $request->input('busqueda');
+
+        $obras = Obra::when($busqueda, function ($query, $busqueda) {
+            $query->where('titulo', 'like', "%$busqueda%")
+                ->orWhere('autor', 'like', "%$busqueda%")
+                ->orWhere('anio', 'like', "%$busqueda%")
+                ->orWhere('estilo', 'like', "%$busqueda%");
+        })->get();
+
+        return view('obra.index', compact('obras'));
     }
 
     public function carresulColecciones()
@@ -47,11 +60,13 @@ class ObraController extends Controller
         return view('obra.colecciones', compact('obrasPorTipo'));
     }
 
-    public function verObra($slug)
+    public function verObra($titulo)
     {
-        $titulo = str_replace('-', ' ', $slug);
+        // Convertir el nombre de la obra en un slug
+        $tituloSlug = str_replace('-', ' ', $titulo);
 
-        $obra = Obra::whereRaw('LOWER(titulo) = ?', [strtolower($titulo)])->first();
+        // Buscar la obra por título (sin importar mayúsculas o minúsculas)
+        $obra = Obra::whereRaw('LOWER(titulo) = ?', [strtolower($tituloSlug)])->first();
 
         if (!$obra) {
             abort(404);
@@ -60,4 +75,49 @@ class ObraController extends Controller
         return view('obra.verObra', compact('obra'));
     }
 
+    public function eliminarObra($id)
+    {
+
+        $obra = Obra::find($id);
+
+        if (!$obra) {
+            return redirect();
+        }
+
+        if (auth()->user()->tipo !== 'administrador') {
+            return redirect("/");
+        }
+
+        $obra->delete();
+
+        return redirect("/admin/obras");
+    }
+
+    public function editarObra($id)
+    {
+        $obra = Obra::findOrFail($id); // Busca la obra por ID o lanza 404
+
+        return view('obra.editorObra', compact('obra'));
+    }
+
+    public function actualizarObra(Request $request, $id)
+    {
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'descripcion' => 'string',
+            'año_creacion' => 'integer',  // Validación para año
+        ]);
+
+        $obra = Obra::findOrFail($id);
+        $obra->update([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'año_creacion' => $request->año_creacion,
+        ]);
+        // Actualiza otros campos si es necesario
+
+        $obra->save();
+
+        return redirect("/panel-artista");
+    }
 }

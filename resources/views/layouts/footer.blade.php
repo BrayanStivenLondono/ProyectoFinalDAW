@@ -9,6 +9,8 @@
     <title></title>
 </head>
 <body>
+@php use Illuminate\Support\Str; @endphp
+
     <footer class="main-footer complex-footer">
         <div class="footer-top container">
             <div class="footer-column">
@@ -23,7 +25,7 @@
             <div class="footer-column">
                 <h3>Mi Cuenta</h3>
                 <ul class="footer-links">
-                    <li><a href="{{ route("perfil") }}">Perfil</a></li>
+                    <li><a href="#">Perfil</a></li>
                     <li><a href="#">Mis Favoritos</a></li>
                     <li><a href="#">Artistas Destacados</a></li>
                     <li><a href="#">Panel de Artista</a></li>

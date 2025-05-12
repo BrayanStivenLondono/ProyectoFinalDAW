@@ -7,15 +7,32 @@ use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class UsuarioController extends Controller
 {
     //
 
-    public function index()
+    public function index(Request $request)
     {
-        return view("index");
+        //Auth::user()
+        if (!auth()->user() || auth()->user()->tipo !== 'administrador') {
+            return redirect("/");
+        }
+
+        $busqueda = $request->input('busqueda');
+
+        $usuarios = Usuario::when($busqueda, function ($query, $busqueda) {
+            $query->where('nombre', 'like', "%$busqueda%")
+                ->orWhere('apellido', 'like', "%$busqueda%")
+                ->orWhere('nombre_usuario', 'like', "%$busqueda%")
+                ->orWhere('correo', 'like', "%$busqueda%")
+                ->orWhere('tipo', 'like', "%$busqueda%");
+        })->get();
+
+        return view('usuario.index', compact('usuarios'));
+
     }
 
     public function darLike(Obra $obra)
@@ -71,9 +88,24 @@ class UsuarioController extends Controller
         return redirect("/");
     }
 
-    public function mostrarPerfil()
+    public function verPerfilPublico($slug)
     {
-        $usuario = Auth::user();
+        $usuario = Usuario::all()->first(function ($u) use ($slug) {
+            return Str::slug($u->nombre . ' ' . $u->apellido) === $slug;
+        });
+
+        if (!$usuario) {
+            abort(404);
+        }
+
+        return view('usuario.perfilPublico', compact('usuario'));
+    }
+
+    public function mostrarPerfil($slug)
+    {
+        $nombre = str_replace('-', ' ', $slug);
+        $usuario = Usuario::whereRaw("CONCAT(nombre, ' ', apellido) = ?", [$nombre])->firstOrFail();
+
         return view('usuario.verPerfil', compact('usuario'));
     }
 
@@ -100,12 +132,17 @@ class UsuarioController extends Controller
                 Rule::unique('usuarios')->ignore($usuario->id),
             ],
             'imagen_perfil' => 'nullable|image|mimes:jpg,jpeg,png',
+            'contrasena' => 'min:6',
         ]);
 
         $usuario->nombre_usuario = $validate['nombre_usuario'];
         $usuario->nombre = $validate['nombre'];
         $usuario->apellido = $validate['apellido'] ?? '';
         $usuario->correo = $validate['correo'];
+
+        if (!empty($validate['contrasena'])) {
+            $usuario->contrasena = Hash::make($validate['contrasena']);
+        }
 
         if ($request->hasFile('imagen_perfil')) {
             $imagen = $request->file('imagen_perfil');
@@ -116,7 +153,7 @@ class UsuarioController extends Controller
 
         $usuario->save();
 
-        return redirect()->route("perfil");
+        return redirect()->route("mostrarEditorPerfil");
     }
 
     public function mostrarLogin()
@@ -203,4 +240,28 @@ class UsuarioController extends Controller
             'obras' => $obras
         ]);
     }
+
+    public function mostrarPanelAdministracion(){
+        return view("usuario.admin");
+    }
+
+    public function admin()
+    {
+        $usuario = auth()->user();
+
+        if (!auth()->user() || auth()->user()->tipo !== 'Administrador') {
+            return redirect("/");
+        }
+
+        return view('usuario.admin', compact('usuario'));
+
+    }
+    public function eliminarUsuario($id)
+    {
+        $usuarios = Usuario::findOrFail($id);
+        $usuarios->delete();
+
+        return redirect("/admin/usuarios");
+    }
+
 }

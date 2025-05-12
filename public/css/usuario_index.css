@@ -1,0 +1,119 @@
+/* usuario_index.css */
+
+.form-filtro {
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto 1rem auto;
+    max-width: 600px;
+    gap: 1rem;
+}
+
+.form-filtro input {
+    flex: 1;
+    padding: 0.6rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.form-filtro button {
+    padding: 0.6rem 1.2rem;
+    background-color: #2d6fa5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.form-filtro button:hover {
+    background-color: #1b4f7a;
+}
+
+
+.usuarios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.usuario-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+.usuario-card:hover {
+    transform: translateY(-5px);
+}
+
+.usuario-info {
+    text-align: center;
+}
+
+.usuario-imagen {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    border: 3px solid #2d6fa5;
+}
+
+.usuario-info h3 {
+    margin: 0.5rem 0;
+    font-size: 1.3rem;
+    color: #333;
+}
+
+.usuario-info p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.acciones-admin-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.acciones-admin-container form,
+.acciones-admin-container a {
+    width: 100%;
+}
+
+.btn-eliminar,
+.btn-hacer-admin {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 0.6rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.btn-hacer-admin {
+    background-color: #0275d8;
+}
+
+.btn-eliminar:hover {
+    background-color: #c9302c;
+}
+
+.btn-hacer-admin:hover {
+    background-color: #025aa5;
+}

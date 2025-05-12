@@ -11,6 +11,16 @@ class HarvardController extends Controller
     {
         $artist = $request->input('artist');
 
+        $results = $this->buscarObras($harvard, $artist);
+
+        return view('apis.harvard_index', [
+            'artworks' => $results['records'] ?? [],
+            'artist' => $artist
+        ]);
+    }
+
+    private function buscarObras(HarvardService $harvard, ?string $artist): array
+    {
         $params = [
             'classification' => 'Paintings',
             'size' => 10,
@@ -21,11 +31,7 @@ class HarvardController extends Controller
             $params['person'] = $artist;
         }
 
-        $results = $harvard->search($params);
-
-        return view('apis.harvard_index', [
-            'artworks' => $results['records'] ?? [],
-            'artist' => $artist
-        ]);
+        return $harvard->search($params);
     }
+
 }

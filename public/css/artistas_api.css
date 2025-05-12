@@ -1,0 +1,82 @@
+
+/* Título principal */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #222;
+}
+
+/* Formulario de búsqueda */
+form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+form input[type="text"] {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    min-width: 200px;
+}
+
+form button {
+    padding: 0.6rem 1.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Tarjeta de obra */
+.artwork-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.artwork-card h3 {
+    margin-top: 0;
+    color: #222;
+}
+
+.artwork-card p {
+    margin: 0.5rem 0;
+}
+
+.artwork-card img {
+    margin-top: 1rem;
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+/* Mensaje de vacío */
+p.no-results {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    form {
+        flex-direction: column;
+        align-items: center;
+    }
+}

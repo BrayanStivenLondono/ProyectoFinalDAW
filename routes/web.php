@@ -16,7 +16,8 @@ Route::get('/',[UsuarioController::class, 'index'])->name("inicio");
 
 
 //APIS
-Route::get('/apis', [App\Http\Controllers\HarvardController::class, 'index']);
+Route::get('/harvard-museum', [App\Http\Controllers\HarvardController::class, 'index'])->name("harvard");
+
 
 //carrusel
 Route::get('/', [ObraController::class, 'carresulColecciones']);
@@ -28,7 +29,7 @@ Route::get('/colecciones/{tipo}', [ObraController::class, 'obtenerObrasPorTipo']
 
 
 //Obras
-Route::get('/obra/{slug}', [ObraController::class, 'verObra']);
+Route::get('/obra/{slug}', [ObraController::class, 'verObra'])->name("verObra");
 
 
 //registro | login
@@ -40,7 +41,8 @@ Route::post('/logout', [UsuarioController::class, 'logout'])->name('logout');
 
 
 //Perfil
-Route::get('/perfil', [UsuarioController::class, 'mostrarPerfil'])->middleware('auth')->name('perfil');
+Route::get('/usuario/publico/{slug}', [UsuarioController::class, 'verPerfilPublico'])->name('usuario.perfil.publico');
+Route::get('/usuario/{slug}', [UsuarioController::class, 'mostrarPerfil'])->name('usuario.perfil');
 Route::get('/perfil/actualizar', [UsuarioController::class, 'mostrarEditorPerfil'])->middleware('auth')->name('mostrarEditorPerfil');
 Route::post('/perfil/actualizar', [UsuarioController::class, 'actualizarPerfil'])->middleware('auth')->name('perfil.actualizar');
 
@@ -66,3 +68,20 @@ Route::post('/obras/{obra}/like', [LikeController::class, 'toggleLike'])->name('
 
 //comentarios
 Route::post('/comentarios', [ComentarioController::class, 'store'])->name('crearComentario');
+
+
+//admin
+Route::get('/panel-administracion', [UsuarioController::class, 'mostrarPanelAdministracion'])->name('panel-admin');
+Route::get('/admin', [UsuarioController::class, 'admin'])->name('admin');
+Route::get('/admin/usuarios', [UsuarioController::class, 'index'])->name('panel_usuarios');
+Route::get('/admin/obras', [ObraController::class, 'index'])->name('panel_obras');
+Route::delete('/admin/usuarios/{id}', [UsuarioController::class, 'eliminarUsuario'])->name('admin.eliminarUsuario');
+Route::delete('/admin/obra/{id}', [ObraController::class, 'eliminarObra'])->name('admin.eliminarObra');
+
+//artista
+Route::get('/obra/{id}/editar', [ObraController::class, 'editarObra'])->name('obra.editar');
+Route::put('/obra/{id}', [ObraController::class, 'actualizarObra'])->name('obra.actualizar');
+
+
+
+

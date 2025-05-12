@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $obra->titulo.' | Galeria Virtual')
+@section('title', $obra->titulo . ' | Galería Virtual')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/obra.css') }}">
@@ -20,7 +20,7 @@
             <img src="{{ asset($obra->imagen) }}" alt="Imagen de {{ $obra->titulo }}">
         </div>
         <div class="obra-info">
-            <h1>{{ str_replace(".","",$obra->titulo) }}</h1>
+            <h1>{{ str_replace(".", "", $obra->titulo) }}</h1>
             <p><strong>Autor:</strong>
                 <a href="{{ route('artista.perfil', ['slug' => Str::slug($obra->artista->nombre . ' ' . $obra->artista->apellido)]) }}">
                     {{ $obra->artista->nombre }} {{ $obra->artista->apellido }}
@@ -32,28 +32,26 @@
             <p><strong>Descripción:</strong> {{ $obra->descripcion }}</p>
 
             @auth
-                <!-- Si el usuario está autenticado, mostrar el formulario para dar/ quitar like -->
-            <div class="acciones">
-                <form action="{{ route('obras.like', $obra->id) }}" method="POST">
-                    @csrf
-                    <button type="submit">
-                        @if(auth()->user()->likes->contains('obra_id', $obra->id))
-                            💔 Quitar like
-                        @else
-                            ❤️ Dar like
-                        @endif
-                    </button>
-                    <!-- boton para compartir -->
-                </form>
-            </div>
-                <!-- Mostrar la cantidad de likes solo si el usuario está autenticado -->
+                <div class="acciones">
+                    <form action="{{ route('obras.like', $obra->id) }}" method="POST">
+                        @csrf
+                        <button type="submit">
+                            @if(auth()->user()->likes->contains('obra_id', $obra->id))
+                                💔 Quitar like
+                            @else
+                                ❤️ Dar like
+                            @endif
+                        </button>
+                    </form>
+                    <button onclick="copiarEnlace()" class="boton-accion">🔗 Compartir obra</button>
+                </div>
                 <p>{{ $obra->usuarioDaLike()->count() }} likes</p>
             @else
-                <!-- Si el usuario no está autenticado, mostrar un mensaje invitando a iniciar sesión -->
                 <p>Para dar like o comentar esta obra, debes <a style="color: #0056b3" href="{{ route('login') }}">iniciar sesión</a>.</p>
             @endauth
         </div>
     </div>
+
     <div class="comentarios-lista">
         <h3>Deja tu comentario:</h3>
         @auth
@@ -79,22 +77,17 @@
                     $nombreCompleto = $usuario->nombre . ' ' . $usuario->apellido;
                     $slug = Str::slug($nombreCompleto);
                 @endphp
-
                 <p><strong>
-                        <a href="{{ $usuario->tipo === 'artista'
-                ? route('artista.perfil', ['slug' => $slug])
-                : route('perfil', ['slug' => $slug]) }}"
+                        <a href="{{ $usuario->tipo === 'artista' ? route('artista.perfil', ['slug' => $slug]) : route('usuario.perfil.publico', ['slug' => $slug]) }}"
                            style="color: black; text-decoration: none;">
                             {{ $nombreCompleto }}
                             @if ($usuario->tipo === 'artista')
                                 <span class="artista-icono" title="Artista">&#127912;</span>
                             @endif
-                        </a>:
+                        </a>
                     </strong> {{ $comentario->contenido }}</p>
                 <p><small>Publicado el {{ $comentario->fecha_comentario }}</small></p>
 
-
-                <!-- Formulario de respuesta -->
                 @auth
                     <form action="#" method="POST">
                         @csrf
@@ -105,7 +98,7 @@
                         <button style="background-color: darkred">Reportar</button>
                     </form>
                 @else
-                    <p>Debes <a href="#">iniciar sesión</a> para responder.</p>
+                    <p>Debes <a href="{{ route('login') }}">iniciar sesión</a> para responder.</p>
                 @endauth
 
                 <div class="respuestas">
@@ -124,6 +117,16 @@
         @empty
             <p>No hay comentarios para esta obra. ¡Sé el primero en comentar!</p>
         @endforelse
-    </div> <!-- Cerrar el div de comentarios-lista -->
-
+    </div>
 @endsection
+
+{{-- ✅ Script separado y visible en layout --}}
+@push('scripts')
+    <script>
+        function copiarEnlace() {
+            navigator.clipboard.writeText(window.location.href)
+                .then(() => alert("¡Enlace copiado al portapapeles!"))
+                .catch(() => alert("Error al copiar el enlace."));
+        }
+    </script>
+@endpush

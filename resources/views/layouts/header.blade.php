@@ -13,16 +13,32 @@
 <header class="main-header">
     <!-- Selector de idioma fuera del .container -->
 
-
+    @php use Illuminate\Support\Str; @endphp
     <!-- Usuario también fuera del .container -->
     <div class="user-config-wrapper">
         <div class="user-configuration" id="userMenuToggle">
             <img src="{{ Auth::check() ? asset(Auth::user()->imagen_perfil) : asset('imagenes/user_face.png') }}" id="userImage" alt="">
             <div class="dropdown-menu" id="userDropdown" style="display: none;">
                 <ul>
-                    <li><a href="{{ route('perfil') }}">Perfil</a></li>
+                    @if(auth()->check())
+                        @php
+                            $slug = Str::slug(auth()->user()->nombre . ' ' . auth()->user()->apellido);
+                        @endphp
+                        <li><a href="{{ route('usuario.perfil', ['slug' => $slug]) }}">Perfil</a></li>
+                    @endif
+
                     <li><a href="{{ route('configuracion') }}">Configuración</a></li>
-                    <li><a href="{{ route('panel.artista') }}">Panel de Artista</a></li>
+
+                    @auth
+                        @if(Auth::user()->tipo === "artista")
+                            <li><a href="{{ route('panel.artista') }}">Panel de Artista</a></li>
+                        @endif
+
+                        @if(Auth::user()->tipo === "administrador")
+                            <li><a href="{{ route("panel-admin") }}">Panel de Administración</a></li>
+                        @endif
+                    @endauth
+
                     @if(Auth::check())
                         <li>
                             <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
@@ -68,7 +84,7 @@
         </div>
         <ul class="right-buttons">
             <li><a href="{{ route("artistas.index") }}">Artistas</a></li>
-            <li><a href="#">Historia</a></li>
+            <li><a href="{{ route("harvard") }}">Museo</a></li>
         </ul>
     </nav>
 </header>

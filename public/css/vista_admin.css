@@ -1,0 +1,70 @@
+/* Panel de administración principal */
+.admin-panel {
+    border-radius: 16px;
+    max-width: 80%;
+    margin: 50px auto;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Título principal */
+.admin-panel .titulo {
+    font-size: 2rem;
+    color: #222;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Texto de bienvenida */
+.main-content p {
+    font-size: 1.2rem;
+    color: #444;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Navegación */
+.navigation ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.navigation li {
+    background-color: #007bff;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navigation li:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+.navigation a {
+    display: block;
+    padding: 20px 30px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navigation h2 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+    .navigation ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navigation li {
+        width: 100%;
+        text-align: center;
+    }
+}

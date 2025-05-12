@@ -18,11 +18,11 @@ class UsuarioSeeder extends Seeder
     {
         // Crear un usuario administrador
         Usuario::create([
-            'nombre_usuario' => 'admin_galeria',
+            'nombre_usuario' => 'admin',
             'nombre' => 'Administrador',
             'apellido' => 'Principal',
             'correo' => 'admin@galeriavirtual.com',
-            'contrasena' => Hash::make('12345'),
+            'contrasena' => Hash::make('123456'),
             'tipo' => 'administrador',
             'fecha_registro' => now(),
             'correo_verified_at' => now(),
@@ -46,7 +46,7 @@ class UsuarioSeeder extends Seeder
             'nombre' => 'Elena',
             'apellido' => 'Pintora',
             'correo' => 'elena.pintora@arte.com',
-            'contrasena' => Hash::make('12345'),
+            'contrasena' => Hash::make('123456'),
             'tipo' => 'artista',
             'fecha_registro' => now(),
             'correo_verified_at' => now(),
@@ -79,6 +79,7 @@ class UsuarioSeeder extends Seeder
             'updated_at' => now(),
 
         ]);
+
 
         // Puedes añadir más usuarios artistas o visitantes según necesites
     }

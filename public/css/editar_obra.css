@@ -1,0 +1,57 @@
+.editar-obra-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.editar-obra-container .titulo {
+    text-align: center;
+    color: #2d2d2d;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.form-editar-obra label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #444;
+}
+
+.form-editar-obra input[type="text"],
+.form-editar-obra input[type="number"],
+.form-editar-obra textarea {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.form-editar-obra textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-editar-obra button[type="submit"] {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #2d6fa5;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-editar-obra button[type="submit"]:hover {
+    background-color: #23557f;
+}

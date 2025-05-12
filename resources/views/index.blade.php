@@ -10,12 +10,6 @@
 @endsection
 
 @section('content')
-    @if (Auth::check())
-        <p>Bienvenido, {{ Auth::user()->nombre_usuario }}!</p>
-    @else
-        <p>Por favor, inicie sesión.</p>
-    @endif
-
     <div class="carrusel-container">
         <button class="prev">
             <img src="{{ asset("imagenes/fle.png") }}" alt="Anterior">
@@ -24,8 +18,10 @@
             <div class="slides">
                 @foreach($obras as $obra)
                     <div class="slide">
-                        <img src="{{ asset($obra->imagen) }}" alt="{{$obra->titulo}}">
-                        <h3>{{ $obra->titulo }}</h3>
+                        <a href="{{ route('obras.coleccion', $obra->tipo) }}" class="coleccion-item">
+                            <img src="{{ asset($obra->imagen) }}" alt="{{$obra->titulo}}">
+                            <h3>{{ $obra->titulo }}</h3>
+                        </a>
                     </div>
                 @endforeach
             </div>

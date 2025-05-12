@@ -1,4 +1,6 @@
 .obra-detalle {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
     display: flex;
     gap: 30px;
     padding: 20px;
@@ -209,4 +211,25 @@ button:hover {
 }
 .artista-icono:hover {
     color: #e67e22; /* Cambio de color al pasar el ratón */
+}
+
+.acciones {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.boton-accion {
+    padding: 8px 14px;
+    border: none;
+    background-color: #a93e3e;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.boton-accion:hover {
+    background-color: #ddd;
 }

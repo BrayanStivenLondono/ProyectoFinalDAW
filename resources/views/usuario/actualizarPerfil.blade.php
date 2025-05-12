@@ -34,6 +34,11 @@
             </div>
 
             <div class="form-group">
+                <label for="contrasena">Contrasena:</label>
+                <input type="password" name="contrasena" placeholder="Nueva Contraseña" class="form-control" required>
+            </div>
+
+            <div class="form-group">
                 <label for="imagen_perfil">Imagen de Perfil:</label>
                 <input type="file" name="imagen_perfil" class="form-control" accept="image/*">
             </div>

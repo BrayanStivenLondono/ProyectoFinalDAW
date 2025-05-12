@@ -1,0 +1,82 @@
+.perfil-publico {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.perfil-publico h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.perfil-publico .usuario-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.perfil-publico .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ccc;
+}
+
+.perfil-publico .detalles {
+    flex: 1;
+}
+
+.perfil-publico .detalles p {
+    margin: 0.3rem 0;
+    color: #555;
+}
+
+.perfil-publico .detalles .etiqueta {
+    font-weight: bold;
+    color: #222;
+}
+
+.perfil-publico .bio {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #666;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-left: 4px solid #0077cc;
+    border-radius: 8px;
+}
+
+.perfil-publico .obras {
+    margin-top: 2rem;
+}
+
+.perfil-publico .obras h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.perfil-publico .obra {
+    background-color: #f4f4f4;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.perfil-publico .obra h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #222;
+}
+
+.perfil-publico .obra p {
+    margin: 0.2rem 0;
+    color: #555;
+}
