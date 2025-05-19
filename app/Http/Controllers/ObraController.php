@@ -27,6 +27,33 @@ class ObraController extends Controller
         return view('obra.index', compact('obras'));
     }
 
+    public function mostrarTodasObras(){
+        return view("obra.verObras");
+    }
+
+    public function verObras(Request $request)
+    {
+        $query = Obra::query();
+
+        // Búsqueda por título
+        if ($request->filled('busqueda')) {
+            $query->where('titulo', 'like', '%' . $request->busqueda . '%');
+        }
+
+        // Filtro por tipo
+        if ($request->filled('tipo')) {
+            $query->where('tipo', $request->tipo);
+        }
+
+        $tiposObra = Obra::select('tipo')->distinct()->pluck('tipo');
+
+        // Aquí usamos la query con filtros
+        $obras = $query->latest()->paginate(8);
+
+        return view('obra.verObras', compact('obras', 'tiposObra'));
+    }
+
+
     public function carresulColecciones()
     {
         $obrasPorTipo = Obra::select('obras.*')
@@ -55,7 +82,7 @@ class ObraController extends Controller
             ->whereNotNull('obras.tipo')
             ->where('obras.tipo', '!=', '')
             ->orderBy('tipo')
-            ->get();
+            ->paginate(4); // Especifica el número de elementos por página (ej: 10)
 
         return view('obra.colecciones', compact('obrasPorTipo'));
     }

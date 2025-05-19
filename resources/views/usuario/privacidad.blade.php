@@ -8,19 +8,20 @@
 @endsection
 
 @section('breadcrumbs')
-    <a href="{{ url('/') }}">Inicio</a> &gt;
-    <a href="{{ route("configuracion") }}">Configuracion</a>
+<a href="{{ url('/') }}">Inicio</a> &gt;
+<a href="{{ route("configuracion") }}">Configuracion</a> &gt;
+<a href="{{ route("panelPrivacidad") }}">Privacidad</a>
 @endsection
 
 
 @section('content')
-    <h1 class="titulo">Configuración</h1>
+    <h1 class="titulo">Privacidad</h1>
 
     <div class="configuracion-container">
         <div class="configuracion-opciones">
             <ul>
-                <li><a href="{{ route("mostrarEditorPerfil") }}">Perfil de Usuario</a></li>
-                <li><a href="{{ route("panelPrivacidad") }}">Privacidad</a></li>
+                <li><a href="{{ route("dardeBaja") }}">Darse de Baja</a></li>
+                <li><a href="{{ route("formContrasena") }}">Actualizar Contraseña</a></li>
                 <li>
                     <a href="{{ route('logout') }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"

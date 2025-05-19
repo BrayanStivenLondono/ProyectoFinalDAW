@@ -8,10 +8,9 @@
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
 @endsection
 
-
 @section('content')
+    <h1 class="titulo">Mi Perfil</h1>
     <div class="perfil-container">
-        <h1 class="titulo">Mi Perfil</h1>
         <div class="perfil-info">
             <img src="{{ asset($usuario->imagen_perfil) }}" alt="Imagen de perfil" class="perfil-imagen">
             <p><strong>Usuario:</strong> {{ $usuario->nombre_usuario }}</p>

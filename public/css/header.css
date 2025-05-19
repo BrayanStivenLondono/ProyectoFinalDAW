@@ -74,6 +74,22 @@
     font-family: "Outfit", sans-serif;
     font-weight: 300;
 }
+.login-register-text {
+    font-family: "Outfit", sans-serif;
+    font-weight: 250;
+    cursor: pointer;
+    color: #333;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: background-color 0.3s ease;
+}
+
+.login-register-text:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
 
 .language-switcher {
     position: absolute;

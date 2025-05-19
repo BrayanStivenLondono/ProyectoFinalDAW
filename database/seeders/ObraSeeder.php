@@ -81,6 +81,6 @@ class ObraSeeder extends Seeder
             'metadatos_seo' => 'arte digital, ilustración surrealista, paisaje onírico',
         ]);
 
-        Obra::factory()->count(10)->create();
+        Obra::factory()->count(30)->create();
     }
 }

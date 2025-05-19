@@ -4,12 +4,13 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/coleccion.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
 @endsection
 
 @section('breadcrumbs')
     <a href="{{ url('/') }}">Inicio</a> &gt;
     <a href="{{ route('obra.colecciones') }}">Colecciones</a> &gt;
-    <a href="{{ route('obra.verColeccion', $tipo) }}">{{ $tipo }}</a>
+    <a href="{{ route('obra.verColeccion', $tipo) }}">{{ Str::ucfirst($tipo) }}</a>
 @endsection
 
 @section('content')
@@ -27,7 +28,7 @@
     </div>
 
     <div class="contenedor">
-        <h1> {{ ucfirst($tipo) }}</h1>
+        <h1 class="titulo"> {{ ucfirst($tipo) }}</h1>
 
         <div class="listado-obras">
             @php use Illuminate\Support\Str; @endphp

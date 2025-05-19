@@ -5,7 +5,6 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/vista_admin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
-
 @endsection
 
 @section('content')

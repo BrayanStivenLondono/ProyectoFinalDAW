@@ -4,14 +4,15 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/obra.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/comentario.css') }}">
 @endsection
 
 @section('breadcrumbs')
     @php use Illuminate\Support\Str; @endphp
     <a href="{{ url('/') }}">Inicio</a> &gt;
     <a href="{{ route('obra.colecciones') }}">Colecciones</a> &gt;
-    <a href="{{ route('obra.verColeccion', $obra->tipo) }}">{{ $obra->tipo }}</a>  &gt;
-    <a href="{{ url('/obra/' . Str::slug($obra->titulo)) }}">{{ $obra->titulo }}</a>
+    <a href="{{ route("obra.verColeccion", Str::slug($obra->tipo)) }}">{{ ucfirst($obra->tipo) }}</a> &gt;
+    <a href="{{ url('/obra/' . Str::slug($obra->titulo)) }}">{{ ucfirst($obra->titulo) }}</a>
 @endsection
 
 @section('content')
@@ -28,6 +29,9 @@
             </p>
             <p><strong>Estilo:</strong> {{ $obra->estilo }}</p>
             <p><strong>Técnica:</strong> {{ $obra->tecnica }}</p>
+            <a href="{{ route("obra.verColeccion", Str::slug($obra->tipo)) }}">
+                <p><strong>Coleccion:</strong> {{ $obra->tipo }}</p>
+            </a>
             <p><strong>Año de Creación:</strong> {{ $obra->año_creacion }}</p>
             <p><strong>Descripción:</strong> {{ $obra->descripcion }}</p>
 
@@ -64,7 +68,7 @@
                 </form>
             </div>
         @else
-            <p>Debes <a href="{{ route('login') }}">iniciar sesión</a> para comentar.</p>
+            <p>Debes <a style="color: #0056b3" href="{{ route('login') }}">iniciar sesión</a> para comentar.</p>
         @endauth
     </div>
 
@@ -118,9 +122,9 @@
             <p>No hay comentarios para esta obra. ¡Sé el primero en comentar!</p>
         @endforelse
     </div>
+    <br>
 @endsection
 
-{{-- ✅ Script separado y visible en layout --}}
 @push('scripts')
     <script>
         function copiarEnlace() {

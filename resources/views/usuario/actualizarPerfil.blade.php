@@ -8,8 +8,8 @@
 @endsection
 
 @section('content')
+    <h1 class="titulo">Editar Perfil</h1>
     <div class="perfil-editar-container">
-        <h1 class="titulo">Editar Perfil</h1>
         <form action="{{ route('perfil.actualizar') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -31,11 +31,6 @@
             <div class="form-group">
                 <label for="correo">Correo:</label>
                 <input type="email" name="correo" value="{{ old('correo', $usuario->correo) }}" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="contrasena">Contrasena:</label>
-                <input type="password" name="contrasena" placeholder="Nueva Contraseña" class="form-control" required>
             </div>
 
             <div class="form-group">

@@ -7,6 +7,7 @@ use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -132,7 +133,6 @@ class UsuarioController extends Controller
                 Rule::unique('usuarios')->ignore($usuario->id),
             ],
             'imagen_perfil' => 'nullable|image|mimes:jpg,jpeg,png',
-            'contrasena' => 'min:6',
         ]);
 
         $usuario->nombre_usuario = $validate['nombre_usuario'];
@@ -140,9 +140,6 @@ class UsuarioController extends Controller
         $usuario->apellido = $validate['apellido'] ?? '';
         $usuario->correo = $validate['correo'];
 
-        if (!empty($validate['contrasena'])) {
-            $usuario->contrasena = Hash::make($validate['contrasena']);
-        }
 
         if ($request->hasFile('imagen_perfil')) {
             $imagen = $request->file('imagen_perfil');
@@ -155,6 +152,84 @@ class UsuarioController extends Controller
 
         return redirect()->route("mostrarEditorPerfil");
     }
+
+    public function formCambiarContrasena()
+    {
+        return view('usuario.cambioContrasena');
+    }
+
+    public function cambiarContrasena(Request $request)
+    {
+        $request->validate([
+            'password_actual' => ['required'],
+            'nueva_password' => ['required', 'min:6', 'confirmed'],
+        ]);
+
+        $usuario = Auth::user();
+
+        if (!Hash::check($request->password_actual, $usuario->contrasena)) {
+            return back()->withErrors(['password_actual' => 'La contraseña actual no es correcta']);
+        }
+
+        $usuario->contrasena = Hash::make($request->nueva_password);
+        $usuario->save();
+
+        return redirect()->route('configuracion')->with('success', 'La contraseña se cambió correctamente.');
+    }
+
+    public function mostrarPanelBaja()
+    {
+        return view("usuario.eliminarCuenta");
+    }
+
+    public function mostrarFormularioConfirmacion()
+    {
+        return view("usuario.confirmarContrasena");
+    }
+
+    public function confirmarIdentidad(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|string',
+        ]);
+
+        $usuario = auth()->user();
+
+        $intentos = session()->get('confirmar_intentos', 0);
+
+        if ($intentos >= 3) {
+            Auth::logout();
+            session()->flush();
+            return redirect()->route('login.form')->withErrors([
+                'password' => 'Has superado el número máximo de intentos. Por favor, inicia sesión de nuevo.'
+            ]);
+        }
+
+        if (Hash::check($request->password, $usuario->contrasena)) {
+            session()->forget('confirmar_intentos');
+            session(['password_confirmed_at' => time()]);
+            return redirect()->intended('/configuracion/privacidad');
+        }
+
+        session()->put('confirmar_intentos', $intentos + 1);
+        return back()->withErrors(['password' => 'La contraseña no es correcta']);
+    }
+
+    public function eliminarCuenta(Request $request)
+    {
+        $usuario = Auth::user();
+
+        Auth::logout();
+        $usuario->delete();
+
+        return redirect('/')->with('success', 'Tu cuenta fue eliminada correctamente.');
+    }
+
+    public function mostrarPanelPrivacidad(){
+        return view("usuario.privacidad");
+    }
+
+
 
     public function mostrarLogin()
     {

@@ -1,0 +1,86 @@
+.obras-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas exactas */
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.obra-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.obra-card:hover {
+    transform: scale(1.03);
+}
+
+.obra-img-container {
+    position: relative;
+    width: 100%;
+    height: 350px; /* más alto para fichas grandes */
+    overflow: hidden;
+}
+
+.obra-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.obra-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+
+.filtros-busqueda {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.filtro-busqueda-grupo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.filtro-busqueda-grupo input[type="text"],
+.filtro-busqueda-grupo select {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.filtro-busqueda-grupo button,
+.filtro-busqueda-grupo .btn-reset {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background-color: #2d89ef;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.filtro-busqueda-grupo .btn-reset {
+    background-color: #aaa;
+}
+
+
+

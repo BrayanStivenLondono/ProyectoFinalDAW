@@ -8,6 +8,7 @@
     margin: 50px auto;
     padding: 20px;
     border-radius: 8px;
+    background-color: #cfcfcf;
 }
 
 .titulo{
@@ -27,15 +28,17 @@ form {
 label {
     font-size: 1rem;
     color: #333;
+    font-family: 'Quicksand', sans-serif;
+}
+p{
+    font-family: 'Quicksand', sans-serif;
 }
 
 input {
-    border-bottom: 2px solid black; /* Línea azul en la parte inferior */
-    outline: none;
     width: 100%;
     padding: 10px;
     margin-top: 5px;
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 1rem;
     box-sizing: border-box;
 }
@@ -67,4 +70,26 @@ button:hover {
     font-size: 0.875rem;
     margin-top: 10px;
     text-align: center;
+}
+
+
+.checkbox-mostrar {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #555;
+    gap: 4px; /* Junta el checkbox y el texto */
+}
+
+.checkbox-mostrar input[type="checkbox"] {
+    transform: scale(1.1);
+    cursor: pointer;
+    margin: 0; /* Elimina espacios verticales/izquierda */
+}
+
+.checkbox-mostrar label {
+    cursor: pointer;
+    user-select: none;
+    margin: 0; /* Evita separación innecesaria */
 }

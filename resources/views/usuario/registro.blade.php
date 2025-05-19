@@ -67,7 +67,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Registrarse</button>
-                Si Tiene Una Cuenta <a style="color: #0056b3" href="{{ route("login.form") }}">Inicia Sesión</a>
+                <p>Si Tiene Una Cuenta <a style="color: #0056b3" href="{{ route("login.form") }}">Inicia Sesión</a> </p>
             </form>
             </div>
         <div class="imagen-fondo">

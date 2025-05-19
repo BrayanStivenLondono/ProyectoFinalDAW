@@ -5,7 +5,11 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ObraController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Middleware\ConfirmarPasswordMiddleware;
 use App\Models\Usuario;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,6 +26,7 @@ Route::get('/harvard-museum', [App\Http\Controllers\HarvardController::class, 'i
 //carrusel
 Route::get('/', [ObraController::class, 'carresulColecciones']);
 
+
 //coleccion
 Route::get('/coleccion/{tipo}', [ObraController::class, 'obtenerObrasPorTipo'])->name('obras.coleccion');
 Route::get('/colecciones', [ObraController::class, 'verTodasLasColecciones'])->name('obra.colecciones');
@@ -30,6 +35,10 @@ Route::get('/colecciones/{tipo}', [ObraController::class, 'obtenerObrasPorTipo']
 
 //Obras
 Route::get('/obra/{slug}', [ObraController::class, 'verObra'])->name("verObra");
+Route::get('/obras', [ObraController::class, 'verObras'])->name("verObras");
+
+
+
 
 
 //registro | login
@@ -41,19 +50,31 @@ Route::post('/logout', [UsuarioController::class, 'logout'])->name('logout');
 
 
 //Perfil
-Route::get('/usuario/publico/{slug}', [UsuarioController::class, 'verPerfilPublico'])->name('usuario.perfil.publico');
+Route::get('/usuario/p/{slug}', [UsuarioController::class, 'verPerfilPublico'])->name('usuario.perfil.publico');
 Route::get('/usuario/{slug}', [UsuarioController::class, 'mostrarPerfil'])->name('usuario.perfil');
-Route::get('/perfil/actualizar', [UsuarioController::class, 'mostrarEditorPerfil'])->middleware('auth')->name('mostrarEditorPerfil');
-Route::post('/perfil/actualizar', [UsuarioController::class, 'actualizarPerfil'])->middleware('auth')->name('perfil.actualizar');
-
+Route::get('/configuracion/actualizar', [UsuarioController::class, 'mostrarEditorPerfil'])->middleware('auth')->name('mostrarEditorPerfil');
+Route::post('/configuracion/actualizar', [UsuarioController::class, 'actualizarPerfil'])->middleware('auth')->name('perfil.actualizar');
 Route::get('/configuracion', [UsuarioController::class, 'mostrarConfiguracionUsuario'])->middleware('auth')->name('configuracion');
+
+Route::middleware([ConfirmarPasswordMiddleware::class])->group(function () {
+    Route::get('/configuracion/privacidad', [UsuarioController::class, 'mostrarPanelPrivacidad'])->name('panelPrivacidad');
+    Route::get('/configuracion/privacidad/baja', [UsuarioController::class, 'mostrarPanelBaja'])->name('dardeBaja');
+    Route::delete('/configuracion/privacidad/eliminar-cuenta', [UsuarioController::class, 'eliminarCuenta'])->name('eliminarCuenta');
+    Route::get('/configuracion/privacidad/cambiar-contrasena', [UsuarioController::class, 'formCambiarContrasena'])->name('formContrasena');
+    Route::post('/configuracion/privacidad/cambiar-contrasena', [UsuarioController::class, 'cambiarContrasena'])->name('cambiarContrasena');
+});
+
+
+Route::get('/configuracion/confirmar-identidad', [UsuarioController::class, 'mostrarFormularioConfirmacion'])->name('confirmarContrasena');
+Route::post('/configuracion/confirmar-identidad', [UsuarioController::class, 'confirmarIdentidad'])->name('confirmarContrasena.post');
+
 
 //mostrarEditorPerfil
 
 
 //artista
 Route::get('/artista/{slug}', [UsuarioController::class, 'verPerfilArtista'])->name('artista.perfil');
-Route::get('/artistas', [UsuarioController::class, 'artistas'])->name('artistas.index');
+Route::get('/artista', [UsuarioController::class, 'artistas'])->name('artistas.index');
 Route::get('/panel-artista', [UsuarioController::class, 'mostrarPanelArtista'])
     ->middleware('auth')
     ->name('panel.artista');

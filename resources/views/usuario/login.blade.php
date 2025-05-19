@@ -10,11 +10,9 @@
 @section('breadcrumbs')
 
 @endsection
-
 @section('content')
+    <h1 class="titulo">Iniciar sesión</h1>
     <div class="login-container">
-        <h1 class="titulo">Iniciar sesión</h1>
-
         <form action="{{ route('login') }}" method="POST">
             @csrf
 
@@ -25,12 +23,28 @@
 
             <div class="form-group">
                 <label for="contrasena">Contraseña</label>
-                <input type="password" name="contrasena" id="contrasena" class="form-control" required>
+                <div class="input-with-checkbox">
+                    <input type="password" name="contrasena" id="contrasena" class="form-control" required>
+                    <label class="checkbox-container">
+                        <input type="checkbox" class="toggle-password" onclick="mostrarContrasena()">
+                    </label>
+                </div>
             </div>
 
             <button type="submit" class="btn btn-primary">Iniciar sesión</button>
 
-            Si No Tiene Una Cuenta <a style="color: #0056b3" href="{{ route("registro.form") }}">Registrate</a>
+            <p> Si No tienes una cuenta  <a style="color: #0056b3" href="{{ route('registro.form') }}">Regístrate</a> </p>
         </form>
     </div>
+    <br>
+    <script>
+        function mostrarContrasena(){
+            var tipo = document.getElementById("contrasena");
+            if(tipo.type === "password") {
+                tipo.type = "text";
+            } else {
+                tipo.type = "password";
+            }
+        }
+    </script>
 @endsection

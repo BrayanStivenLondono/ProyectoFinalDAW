@@ -28,13 +28,13 @@
                     <p><strong>Estilo:</strong> {{ $obra->estilo }}</p>
                 </div>
                 <div class="acciones-admin-container">
-                    <a href="{{ route('verObra', $obra->titulo)}}" class="btn-hacer-admin" style="background-color: #2d6fa5;">Ver Detalles</a>
+                    <a href="{{ route('verObra', Str::slug($obra->titulo)) }}" class="btn-hacer-admin" style="background-color: #2d6fa5;">Ver Detalles</a>
                     <div class="acciones-admin-container">
                         <form action="{{ route('admin.eliminarObra', $obra->id) }}" method="POST"
                               onsubmit="return confirm('¿Estás seguro de eliminar esta receta?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn-eliminar">Eliminar Receta</button>
+                            <button type="submit" class="btn-eliminar">Eliminar Obra</button>
                         </form>
                     </div>
                 </div>

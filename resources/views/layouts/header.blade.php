@@ -12,12 +12,32 @@
 <body>
 <header class="main-header">
     <!-- Selector de idioma fuera del .container -->
+    <div class="language-switcher">
+        <div class="language-select-wrapper">
+            <label for="language-select">Idioma:</label>
+            <form action="{{ route('setLanguage') }}" method="POST" id="language-form">
+                @csrf
+                <select id="language-select" name="locale" onchange="document.getElementById('language-form').submit()">
+                    <option value="es" {{ app()->getLocale() == 'es' ? 'selected' : '' }}>Español</option>
+                    <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
+                    <option value="fr" {{ app()->getLocale() == 'fr' ? 'selected' : '' }}>Français</option>
+                </select>
+            </form>
+        </div>
+    </div>
 
     @php use Illuminate\Support\Str; @endphp
     <!-- Usuario también fuera del .container -->
     <div class="user-config-wrapper">
         <div class="user-configuration" id="userMenuToggle">
-            <img src="{{ Auth::check() ? asset(Auth::user()->imagen_perfil) : asset('imagenes/user_face.png') }}" id="userImage" alt="">
+            @if(Auth::check())
+                <img src="{{ asset(Auth::user()->imagen_perfil) }}" id="userImage" alt="">
+            @else
+                <div class="login-register-text">
+                    <a class="login" href="{{ route("login.form") }}">Iniciar Sesion</a> |
+                    <a class="registro" href="{{ route("registro.form") }}">Registro</a>
+                </div>
+            @endif
             <div class="dropdown-menu" id="userDropdown" style="display: none;">
                 <ul>
                     @if(auth()->check())
@@ -27,9 +47,9 @@
                         <li><a href="{{ route('usuario.perfil', ['slug' => $slug]) }}">Perfil</a></li>
                     @endif
 
-                    <li><a href="{{ route('configuracion') }}">Configuración</a></li>
-
                     @auth
+                            <li><a href="{{ route('configuracion') }}">Configuración</a></li>
+
                         @if(Auth::user()->tipo === "artista")
                             <li><a href="{{ route('panel.artista') }}">Panel de Artista</a></li>
                         @endif
@@ -46,13 +66,12 @@
                                 <button type="submit" class="boton-cerrar-sesion">Cerrar Sesión</button>
                             </form>
                         </li>
-                    @else
-                        <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
                     @endif
                 </ul>
             </div>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const toggle = document.getElementById('userMenuToggle');
@@ -73,7 +92,8 @@
     <!-- Menú y logo centrado -->
     <nav class="container">
         <ul class="left-buttons">
-            <li><a href="/">Inicio</a></li>
+            <li><a href="{{ url("/") }}">Inicio</a></li>
+            <li><a href="{{ route("verObras") }}">Obras</a></li>
             <li><a href="{{ route("obra.colecciones") }}">Colecciones</a></li>
         </ul>
         <div class="logo">
@@ -85,6 +105,7 @@
         <ul class="right-buttons">
             <li><a href="{{ route("artistas.index") }}">Artistas</a></li>
             <li><a href="{{ route("harvard") }}">Museo</a></li>
+            <li><a href="#">Otro</a></li>
         </ul>
     </nav>
 </header>

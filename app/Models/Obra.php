@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Str;
@@ -59,10 +60,15 @@ class Obra extends Model
      * Relacion con los usuarios que han dado like a la obra.
      */
 
-    public function usuarioDaLike()
+    public function usuarioDaLike(): BelongsToMany
     {
         return $this->belongsToMany(Usuario::class, 'likes', 'obra_id', 'usuario_id');  // Cambiado el nombre de la clave foránea
 
+    }
+
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
     }
 
 }
