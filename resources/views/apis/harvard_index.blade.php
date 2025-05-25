@@ -10,14 +10,14 @@
 
 @section('content')
     <div class="harvard-museum">
-        <h1 class="titulo">Harvard Museum</h1>
+        <h1 class="titulo">RIJKS MUSEUM</h1>
 
         <div class="container">
             <div class="botones">
                 <ul>
                     <li><a href="#">Artistas</a></li>
                     <li><a href="#">Obras</a></li>
-                    <li><a href="#">Otros</a></li>
+                    <li><a href="#">Colecciones</a></li>
                 </ul>
             </div>
         </div>

@@ -3,7 +3,7 @@
 @section('title', 'Registro | Galeria Virtual')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/registro_usuario.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/formulario.css') }}">
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
 @endsection
 
@@ -12,7 +12,6 @@
 @endsection
 
 @section('content')
-    <div class="registro-wrapper">
         <div class="registro-container">
             <h1 class="titulo">Registro</h1>
 
@@ -69,10 +68,7 @@
                 <button type="submit" class="btn btn-primary">Registrarse</button>
                 <p>Si Tiene Una Cuenta <a style="color: #0056b3" href="{{ route("login.form") }}">Inicia Sesión</a> </p>
             </form>
-            </div>
-        <div class="imagen-fondo">
-            <img src="{{ asset("imagenes/welcome.png") }}" alt="">
-        </div>
     </div>
+    <br>
 @endsection
 

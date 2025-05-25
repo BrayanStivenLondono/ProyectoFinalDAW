@@ -17,24 +17,28 @@ class UsuarioController extends Controller
 
     public function index(Request $request)
     {
-        //Auth::user()
         if (!auth()->user() || auth()->user()->tipo !== 'administrador') {
             return redirect("/");
         }
 
         $busqueda = $request->input('busqueda');
+        $tipo = $request->input('tipo');
 
         $usuarios = Usuario::when($busqueda, function ($query, $busqueda) {
-            $query->where('nombre', 'like', "%$busqueda%")
-                ->orWhere('apellido', 'like', "%$busqueda%")
-                ->orWhere('nombre_usuario', 'like', "%$busqueda%")
-                ->orWhere('correo', 'like', "%$busqueda%")
-                ->orWhere('tipo', 'like', "%$busqueda%");
-        })->get();
+            $query->where(function ($q) use ($busqueda) {
+                $q->where('nombre', 'like', "%$busqueda%")
+                    ->orWhere('apellido', 'like', "%$busqueda%")
+                    ->orWhere('nombre_usuario', 'like', "%$busqueda%");
+            });
+        })
+            ->when($tipo, function ($query, $tipo) {
+                $query->where('tipo', $tipo);
+            })
+            ->get();
 
         return view('usuario.index', compact('usuarios'));
-
     }
+
 
     public function darLike(Obra $obra)
     {
@@ -52,6 +56,7 @@ class UsuarioController extends Controller
         return response()->json(['message' => 'Like agregado']);
     }
 
+
     public function mostrarRegistro()
     {
         return view("usuario.registro");
@@ -65,8 +70,8 @@ class UsuarioController extends Controller
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
             'correo' => 'required|email|max:255|unique:usuarios',
-            'contrasena' => 'required|string|min:6|confirmed', // Confirmación de contraseña
-            'tipo' => 'required|string|in:artista,visitante', // Tipo puede ser 'artista' o 'visitante'
+            'contrasena' => 'required|string|min:6|confirmed',
+            'tipo' => 'required|string|in:artista,visitante',
         ]);
 
         // Creamos el nuevo usuario
@@ -75,17 +80,18 @@ class UsuarioController extends Controller
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
             'correo' => $request->correo,
-            'contrasena' => Hash::make($request->contrasena), // Encriptamos la contraseña
+            'contrasena' => Hash::make($request->contrasena),
             'tipo' => $request->tipo,
-            'biografia' => $request->biografia, // Si tienes campo biografía en el formulario
-            'enlaces_sociales' => $request->enlaces_sociales, // Si tienes campo de enlaces sociales
-            'imagen_perfil' => 'imagenes/user_default.jpg', // Imagen por defecto
+            'biografia' => $request->biografia,
+            'enlaces_sociales' => $request->enlaces_sociales,
+            'imagen_perfil' => 'imagenes/user_default.jpg',
             'fecha_registro' => now(),
         ]);
 
-        // Realizamos el login automáticamente (opcional)
+        // 🔐 Login automático
+        Auth::login($usuario);
 
-        // Redirigimos al usuario al dashboard u otra página
+        // Redirigimos al usuario
         return redirect("/");
     }
 
@@ -100,6 +106,11 @@ class UsuarioController extends Controller
         }
 
         return view('usuario.perfilPublico', compact('usuario'));
+    }
+
+    public function panelConfiguracion()
+    {
+        return view("layouts.configuration");
     }
 
     public function mostrarPerfil($slug)
@@ -208,7 +219,7 @@ class UsuarioController extends Controller
         if (Hash::check($request->password, $usuario->contrasena)) {
             session()->forget('confirmar_intentos');
             session(['password_confirmed_at' => time()]);
-            return redirect()->intended('/configuracion/privacidad');
+            return redirect()->intended('/configuracion');
         }
 
         session()->put('confirmar_intentos', $intentos + 1);

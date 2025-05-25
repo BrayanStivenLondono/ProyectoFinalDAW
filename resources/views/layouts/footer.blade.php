@@ -22,15 +22,21 @@
                     <li><a href="{{ route("obra.colecciones") }}">Colecciones</a></li>
                 </ul>
             </div>
-            <div class="footer-column">
-                <h3>Mi Cuenta</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Perfil</a></li>
-                    <li><a href="#">Mis Favoritos</a></li>
-                    <li><a href="#">Artistas Destacados</a></li>
-                    <li><a href="#">Panel de Artista</a></li>
-                </ul>
-            </div>
+            @auth
+                @php
+                    $nombreUsuario = Auth()->user()->nombre . " " . Auth()->user()->apellido;
+                    $slug = Str::slug($nombreUsuario);
+                @endphp
+                <div class="footer-column">
+                    <h3>Mi Cuenta</h3>
+                    <ul class="footer-links">
+                        <li><a href="{{ route("usuario.perfil.publico", ["slug" => $slug]) }}">Perfil Público</a></li>
+                        <li><a href="#">Mis Favoritos</a></li>
+                        <li><a href="#">Artistas Destacados</a></li>
+                        <li><a href="#">Panel de Artista</a></li>
+                    </ul>
+                </div>
+            @endauth
             <div class="footer-column">
                 <h3>Sobre Nosotros</h3>
                 <ul class="footer-links">

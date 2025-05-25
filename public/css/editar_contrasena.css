@@ -54,6 +54,7 @@
 }
 
 button[type="submit"] {
+    font-family: 'Inter', sans-serif;
     background-color: #28a745;
     color: white;
     padding: 0.6rem 1.5rem;
@@ -67,4 +68,8 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #1a6c2b;
+}
+
+label{
+    font-family: 'Inter', sans-serif;
 }

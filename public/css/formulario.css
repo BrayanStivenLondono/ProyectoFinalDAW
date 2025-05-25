@@ -1,0 +1,95 @@
+/* Aplica estilos solo a formularios que NO tengan el id "language-form" */
+form:not(#language-form) {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fdfcfa;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', sans-serif;
+    color: #2c3e50;
+}
+
+/* Títulos dentro del formulario */
+form:not(#language-form) h1,
+form:not(#language-form) h2,
+form:not(#language-form) h3 {
+    text-align: center;
+    color: #4a235a;
+    margin-bottom: 1.5rem;
+}
+
+/* Etiquetas */
+form:not(#language-form) label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Inputs, selects y textareas */
+form:not(#language-form) input[type="text"],
+form:not(#language-form) input[type="email"],
+form:not(#language-form) input[type="password"],
+form:not(#language-form) input[type="number"],
+form:not(#language-form) input[type="date"],
+form:not(#language-form) input[type="file"],
+form:not(#language-form) select,
+form:not(#language-form) textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fffdfc;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form:not(#language-form) input:focus,
+form:not(#language-form) select:focus,
+form:not(#language-form) textarea:focus {
+    border-color: #9b59b6;
+    box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.2);
+    outline: none;
+}
+
+form:not(#language-form) textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Radio y checkbox */
+form:not(#language-form) input[type="checkbox"],
+form:not(#language-form) input[type="radio"] {
+    transform: scale(1.15);
+    margin-right: 8px;
+}
+
+/* Botones */
+form:not(#language-form) button,
+form:not(#language-form) input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #9b59b6;
+    color: white;
+    border: none;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form:not(#language-form) button:hover,
+form:not(#language-form) input[type="submit"]:hover {
+    background: #884ea0;
+}
+
+/* Mensajes de error */
+form:not(#language-form) small {
+    display: block;
+    color: #e74c3c;
+    margin-top: -0.8rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}

@@ -18,6 +18,7 @@ class ObraSeeder extends Seeder
             'titulo' => 'Atardecer en la Albufera',
             'estilo' => 'Impresionismo',
             'tecnica' => 'Óleo sobre lienzo',
+            'tipo' => 'Clasico',
             'año_creacion' => 2021,
             'descripcion' => 'Una escena serena al atardecer en el humedal valenciano, con reflejos dorados sobre el agua.
                             Una escena serena al atardecer en el humedal valenciano, con reflejos dorados sobre el agua.

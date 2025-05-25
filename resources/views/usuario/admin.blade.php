@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
 @endsection
 
+@section('breadcrumbs')
+    <a href="{{ url('/') }}">Inicio</a> &gt;
+    <a href="{{ route("panel-admin") }}">Administración</a>
+@endsection
+
 @section('content')
     <div class="admin-panel">
             <h1 class="titulo">Administración</h1>
@@ -18,7 +23,7 @@
                 <ul>
                     <li><a href="{{ route("panel_obras") }}"><h2>Obras</h2></a></li>
                     <li><a href="{{ route("panel_usuarios") }}"><h2>Usuarios</h2></a></li>
-                    <li><a href="{{ route("harvard") }}"><h2>Museo</h2></a></li>
+                    <li><a href="{{ route('reportes.index') }}"><h2>Reportes</h2></a></li>
                 </ul>
             </div>
     </div>

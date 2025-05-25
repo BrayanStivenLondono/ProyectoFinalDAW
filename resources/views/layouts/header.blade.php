@@ -38,37 +38,28 @@
                     <a class="registro" href="{{ route("registro.form") }}">Registro</a>
                 </div>
             @endif
-            <div class="dropdown-menu" id="userDropdown" style="display: none;">
-                <ul>
-                    @if(auth()->check())
-                        @php
-                            $slug = Str::slug(auth()->user()->nombre . ' ' . auth()->user()->apellido);
-                        @endphp
-                        <li><a href="{{ route('usuario.perfil', ['slug' => $slug]) }}">Perfil</a></li>
-                    @endif
-
-                    @auth
+                @if(Auth::check())
+                    <div class="dropdown-menu" id="userDropdown" style="display: none;">
+                        <ul>
                             <li><a href="{{ route('configuracion') }}">Configuración</a></li>
 
-                        @if(Auth::user()->tipo === "artista")
-                            <li><a href="{{ route('panel.artista') }}">Panel de Artista</a></li>
-                        @endif
+                            @if(Auth::user()->tipo === "artista")
+                                <li><a href="{{ route('panel.artista') }}">Panel de Artista</a></li>
+                            @endif
 
-                        @if(Auth::user()->tipo === "administrador")
-                            <li><a href="{{ route("panel-admin") }}">Panel de Administración</a></li>
-                        @endif
-                    @endauth
+                            @if(Auth::user()->tipo === "administrador")
+                                <li><a href="{{ route("panel-admin") }}">Panel de Administración</a></li>
+                            @endif
 
-                    @if(Auth::check())
-                        <li>
-                            <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
-                                @csrf
-                                <button type="submit" class="boton-cerrar-sesion">Cerrar Sesión</button>
-                            </form>
-                        </li>
-                    @endif
-                </ul>
-            </div>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
+                                    @csrf
+                                    <button type="submit" class="boton-cerrar-sesion">Cerrar Sesión</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                @endif
         </div>
     </div>
 
@@ -99,7 +90,7 @@
         <div class="logo">
             <a href="/">
                 <img src="{{ asset('imagenes/galeria_virtual_logo.png') }}" alt="Galería Virtual">
-                <h1>Galería Virtual</h1>
+                <h1 class="nombre-pagina">Galería Virtual</h1>
             </a>
         </div>
         <ul class="right-buttons">

@@ -1,15 +1,20 @@
-@extends('layouts.app')
+@extends('layouts.configuration')
 
-@section('title', 'Mi Perfil | Galeria Virtual')
-
+@section('title', 'Mi Perfil | Galería Virtual')
 
 @section('styles')
+    <link rel="stylesheet" href="{{ asset('css/configuracion_usuario.css') }}">
     <link rel="stylesheet" href="{{ asset('css/perfil_usuario.css') }}">
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
 @endsection
 
-@section('content')
-    <h1 class="titulo">Mi Perfil</h1>
+@section('breadcrumbs')
+    <a href="{{ url('/') }}">Inicio</a> &gt;
+    <a href="{{ route("configuracion") }}">Configuración</a> &gt;
+    <a href="{{ route("usuario.perfil", $usuario->nombre ." ".$usuario->apellido) }}">Perfil</a>
+@endsection
+
+@section('config-content')
     <div class="perfil-container">
         <div class="perfil-info">
             <img src="{{ asset($usuario->imagen_perfil) }}" alt="Imagen de perfil" class="perfil-imagen">
@@ -18,11 +23,5 @@
             <p><strong>Email:</strong> {{ $usuario->correo }}</p>
             <p><strong>Biografía:</strong> {{ $usuario->biografia ?? 'No disponible' }}</p>
             <a href="{{ route("mostrarEditorPerfil") }}" class="btn btn-primary">Editar Perfil</a>
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="boton-cerrar-sesion">Cerrar Sesión</button>
-            </form>
         </div>
-    </div>
-    <br>
 @endsection

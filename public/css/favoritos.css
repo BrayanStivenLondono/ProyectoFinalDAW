@@ -1,0 +1,78 @@
+.favoritos-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2%;
+}
+
+.titulo {
+    font-size: 2.2em;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #333;
+}
+
+.obras-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    gap: 25px;
+}
+
+.obra-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.obra-card:hover {
+    transform: scale(1.02);
+}
+
+.obra-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.obra-botones {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    width: 100%;
+    text-align: center;
+    gap: 10px;
+}
+
+.btn-ver,
+.btn-quitar {
+    padding: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-ver {
+    background-color: #3498db;
+}
+
+.btn-quitar {
+    background-color: #e74c3c;
+}
+
+@media screen and (max-width: 1024px) {
+    .obras-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .obras-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -6,6 +6,8 @@ use App\Models\Obra;
 use Database\Seeders\ObraSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class ObraController extends Controller
 {
@@ -19,13 +21,15 @@ class ObraController extends Controller
 
         $obras = Obra::when($busqueda, function ($query, $busqueda) {
             $query->where('titulo', 'like', "%$busqueda%")
-                ->orWhere('autor', 'like', "%$busqueda%")
-                ->orWhere('anio', 'like', "%$busqueda%")
-                ->orWhere('estilo', 'like', "%$busqueda%");
-        })->get();
+                ->orWhereHas('artista', function ($q) use ($busqueda) {
+                    $q->where('nombre', 'like', "%$busqueda%")
+                        ->orWhere('apellido', 'like', "%$busqueda%");
+                });
+        })->paginate(5);
 
         return view('obra.index', compact('obras'));
     }
+
 
     public function mostrarTodasObras(){
         return view("obra.verObras");
@@ -53,6 +57,92 @@ class ObraController extends Controller
         return view('obra.verObras', compact('obras', 'tiposObra'));
     }
 
+    public function formCrearObra()
+    {
+        $tecnicas = [
+            'Óleo sobre lienzo',
+            'Fresco',
+            'Acuarela',
+            'Tempera',
+            'Grabado',
+            'Tinta china',
+            'Litografía',
+            'Puntillismo',
+            'Acrílico',
+            'Collage',
+            'Mosaico',
+            'Escultura',
+            'Cerámica',
+            'Fotografía',
+        ];
+
+        $estilos = [
+            'Renacimiento',
+            'Barroco',
+            'Rococó',
+            'Neoclasicismo',
+            'Romanticismo',
+            'Realismo',
+            'Impresionismo',
+            'Postimpresionismo',
+            'Modernismo',
+            'Cubismo',
+            'Surrealismo',
+            'Expresionismo',
+            'Abstracto',
+            'Pop art',
+            'Minimalismo',
+        ];
+
+
+        return view('obra.subirObra', compact('tecnicas', 'estilos'));
+    }
+
+
+
+    public function subirObra(Request $request)
+    {
+        // Validar que el usuario es un artista
+        if (auth()->user()->tipo !== 'artista') {
+            abort(403, 'Solo los artistas pueden subir obras.');
+        }
+
+        // Validar formulario
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'estilo' => 'nullable|string|max:255',
+            'tecnica' => 'nullable|string|max:255',
+            'tipo' => 'nullable|string|max:255',
+            'año_creacion' => 'nullable|integer|min:1000|max:' . date('Y'),
+            'descripcion' => 'nullable|string',
+            'metadatos_seo' => 'nullable|string|max:255',
+            'imagen' => 'nullable|image|max:2048', // Máx. 2MB
+        ]);
+
+        // Guardar imagen si se subió
+        $rutaImagen = 'imagenes/obra_default.png'; // Por defecto
+        if ($request->hasFile('imagen')) {
+            $rutaImagen = $request->file('imagen')->store('obras', 'public');
+        }
+
+        // Crear la obra
+        $obra = Obra::create([
+            'id_artista' => auth()->id(),
+            'titulo' => $request->titulo,
+            'estilo' => $request->estilo,
+            'tecnica' => $request->tecnica,
+            'tipo' => $request->tipo,
+            'año_creacion' => $request->año_creacion,
+            'descripcion' => $request->descripcion,
+            'metadatos_seo' => $request->metadatos_seo,
+            'imagen' => $rutaImagen,
+        ]);
+
+
+        return redirect()->route('panel.artista', ['slug' => Str::slug(auth()->user()->nombre . ' ' . auth()->user()->apellido)])
+            ->with('success', 'Obra subida correctamente.');
+    }
+
 
     public function carresulColecciones()
     {
@@ -68,11 +158,23 @@ class ObraController extends Controller
         return view('index', compact('obrasPorTipo', 'obras'));
     }
 
-    public function obtenerObrasPorTipo(string $tipo)
+    public function obtenerObrasPorTipo($tipo)
     {
         $obrasPorTipo = Obra::where('tipo', $tipo)->latest()->paginate(5);
         return view('obra.verColeccion', compact('obrasPorTipo', 'tipo'));
     }
+
+    public function buscarObra(Request $request)
+    {
+        // Recuperamos los filtros
+        $tipo = $request->input('tipo'); // obligatorio
+        $titulo = $request->input('titulo'); // opcional
+
+        // Retornamos a la misma vista con la variable tipo definida
+        return view('obra.verColeccion', compact('tipo'));
+    }
+
+
 
 
     public function verTodasLasColecciones()
@@ -111,7 +213,7 @@ class ObraController extends Controller
             return redirect();
         }
 
-        if (auth()->user()->tipo !== 'administrador') {
+        if (auth()->user()->tipo !== 'administrador'|| auth()->user()->tipo !== "artista") {
             return redirect("/");
         }
 
@@ -119,6 +221,24 @@ class ObraController extends Controller
 
         return redirect("/admin/obras");
     }
+
+    public function eliminarObraArtista($id)
+    {
+        $obra = Obra::find($id);
+
+        if (!$obra) {
+            return redirect()->route("panel.artista")->with('error', 'Obra no encontrada.');
+        }
+
+        if (auth()->user()->tipo !== "artista") {
+            return redirect("/")->with('error', 'Acceso no autorizado.');
+        }
+
+        $obra->delete();
+
+        return redirect()->route("panel.artista")->with('success', 'Obra eliminada correctamente.');
+    }
+
 
     public function editarObra($id)
     {

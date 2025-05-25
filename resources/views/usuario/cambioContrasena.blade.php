@@ -1,23 +1,21 @@
-@extends('layouts.app')
+@extends('layouts.configuration')
 
 @section('title', 'Cambiar contraseña | Galeria Virtual')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/editar_contrasena.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/formulario.css') }}">
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/configuracion_usuario.css') }}">
 @endsection
 
 @section('breadcrumbs')
     <a href="{{ url('/') }}">Inicio</a> &gt;
-    <a href="{{ route("configuracion") }}">Configuracion</a> &gt;
-    <a href="{{ route("panelPrivacidad") }}">Privacidad</a> &gt;
+    <a href="{{ route("configuracion") }}">Configuración</a> &gt;
     <a href="{{ route("cambiarContrasena") }}">Actualizar Contraseña</a>
 @endsection
 
 
-@section('content')
-    <h1 class="titulo">Actualizar contraseña</h1>
-
+@section('config-content')
     <div class="contenedor-cambiar-contrasena">
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -48,9 +46,6 @@
             </div>
 
             <button type="submit">Cambiar contraseña</button>
-            <div class="boton-container">
-                <button onclick="window.history.back()" class="boton-retroceso">Cancelar</button>
-            </div>
         </form>
     </div>
     <br>

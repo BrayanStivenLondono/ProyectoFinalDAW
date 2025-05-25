@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Comentario;
+use App\Models\ComentarioReporte;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -27,5 +28,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Comentario::factory(15)->create();
+        ComentarioReporte::factory(10)->create();
     }
 }

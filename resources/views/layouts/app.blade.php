@@ -49,6 +49,8 @@
         @include("layouts.footer")
     </footer>
 
+    @include("layouts.cookie")
+
     @stack('scripts')
 
     @vite(['resources/js/app.js'])

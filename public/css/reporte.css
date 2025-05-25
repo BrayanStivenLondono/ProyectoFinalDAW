@@ -1,0 +1,104 @@
+/* Contenedor principal */
+.reportes-container {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabla de reportes */
+.tabla-reportes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.95rem;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Cabecera de la tabla */
+.tabla-reportes thead {
+    background-color: #3c8dbc;
+    color: white;
+}
+
+.tabla-reportes th,
+.tabla-reportes td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.tabla-reportes th.contenido {
+    width: 35%;
+}
+
+.reporte-card:hover {
+    background-color: #f0f8ff;
+    transition: background-color 0.3s ease;
+}
+
+/* Botón de acción */
+.acciones .boton-ver {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: background-color 0.3s ease;
+}
+
+.acciones .boton-ver:hover {
+    background-color: #0056b3;
+}
+
+/* Alerta de éxito */
+.alert.alert-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border: 1px solid #d0e9c6;
+}
+
+/* Paginación */
+.paginacion {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.paginacion nav {
+    display: flex;
+}
+
+.paginacion .page-link {
+    color: #3c8dbc;
+    padding: 0.5rem 0.75rem;
+    margin: 0 2px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.paginacion .page-link:hover {
+    background-color: #3c8dbc;
+    color: white;
+}
+
+/* Texto si no hay reportes */
+.reportes-container p {
+    font-size: 1rem;
+    color: #777;
+    padding: 1rem;
+    background-color: #fff8f8;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    text-align: center;
+}

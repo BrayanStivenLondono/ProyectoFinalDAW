@@ -21,17 +21,71 @@
 }
 
 .obra-info {
-    max-width: 600px;
+    max-width: 60%;
 }
 
 .obra-info h1 {
     font-size: 2em;
     margin-bottom: 10px;
 }
-
-.acciones {
-    margin-top: 20px;
+.acciones button,
+.acciones form button {
+    background-color: #fff;
+    border: 2px solid #ccc;
+    color: #333;
+    padding: 10px 16px;
+    margin: 5px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
+
+.acciones button:hover,
+.acciones form button:hover {
+    background-color: #f0f0f0;
+    border-color: #888;
+}
+
+.acciones .btn-favorito {
+    border-color: #e91e63;
+    color: #e91e63;
+}
+
+.acciones .btn-favorito:hover {
+    background-color: #fce4ec;
+}
+
+.acciones .btn-like {
+    color: #ff1744;
+    border-color: #ff1744;
+}
+
+.acciones .btn-like:hover {
+    background-color: #ffebee;
+}
+
+.acciones .btn-compartir {
+    color: #3f51b5;
+    border-color: #3f51b5;
+}
+
+.acciones .btn-compartir:hover {
+    background-color: #e8eaf6;
+}
+
+.acciones .btn-seguir {
+    color: #009688;
+    border-color: #009688;
+}
+
+.acciones .btn-seguir:hover {
+    background-color: #e0f2f1;
+}
+
 
 .btn-volver {
     padding: 10px 20px;
@@ -39,4 +93,47 @@
     color: white;
     text-decoration: none;
     border-radius: 5px;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* fondo oscuro semi-transparente */
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.9); /* blanco con 90% opacidad */
+    margin: 8% auto;
+    padding: 25px;
+    border-radius: 12px;
+    width: 70%;
+    max-width: 550px;
+    position: relative;
+    font-family: Arial, sans-serif;
+    font-size: 18px; /* letra más grande */
+    color: #000; /* texto negro */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#closeModal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+}
+
+#wikiLink {
+    color: #1a73e8;
+    text-decoration: underline;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 10px;
 }

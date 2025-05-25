@@ -1,52 +1,79 @@
 @extends('layouts.app')
 
-@section('title', 'Usuarios index | Galeria Virtual')
+@section('title', 'Usuarios | Administración')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/usuario_index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
 @endsection
 
+@section('breadcrumbs')
+    <a href="{{ url('/') }}">Inicio</a> &gt;
+    <a href="{{ route("panel-admin") }}">Administración</a> &gt;
+    <a href="{{ route("panel_usuarios") }}">Usuarios</a>
+@endsection
+
+
 @section('content')
-    @php use Illuminate\Support\Str; @endphp
-    <form action="{{ route("panel_usuarios") }}" method="GET" class="form-filtro">
+    <h1 class="titulo">Lista De Usuario</h1>
+    <form action="{{ route('panel_usuarios') }}" method="GET" class="form-filtro">
         <input type="text" name="busqueda" value="{{ request('busqueda') }}" placeholder="Buscar usuario...">
+
+        <select name="tipo">
+            <option value="">Todos</option>
+            <option value="artista" {{ request('tipo') == 'artista' ? 'selected' : '' }}>Artista</option>
+            <option value="visitante" {{ request('tipo') == 'visitante' ? 'selected' : '' }}>Visitante</option>
+        </select>
+
         <button type="submit">Buscar</button>
     </form>
-    <div class="usuarios-grid">
+
+    <table class="usuarios-table">
+        <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Nombre Usuario</th>
+            <th>Nombre Completo</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
         @foreach ($usuarios as $usuario)
-            <div class="usuario-card">
-                <div class="usuario-info">
-                    <img src="{{ asset($usuario->imagen_perfil) }}" alt="Imagen del usuario" class="usuario-imagen">
-                    <h3>{{ $usuario->nombre_usuario }}</h3>
-                    <p><strong>Nombre:</strong> {{ $usuario->nombre }} {{ $usuario->apellido }}</p>
-                    <p><strong>Correo:</strong> {{ $usuario->correo }}</p>
-                    <p><strong>Tipo:</strong> {{ ucfirst($usuario->tipo) }}</p>
-                </div>
-                <div class="acciones-admin-container">
-                    <form action="{{ route('admin.eliminarUsuario', $usuario->id) }}" method="POST"
-                          onsubmit="return confirm('¿Seguro que deseas eliminar este usuario?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn-eliminar">Eliminar</button>
-                    </form>
-
-                    @if(strtolower($usuario->tipo) !== 'administrador')
-                        <form action="#" method="POST" style="display:inline;">
+            @if ($usuario->id !== auth()->id())
+                @php
+                    $nombreCompleto = $usuario->nombre . ' ' . $usuario->apellido;
+                    $slug = Str::slug($nombreCompleto);
+                @endphp
+                <tr>
+                    <td><img src="{{ asset($usuario->imagen_perfil) }}" alt="Imagen de {{ $usuario->nombre_usuario }}" class="usuario-imagen"></td>
+                    <td>{{ $usuario->nombre_usuario }}</td>
+                    <td>{{ $nombreCompleto }}</td>
+                    <td>{{ $usuario->correo }}</td>
+                    <td>{{ ucfirst($usuario->tipo) }}</td>
+                    <td class="acciones-admin-container">
+                        <form action="{{ route('admin.eliminarUsuario', $usuario->id) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar este usuario?');" style="display:inline-block;">
                             @csrf
-                            <button type="submit" class="btn-hacer-admin">Hacer Admin</button>
+                            @method('DELETE')
+                            <button type="submit" class="btn-eliminar">Eliminar</button>
                         </form>
-                    @endif
-                    @php
-                        $nombreCompleto = $usuario->nombre . ' ' . $usuario->apellido;
-                        $slug = Str::slug($nombreCompleto);
-                    @endphp
 
-                    <a href="{{ $usuario->tipo === 'artista' ? route('artista.perfil', ['slug' => $slug]) : route('usuario.perfil.publico', ['slug' => $slug]) }}" class="btn-hacer-admin" style="text-decoration: none; background-color:#2d6fa5">Ver Perfil</a>
+                        @if(strtolower($usuario->tipo) !== 'administrador')
+                            <form action="#" method="POST" style="display:inline-block;">
+                                @csrf
+                                <button type="submit" class="btn-hacer-admin">Hacer Admin</button>
+                            </form>
+                        @endif
 
-                </div>
-            </div>
+                        <a href="{{ $usuario->tipo === 'artista' ? route('artista.perfil', ['slug' => $slug]) : route('usuario.perfil.publico', ['slug' => $slug]) }}" class="btn-ver-perfil">Ver Perfil</a>
+                    </td>
+                </tr>
+            @endif
         @endforeach
-    </div>
+        </tbody>
+    </table>
+    <br>
 @endsection
 @section('scripts')
     <script>

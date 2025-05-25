@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
 
 
 class Usuario extends Authenticatable
@@ -41,15 +42,41 @@ class Usuario extends Authenticatable
         return $this->hasMany(Comentario::class, 'id_usuario');
     }
 
-    public function siguiendo(): BelongsToMany
+    public function siguiendo()
     {
-        return $this->belongsToMany(Usuario::class, "seguidores", "id_seguido", "id_seguidor")->withTimestamps();
+        return $this->belongsToMany(Usuario::class, 'seguidores', 'id_seguidor', 'id_seguido')
+            ->withTimestamps()
+            ->withPivot('fecha_seguimiento');
+    }
+
+    public function seguidores()
+    {
+        return $this->belongsToMany(Usuario::class, 'seguidores', 'id_seguido', 'id_seguidor')
+            ->withTimestamps()
+            ->withPivot('fecha_seguimiento');
     }
 
     public function reportesGenerados(): HasMany
     {
         return $this->hasMany(Reporte::class, "id_usuario");
     }
+
+    public function getSlugAttribute()
+    {
+        return Str::slug($this->nombre." ".$this->apellido);
+    }
+
+    // Función para obtener la ruta del perfil según si es artista o no
+    public function perfilUrl()
+    {
+        if ($this->esArtista()) {
+            return route('artista.perfil', ['slug' => $this->slug]);
+        } else {
+            return route('usuario.perfil.publico', ['slug' => $this->slug]);
+        }
+    }
+
+    // Ejemplo simple de función esArtista
 
     public function likes()
     {
@@ -76,5 +103,10 @@ class Usuario extends Authenticatable
                 $usuario->biografia = null;
             }
         });
+    }
+
+    public function favoritos()
+    {
+        return $this->belongsToMany(Obra::class, 'favoritos')->withTimestamps();
     }
 }

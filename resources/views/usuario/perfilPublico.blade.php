@@ -4,17 +4,18 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/usuario_publico.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
 @endsection
 
 @section('content')
-    <br>
+    <h1 class="titulo">Usuario</h1>
     <div class="perfil-publico">
         <div class="usuario-info">
             <img class="avatar" src="{{ asset($usuario->imagen_perfil ?? 'images/default-avatar.png') }}" alt="Imagen de perfil de {{ $usuario->nombre }}">
 
             <div class="detalles">
                 <h1>{{ $usuario->nombre }} {{ $usuario->apellido }}</h1>
-                <p><span class="etiqueta">Correo:</span> {{ $usuario->correo }}</p>
+                <p><span class="etiqueta">Redes:</span> {{ $usuario->enlaces_sociales }}</p>
 
                 @if($usuario->tipo === 'artista')
                     <p class="etiqueta">Artista 🎨</p>

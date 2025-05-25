@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('seguidores', function (Blueprint $table) {
-            $table->foreignId('id_seguidor')->constrained('usuarios')->onDelete('cascade');
-            $table->foreignId('id_seguido')->constrained('usuarios')->onDelete('cascade');
-            $table->timestamp('fecha_seguimiento')->nullable();
+        Schema::create('favoritos', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
+            $table->foreignId('obra_id')->constrained('obras')->onDelete('cascade');
             $table->timestamps();
+
+            $table->unique(['usuario_id', 'obra_id']); // evita duplicados
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('seguidores');
+        Schema::dropIfExists('favoritos');
     }
 };

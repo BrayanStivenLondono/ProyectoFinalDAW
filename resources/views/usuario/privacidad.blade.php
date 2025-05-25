@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.configuration')
 
-@section('title', 'Configuración de Usuario | Galeria Virtual')
+@section('title', 'Privacidad | Galeria Virtual')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/configuracion_usuario.css') }}">
@@ -14,25 +14,13 @@
 @endsection
 
 
-@section('content')
+@section('config-content')
     <h1 class="titulo">Privacidad</h1>
-
     <div class="configuracion-container">
         <div class="configuracion-opciones">
             <ul>
                 <li><a href="{{ route("dardeBaja") }}">Darse de Baja</a></li>
                 <li><a href="{{ route("formContrasena") }}">Actualizar Contraseña</a></li>
-                <li>
-                    <a href="{{ route('logout') }}"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                       class="btn btn-danger">
-                        Cerrar Sesión
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
             </ul>
         </div>
     </div>

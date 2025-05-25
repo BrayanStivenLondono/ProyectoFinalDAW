@@ -3,35 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Obra;
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class LikeController extends Controller
 {
     public function toggleLike($obraId)
     {
-        // Comprobar si el usuario está autenticado primero
-        $user = Auth()->user();
-
-        if (!$user) {
-            return redirect()->route('login');
-        }
-
+        $user = Auth::user();
         $obra = Obra::findOrFail($obraId);
 
-        // Comprobar si el usuario ya dio like a la obra
-        $yaDioLike = $user->likes()->where('obra_id', $obra->id)->exists();
-
-        if ($yaDioLike) {
-            // Si ya dio like, quitar el like
-            $user->likes()->detach($obra->id);
+        if ($user->likes()->where('obra_id', $obraId)->exists()) {
+            $user->likes()->detach($obraId);
         } else {
-            // Si no dio like, agregar el like
-            $user->likes()->attach($obra->id);
+            $user->likes()->attach($obraId);
         }
 
-        // Redirigir al usuario a la página anterior o realizar una respuesta AJAX
-        return redirect()->back(); // o una respuesta JSON si es AJAX
+        // Refresca la relación para que en la vista se vea el cambio
+        $user->load('likes');
+
+        return back(); // o una respuesta JSON si es AJAX
     }
 
 }

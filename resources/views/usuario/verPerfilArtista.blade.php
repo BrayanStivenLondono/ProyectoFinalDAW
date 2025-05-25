@@ -16,7 +16,7 @@
     <div class="perfil-artista-container">
         <div class="artista-info">
             <img src="{{ asset($artista->imagen_perfil) }}" alt="Imagen de perfil" class="imagen-perfil">
-            <h2>{{ $artista->nombre }} {{ $artista->apellido }}</h2>
+            <h2 class="nombre">{{ $artista->nombre }} {{ $artista->apellido }}</h2>
             <p class="biografia">{{ $artista->biografia ?? 'Este artista aún no ha agregado una biografía.' }}</p>
         </div>
 
@@ -39,4 +39,5 @@
             @endif
         </div>
     </div>
+    <br>
 @endsection

@@ -10,9 +10,8 @@
 @endsection
 
 @section('content')
+    <h1 class="titulo">Editar Obra</h1>
     <div class="editar-obra-container">
-        <h1 class="titulo">Editar Obra: {{ $obra->titulo }}</h1>
-
         <form action="{{ route('obra.actualizar', $obra->id) }}" method="POST" class="form-editar-obra">
             @csrf
             @method('PUT')
@@ -29,4 +28,5 @@
             <button type="submit">Actualizar</button>
         </form>
     </div>
+    <br>
 @endsection

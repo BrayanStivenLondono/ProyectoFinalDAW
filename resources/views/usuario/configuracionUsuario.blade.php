@@ -15,7 +15,6 @@
 
 @section('content')
     <h1 class="titulo">Configuración</h1>
-
     <div class="configuracion-container">
         <div class="configuracion-opciones">
             <ul>

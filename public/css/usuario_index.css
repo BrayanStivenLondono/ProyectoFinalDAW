@@ -1,4 +1,87 @@
-/* usuario_index.css */
+/* Tabla contenedora */
+.usuarios-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* Encabezado */
+.usuarios-table thead tr {
+    background-color: #2d89ef;
+    color: white;
+    text-align: left;
+}
+
+.usuarios-table th, .usuarios-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+/* Filas alternas */
+.usuarios-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Imagen perfil */
+.usuario-imagen {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Contenedor acciones */
+.acciones-admin-container {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Botones estilos */
+.btn-eliminar, .btn-hacer-admin, .btn-ver-perfil {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+/* Rojo para eliminar */
+.btn-eliminar {
+    background-color: #e74c3c;
+}
+
+.btn-eliminar:hover {
+    background-color: #c0392b;
+}
+
+/* Azul para hacer admin */
+.btn-hacer-admin {
+    background-color: #2980b9;
+}
+
+.btn-hacer-admin:hover {
+    background-color: #1c5980;
+}
+
+/* Verde para ver perfil */
+.btn-ver-perfil {
+    background-color: #27ae60;
+}
+
+.btn-ver-perfil:hover {
+    background-color: #1e8449;
+}
+
 
 .form-filtro {
     display: flex;
@@ -31,89 +114,20 @@
     background-color: #1b4f7a;
 }
 
-
-.usuarios-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.usuario-card {
+form.form-filtro select {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
     background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.3s ease;
-}
-
-.usuario-card:hover {
-    transform: translateY(-5px);
-}
-
-.usuario-info {
-    text-align: center;
-}
-
-.usuario-imagen {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-    border: 3px solid #2d6fa5;
-}
-
-.usuario-info h3 {
-    margin: 0.5rem 0;
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: #333;
-}
-
-.usuario-info p {
-    margin: 0.3rem 0;
-    font-size: 0.95rem;
-    color: #555;
-}
-
-.acciones-admin-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
-.acciones-admin-container form,
-.acciones-admin-container a {
-    width: 100%;
-}
-
-.btn-eliminar,
-.btn-hacer-admin {
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    padding: 0.6rem;
-    border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    text-align: center;
+    transition: border-color 0.3s ease;
 }
 
-.btn-hacer-admin {
-    background-color: #0275d8;
+form.form-filtro select:hover,
+form.form-filtro select:focus {
+    border-color: #2d89ef;
+    outline: none;
 }
 
-.btn-eliminar:hover {
-    background-color: #c9302c;
-}
-
-.btn-hacer-admin:hover {
-    background-color: #025aa5;
-}

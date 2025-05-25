@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comentario;
+use App\Models\ComentarioReporte;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,7 @@ class ComentarioController extends Controller
         $request->validate([
             'id_obra' => 'required|exists:obras,id',
             'contenido' => 'required|string|max:1000',
+            'id_comentario_respuesta' => 'nullable|exists:comentarios,id',
         ]);
 
         Comentario::create([
@@ -33,6 +35,21 @@ class ComentarioController extends Controller
         return redirect()->back()->with('success', 'Comentario publicado.');
     }
 
+    public function reportar(Request $request, $id)
+    {
+        $request->validate([
+            'razon' => 'nullable|string|max:500',
+        ]);
 
+        $comentario = Comentario::findOrFail($id);
+
+        ComentarioReporte::create([
+            'comentario_id' => $comentario->id,
+            'usuario_id' => auth()->id(),
+            'razon' => $request->razon,
+        ]);
+
+        return back()->with('success', 'Comentario reportado correctamente. Gracias por ayudar a mantener la comunidad.');
+    }
 
 }

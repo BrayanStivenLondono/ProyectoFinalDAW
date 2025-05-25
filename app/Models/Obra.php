@@ -71,4 +71,9 @@ class Obra extends Model
         return $this->hasMany(Like::class);
     }
 
+    public function usuariosQueLaFavorecen()
+    {
+        return $this->belongsToMany(Usuario::class, 'favoritos')->withTimestamps();
+    }
+
 }

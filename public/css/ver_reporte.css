@@ -1,0 +1,80 @@
+.detalle-reporte-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+}
+
+.detalle-reporte-container h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #3c8dbc;
+}
+
+/* Detalles del reporte */
+.detalle-reporte-container p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f4f7fb;
+    padding: 1rem;
+    border-left: 4px solid #3c8dbc;
+    border-radius: 6px;
+}
+
+/* Acciones (botones) */
+.acciones-reportes {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.acciones-reportes form {
+    display: inline-block;
+}
+
+.acciones-reportes button {
+    background-color: #3c8dbc;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.acciones-reportes button:hover {
+    background-color: #2a6f94;
+}
+
+/* Botón de rechazar */
+.acciones-reportes form:nth-child(2) button {
+    background-color: #d9534f;
+}
+
+.acciones-reportes form:nth-child(2) button:hover {
+    background-color: #c9302c;
+}
+
+/* Enlace de volver */
+.volver-link {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.volver-link a {
+    text-decoration: none;
+    color: #3c8dbc;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.volver-link a:hover {
+    text-decoration: underline;
+}

@@ -14,22 +14,9 @@
 @endsection
 
 @section('content')
-    <!-- Filtros fuera del contenedor principal -->
-    <div class="zona-filtros">
-        <form method="GET" action="{{ route('obras.coleccion', $tipo) }}">
-            <input type="text" name="titulo" placeholder="Buscar por título..." value="{{ request('titulo') }}">
-            <select name="orden">
-                <option value="">Ordenar por</option>
-                <option value="titulo_asc" {{ request('orden') == 'titulo_asc' ? 'selected' : '' }}>Título A-Z</option>
-                <option value="titulo_desc" {{ request('orden') == 'titulo_desc' ? 'selected' : '' }}>Título Z-A</option>
-            </select>
-            <button type="submit">Filtrar</button>
-        </form>
-    </div>
+    <h1 class="titulo"> {{ ucfirst($tipo) }}</h1>
 
     <div class="contenedor">
-        <h1 class="titulo"> {{ ucfirst($tipo) }}</h1>
-
         <div class="listado-obras">
             @php use Illuminate\Support\Str; @endphp
             @forelse ($obrasPorTipo as $obra)

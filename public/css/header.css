@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 .main-header {
     position: relative;
     background-color: rgba(255, 255, 255, 0.8);
@@ -71,9 +73,10 @@
     font-size: 1.5em;
     margin-top: 5px;
     color: #222;
-    font-family: "Outfit", sans-serif;
+    font-family: "Bebas Neue", sans-serif;
     font-weight: 300;
 }
+
 .login-register-text {
     font-family: "Outfit", sans-serif;
     font-weight: 250;
@@ -146,7 +149,7 @@
 /* Menú desplegable alineado a la izquierda del icono */
 .dropdown-menu {
     position: absolute;
-    top: 0;
+    top: calc(100% - 90px);
     right: calc(100% + 10px); /* Muestra a la izquierda del icono */
     background-color: white;
     border: 1px solid #ccc;
@@ -168,12 +171,11 @@
 .dropdown-menu li a,
 .dropdown-menu li button {
     display: block;
-    width: 100%;
     padding: 10px;
     text-align: left;
     border: none;
     background: none;
-    font-family: inherit;
+    font-family: "Arial", sans-serif;
     font-size: 1em;
     color: #333;
     text-decoration: none;

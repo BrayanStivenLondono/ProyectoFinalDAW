@@ -3,13 +3,11 @@
 @section('title', 'Login | Galería Virtual')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/login_usuario.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/formulario.css') }}">
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
 @endsection
 
-@section('breadcrumbs')
-
-@endsection
 @section('content')
     <h1 class="titulo">Iniciar sesión</h1>
     <div class="login-container">

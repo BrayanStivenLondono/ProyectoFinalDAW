@@ -16,14 +16,15 @@
                 <img src="{{ asset($artista->imagen_perfil) }}" alt="Imagen de {{ $artista->nombre_usuario }}">
             </div>
             <div class="detalles">
-                <h2>{{ $artista->nombre_usuario }}</h2>
-                <p><strong>Nombre:</strong> {{ $artista->nombre }} {{ $artista->apellido }}</p>
+                <h2>{{ $artista->nombre. " ". $artista->apellido }}</h2>
+                <p><strong>Nombre de Usuario:</strong> {{ $artista->nombre_usuario }}
                 <p><strong>Correo:</strong> {{ $artista->correo }}</p>
                 <p><strong>Biografía:</strong> {{ $artista->biografia }}</p>
+                <p><strong>Cantidad Seguidores:</strong> {{ $artista->seguidores->count() }}</p>
             </div>
         </div>
         <div class="subir-obra">
-            <a href="#">Subir Obra</a>
+            <a href="{{ route('formCrearObra') }}" class="btn-subir">Subir Obra</a>
         </div>
         <h3 class="seccion-obras">Tus Obras: {{ $artista->nombre ." ". $artista->apellido }}</h3>
         <div class="obra-detalle">
@@ -34,17 +35,15 @@
                         <div class="obra-info">
                             <h4>{{ $obra->titulo }}</h4>
                             <p><strong>Estilo:</strong> {{ $obra->estilo }}</p>
-                            <p><strong>Técnica:</strong> {{ $obra->tecnica }}</p>
-                            <p><strong>Año:</strong> {{ $obra->año_creacion }}</p>
                         </div>
                         <div class="acciones-artista">
-                            <a href="{{ route('verObra', $obra->titulo)}}">Ver detalles</a>
+                            <a href="{{ route('verObra', Str::slug($obra->titulo)) }}">Ver detalles</a>
                             <a href="{{ route("obra.editar", $obra->id) }}">Editar Obra</a>
-                            <form action="{{ route('admin.eliminarObra', $obra->id) }}" method="POST"
-                                  onsubmit="return confirm('¿Estás seguro de eliminar esta receta?');">
+                            <form action="{{ route('artista.eliminarObra', $obra->id) }}" method="POST"
+                                  onsubmit="return confirm('¿Estás seguro de eliminar esta obra?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn-eliminar">Eliminar Receta</button>
+                                <button type="submit" class="btn-eliminar">Eliminar Obra</button>
                             </form>
                         </div>
                     </div>
