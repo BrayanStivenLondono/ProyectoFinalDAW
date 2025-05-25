@@ -15,32 +15,66 @@
 @endsection
 
 @section('config-content')
+    <!-- Buscador -->
+    <form method="GET" action="{{ route("favoritos.ver") }}" class="buscador-favoritos">
+        <input type="text" name="q" placeholder="Buscar obra o artista..." value="{{ request('q') }}">
+        <button type="submit">🔍 Buscar</button>
+    </form>
+
     <div class="favoritos-container">
+
+        {{-- MENSAJES --}}
         @if(session('success'))
             <div class="alert-success">{{ session('success') }}</div>
         @elseif(session('info'))
             <div class="alert-info">{{ session('info') }}</div>
         @endif
 
-        @if($favoritos->isEmpty())
-            <p>No tienes obras en favoritos todavía.</p>
-        @else
-            <div class="obras-grid">
-                @foreach($favoritos as $obra)
-                    <div class="obra-card">
-                        <img src="{{ asset($obra->imagen) }}" alt="{{ $obra->titulo }}">
-                        <div class="obra-botones">
-                            <a href="{{ route('verObra', $obra->titulo) }}" class="btn-ver">Ver Obra</a>
+        {{-- GRID UNIFICADA --}}
+        <div class="favoritos-grid">
 
+            {{-- OBRAS FAVORITAS --}}
+            @foreach($obrasFavoritas as $obra)
+                <div class="tarjeta-favorito">
+                    <div class="imagen-favorito" style="background-image: url('{{ asset($obra->imagen) }}');"></div>
+                    <div class="contenido-favorito">
+                        <h3 class="titulo-favorio">{{ $obra->titulo }}</h3>
+                        <div class="botones-favorito">
+                            <a href="{{ route('verObra', $obra->titulo) }}" class="btn-ver">Ver Obra</a>
                             <form action="{{ route('favorito.eliminar', $obra->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn-quitar">Quitar de Favoritos</button>
+                                <button type="submit" class="btn-quitar">Quitar</button>
                             </form>
                         </div>
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
+
+            {{-- ARTISTAS SEGUIDOS --}}
+            @foreach($artistasSeguidos as $artista)
+                <div class="tarjeta-favorito">
+                    <div class="imagen-favorito" style="background-image: url('{{ asset($artista->imagen_perfil ?? 'imagenes/user_default.png') }}');"></div>
+                    <div class="contenido-favorito">
+                        <h3 class="titulo-favorito">{{ $artista->nombre }} {{ $artista->apellido }}</h3>
+                        <div class="botones-favorito">
+                            <a href="{{ route('artista.perfil', Str::slug($artista->nombre . ' ' . $artista->apellido)) }}" class="btn-ver">Ver Artista</a>
+                            <form action="{{ route('seguir.toggle', $artista->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-quitar">Dejar de seguir</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+        </div>
+
+        {{-- MENSAJE SI ESTÁ VACÍO --}}
+        @if($obrasFavoritas->isEmpty() && $artistasSeguidos->isEmpty())
+            <p class="mensaje-vacio">No tienes favoritos todavía.</p>
         @endif
+
     </div>
 @endsection

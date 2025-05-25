@@ -6,7 +6,6 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/editar_obra.css') }}">
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
-
 @endsection
 
 @section('content')

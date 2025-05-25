@@ -6,17 +6,23 @@ use App\Http\Controllers\FavoritoController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ObraController;
+use App\Http\Controllers\RijksmuseumController;
 use App\Http\Controllers\SeguidorController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\WikiController;
 use App\Http\Middleware\UsuarioAutenticadoMiddleware;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 // Página principal
 Route::get('/', [UsuarioController::class, 'index'])->name("inicio");
 
-// APIs
-Route::get('/harvard-museum', [App\Http\Controllers\HarvardController::class, 'index'])->name("harvard");
+// API
+//Route::get('/rijks-museum', [RijksmuseumController::class, 'verApi'])->name("rijks.index");
+//Route::get('/rijks-museum/obras', [RijksmuseumController::class, 'verObras'])->name('rijks.obras');
+
 
 // Carrusel
 Route::get('/', [ObraController::class, 'carresulColecciones']);
@@ -46,13 +52,13 @@ Route::get('/artistas', [UsuarioController::class, 'artistas'])->name('artistas.
 // Paneles y funciones privadas
 Route::middleware(UsuarioAutenticadoMiddleware::class)->group(function () {
     Route::get('/usuario/p/{slug}', [UsuarioController::class, 'verPerfilPublico'])->name('usuario.perfil.publico');
-    Route::get('/configuracion/perfil/{slug}', [UsuarioController::class, 'mostrarPerfil'])->name('usuario.perfil');
-    Route::get('/configuracion/actualizar', [UsuarioController::class, 'mostrarEditorPerfil'])->name('mostrarEditorPerfil');
-    Route::post('/configuracion/actualizar', [UsuarioController::class, 'actualizarPerfil'])->name('perfil.actualizar');
-    Route::get('/configuracion/baja', [UsuarioController::class, 'mostrarPanelBaja'])->name('darseBaja');
-    Route::delete('/configuracion/eliminar-cuenta', [UsuarioController::class, 'eliminarCuenta'])->name('eliminarCuenta');
-    Route::get('/configuracion/actualizar-contrasena', [UsuarioController::class, 'formCambiarContrasena'])->name('formContrasena');
-    Route::post('/configuracion/actualizar-contrasena', [UsuarioController::class, 'cambiarContrasena'])->name('cambiarContrasena');
+    Route::get('/ajustes/perfil/{slug}', [UsuarioController::class, 'mostrarPerfil'])->name('usuario.perfil');
+    Route::get('/ajustes/actualizar', [UsuarioController::class, 'mostrarEditorPerfil'])->name('mostrarEditorPerfil');
+    Route::post('/ajustes/actualizar', [UsuarioController::class, 'actualizarPerfil'])->name('perfil.actualizar');
+    Route::get('/ajustes/baja', [UsuarioController::class, 'mostrarPanelBaja'])->name('darseBaja');
+    Route::delete('/ajustes/eliminar-cuenta', [UsuarioController::class, 'eliminarCuenta'])->name('eliminarCuenta');
+    Route::get('/ajustes/actualizar-contrasena', [UsuarioController::class, 'formCambiarContrasena'])->name('formContrasena');
+    Route::post('/ajustes/actualizar-contrasena', [UsuarioController::class, 'cambiarContrasena'])->name('cambiarContrasena');
     Route::get('/panel-artista', [UsuarioController::class, 'mostrarPanelArtista'])->name('panel.artista');
     Route::get('/obra/{id}/editar', [ObraController::class, 'editarObra'])->name('obra.editar');
     Route::put('/obra/{id}', [ObraController::class, 'actualizarObra'])->name('obra.actualizar');
@@ -68,7 +74,10 @@ Route::middleware(UsuarioAutenticadoMiddleware::class)->group(function () {
     //favorito
     Route::post('/obra/{id}/favorito', [FavoritoController::class, 'agregar'])->name('favorito.agregar');
     Route::delete('/obra/{id}/favorito', [FavoritoController::class, 'eliminar'])->name('favorito.eliminar');
-    Route::get('/configuracion/favoritos', [FavoritoController::class, 'verFavoritos'])->name('favoritos.ver');
+    Route::get('/ajustes/favoritos', [FavoritoController::class, 'obrasArtistasFavoritos'])->name('favoritos.ver');
+
+    Route::delete('/seguir/{id}', [SeguidorController::class, 'dejarDeSeguir'])->name('seguir.toggle');
+
 
     //reporte
     Route::post('/comentarios/{id}/reportar', [ComentarioController::class, 'reportar'])->name('comentarios.reportar');
@@ -94,7 +103,7 @@ Route::get('/configuracion/confirmar-identidad', [UsuarioController::class, 'mos
 Route::post('/configuracion/confirmar-identidad', [UsuarioController::class, 'confirmarIdentidad'])->name('confirmarContrasena.post');
 
 // Confirmar contraseña adicional
-Route::get('/configuracion', [UsuarioController::class, 'panelConfiguracion'])->name('configuracion');
+Route::get('/ajustes', [UsuarioController::class, 'panelConfiguracion'])->name('configuracion');
 
 // Cambiar idioma
 Route::post('/set-language', [LanguageController::class, 'setLanguage'])->name('setLanguage');
@@ -112,3 +121,16 @@ Route::get('/panel-administracion/usuarios', [UsuarioController::class, 'index']
 Route::get('/panel-administracion/obras', [ObraController::class, 'index'])->name('panel_obras');
 Route::delete('/panel-administracion/usuarios/{id}', [UsuarioController::class, 'eliminarUsuario'])->name('admin.eliminarUsuario');
 Route::delete('/panel-administracion/obra/{id}', [ObraController::class, 'eliminarObra'])->name('admin.eliminarObra');
+
+
+//idioma
+Route::post('/set-language', function (Request $request) {
+    $locale = $request->input('locale');
+    $availableLocales = ['es', 'en', 'fr'];
+
+    if (in_array($locale, $availableLocales)) {
+        session(['locale' => $locale]);
+    }
+
+    return redirect()->back();
+})->name('setLanguage');

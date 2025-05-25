@@ -39,4 +39,8 @@ return [
         'key' => env('HARVARD_API_KEY'),
     ],
 
+    'rijksmuseum' => [
+        'key' => env('RIJKSMUSEUM_API_KEY'),
+    ],
+
 ];

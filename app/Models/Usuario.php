@@ -98,7 +98,6 @@ class Usuario extends Authenticatable
     protected static function booted()
     {
         static::saving(function ($usuario) {
-            // Si el tipo no es artista, vaciamos la biografía
             if ($usuario->tipo !== 'artista') {
                 $usuario->biografia = null;
             }
@@ -109,4 +108,12 @@ class Usuario extends Authenticatable
     {
         return $this->belongsToMany(Obra::class, 'favoritos')->withTimestamps();
     }
+
+
+    public function artistasSeguidos()
+    {
+        return $this->belongsToMany(Usuario::class, 'seguidores', 'id_seguidor', 'id_seguido')
+            ->where('tipo', 'artista'); // Si estás usando el campo 'rol'
+    }
+
 }

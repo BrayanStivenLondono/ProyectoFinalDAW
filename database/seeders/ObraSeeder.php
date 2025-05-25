@@ -51,7 +51,7 @@ class ObraSeeder extends Seeder
         Obra::create([
             'id_artista' => 3,
             'titulo' => 'Raíces Flamencas',
-            'estilo' => 'Realismo',
+            'estilo' => 'Realismo_artístico',
             'tecnica' => 'Carboncillo sobre papel',
             'tipo' => 'Moderno',
             'año_creacion' => 2022,

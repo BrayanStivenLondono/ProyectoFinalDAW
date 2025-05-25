@@ -53,3 +53,30 @@
     font-size: 16px;
     color: #333;
 }
+
+
+.btn-seguir {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid #00897b; /* verde turquesa */
+    border-radius: 8px;
+    background-color: white;
+    color: #00897b;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+}
+
+.btn-seguir:hover {
+    background-color: #b2dfdb; /* verde claro al hacer hover */
+    color: #00695c;
+}
+
+.btn-seguir::before {
+    display: inline-block;
+    font-size: 1.1rem;
+}

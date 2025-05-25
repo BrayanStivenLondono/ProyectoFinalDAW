@@ -9,12 +9,12 @@
 
 @section('breadcrumbs')
     <a href="{{ url('/') }}">Inicio</a> &gt;
-    <a href="{{ route("configuracion") }}">Configuracion</a>
+    <a href="{{ route("configuracion") }}">Agustes</a>
 @endsection
 
 
 @section('content')
-    <h1 class="titulo">Configuración</h1>
+    <h1 class="titulo">Agustes</h1>
     <div class="configuracion-container">
         <div class="configuracion-opciones">
             <ul>

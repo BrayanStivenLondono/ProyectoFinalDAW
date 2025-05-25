@@ -11,23 +11,9 @@
 </head>
 <body>
 <header class="main-header">
-    <!-- Selector de idioma fuera del .container -->
-    <div class="language-switcher">
-        <div class="language-select-wrapper">
-            <label for="language-select">Idioma:</label>
-            <form action="{{ route('setLanguage') }}" method="POST" id="language-form">
-                @csrf
-                <select id="language-select" name="locale" onchange="document.getElementById('language-form').submit()">
-                    <option value="es" {{ app()->getLocale() == 'es' ? 'selected' : '' }}>Español</option>
-                    <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
-                    <option value="fr" {{ app()->getLocale() == 'fr' ? 'selected' : '' }}>Français</option>
-                </select>
-            </form>
-        </div>
-    </div>
-
-    @php use Illuminate\Support\Str; @endphp
     <!-- Usuario también fuera del .container -->
+    @php use Illuminate\Support\Str; @endphp
+
     <div class="user-config-wrapper">
         <div class="user-configuration" id="userMenuToggle">
             @if(Auth::check())
@@ -41,7 +27,7 @@
                 @if(Auth::check())
                     <div class="dropdown-menu" id="userDropdown" style="display: none;">
                         <ul>
-                            <li><a href="{{ route('configuracion') }}">Configuración</a></li>
+                            <li><a href="{{ route('configuracion') }}">Ajustes</a></li>
 
                             @if(Auth::user()->tipo === "artista")
                                 <li><a href="{{ route('panel.artista') }}">Panel de Artista</a></li>
@@ -85,7 +71,6 @@
         <ul class="left-buttons">
             <li><a href="{{ url("/") }}">Inicio</a></li>
             <li><a href="{{ route("verObras") }}">Obras</a></li>
-            <li><a href="{{ route("obra.colecciones") }}">Colecciones</a></li>
         </ul>
         <div class="logo">
             <a href="/">
@@ -94,9 +79,8 @@
             </a>
         </div>
         <ul class="right-buttons">
+            <li><a href="{{ route("obra.colecciones") }}">Colecciones</a></li>
             <li><a href="{{ route("artistas.index") }}">Artistas</a></li>
-            <li><a href="{{ route("harvard") }}">Museo</a></li>
-            <li><a href="#">Otro</a></li>
         </ul>
     </nav>
 </header>

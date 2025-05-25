@@ -198,34 +198,6 @@ class UsuarioController extends Controller
         return view("usuario.confirmarContrasena");
     }
 
-    public function confirmarIdentidad(Request $request)
-    {
-        $request->validate([
-            'password' => 'required|string',
-        ]);
-
-        $usuario = auth()->user();
-
-        $intentos = session()->get('confirmar_intentos', 0);
-
-        if ($intentos >= 3) {
-            Auth::logout();
-            session()->flush();
-            return redirect()->route('login.form')->withErrors([
-                'password' => 'Has superado el número máximo de intentos. Por favor, inicia sesión de nuevo.'
-            ]);
-        }
-
-        if (Hash::check($request->password, $usuario->contrasena)) {
-            session()->forget('confirmar_intentos');
-            session(['password_confirmed_at' => time()]);
-            return redirect()->intended('/configuracion');
-        }
-
-        session()->put('confirmar_intentos', $intentos + 1);
-        return back()->withErrors(['password' => 'La contraseña no es correcta']);
-    }
-
     public function eliminarCuenta(Request $request)
     {
         $usuario = Auth::user();
@@ -335,7 +307,7 @@ class UsuarioController extends Controller
     {
         $usuario = auth()->user();
 
-        if (!auth()->user() || auth()->user()->tipo !== 'Administrador') {
+        if (!auth()->user() || auth()->user()->tipo !== 'administrador') {
             return redirect("/");
         }
 

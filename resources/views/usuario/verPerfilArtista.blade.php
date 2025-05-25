@@ -18,6 +18,21 @@
             <img src="{{ asset($artista->imagen_perfil) }}" alt="Imagen de perfil" class="imagen-perfil">
             <h2 class="nombre">{{ $artista->nombre }} {{ $artista->apellido }}</h2>
             <p class="biografia">{{ $artista->biografia ?? 'Este artista aún no ha agregado una biografía.' }}</p>
+
+            @if(auth()->user()->id !== $artista->id)
+                @if(auth()->user()->siguiendo->contains($artista->id))
+                    <form method="POST" action="{{ route('dejar.seguir.usuario', $artista->id) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-seguir">🚫 Dejar de seguir</button>
+                    </form>
+                @else
+                    <form method="POST" action="{{ route('seguir.usuario', $artista->id) }}">
+                        @csrf
+                        <button type="submit" class="btn-seguir">👤➕ Seguir Artista</button>
+                    </form>
+                @endif
+            @endif
         </div>
 
         <div class="obras-artista">

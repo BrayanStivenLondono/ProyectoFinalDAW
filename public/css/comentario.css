@@ -211,50 +211,6 @@ button:hover,
     font-family: Arial, sans-serif;
 }
 
-.btn-like {
-    background-color: #e74c3c;
-    color: white;
-}
-
-.btn-like:hover {
-    background-color: #c0392b;
-}
-
-.btn-compartir {
-    background-color: #3498db;
-    color: white;
-}
-
-.btn-compartir:hover {
-    background-color: #2980b9;
-}
-
-.btn-favorito {
-    background-color: #9b59b6;
-    color: white;
-}
-
-.btn-favorito.eliminar {
-    background-color: #e74c3c;
-}
-
-.btn-favorito:hover {
-    background-color: #8e44ad;
-}
-
-.btn-favorito.eliminar:hover {
-    background-color: #c0392b;
-}
-
-.btn-seguir {
-    background-color: #2ecc71;
-    color: white;
-}
-
-.btn-seguir:hover {
-    background-color: #27ae60;
-}
-
 .form-respuesta {
     margin-top: 10px;
 }

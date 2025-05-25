@@ -17,8 +17,7 @@
                 <h3>Descubre</h3>
                 <ul class="footer-links">
                     <li><a href="{{ route("artistas.index") }}">Artistas</a></li>
-                    <li><a href="#">Obras Destacadas</a></li>
-                    <li><a href="#">Colecciones Destacadas</a></li>
+                    <li><a href="{{ route("verObras") }}">Obras</a></li>
                     <li><a href="{{ route("obra.colecciones") }}">Colecciones</a></li>
                 </ul>
             </div>
@@ -31,9 +30,10 @@
                     <h3>Mi Cuenta</h3>
                     <ul class="footer-links">
                         <li><a href="{{ route("usuario.perfil.publico", ["slug" => $slug]) }}">Perfil Público</a></li>
-                        <li><a href="#">Mis Favoritos</a></li>
-                        <li><a href="#">Artistas Destacados</a></li>
-                        <li><a href="#">Panel de Artista</a></li>
+                        <li><a href="{{ route("favoritos.ver") }}">Mis Favoritos</a></li>
+                        @if(Auth()->user()->tipo === "artista")
+                            <li><a href="{{ route("panel.artista") }}">Panel de Artista</a></li>
+                        @endif
                     </ul>
                 </div>
             @endauth

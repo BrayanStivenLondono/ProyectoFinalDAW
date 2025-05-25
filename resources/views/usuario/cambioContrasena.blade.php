@@ -14,7 +14,6 @@
     <a href="{{ route("cambiarContrasena") }}">Actualizar Contraseña</a>
 @endsection
 
-
 @section('config-content')
     <div class="contenedor-cambiar-contrasena">
         @if (session('success'))

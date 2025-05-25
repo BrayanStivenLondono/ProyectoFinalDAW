@@ -21,7 +21,7 @@
 }
 
 .obra-info {
-    max-width: 60%;
+    max-width: 40%;
 }
 
 .obra-info h1 {
@@ -51,12 +51,12 @@
 }
 
 .acciones .btn-favorito {
-    border-color: #e91e63;
-    color: #e91e63;
+    border-color: #ff6c00;
+    color: #ff6c00;
 }
 
 .acciones .btn-favorito:hover {
-    background-color: #fce4ec;
+    background-color: #fdede5;
 }
 
 .acciones .btn-like {
@@ -66,6 +66,27 @@
 
 .acciones .btn-like:hover {
     background-color: #ffebee;
+}
+
+.btn-agregar,
+.btn-seguir {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    color: white;
+}
+
+/* Botón Agregar - Azul */
+.btn-agregar {
+    background-color: #007bff;
+}
+
+.btn-agregar:hover {
+    background-color: #0056b3;
 }
 
 .acciones .btn-compartir {

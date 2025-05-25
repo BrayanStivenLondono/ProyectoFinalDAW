@@ -9,11 +9,11 @@
 
 @section('breadcrumbs')
     <a href="{{ url('/') }}">Inicio</a> &gt;
-    <a href="{{ route('configuracion') }}">Configuración</a>
+    <a href="{{ route('configuracion') }}">Ajustes</a>
 @endsection
 
 @section('content')
-    <h1 class="titulo">Configuración</h1>
+    <h1 class="titulo">Ajustes</h1>
     @hasSection('config-content')
         {{-- Mostrar panel completo con menú lateral y contenido --}}
         <div class="configuracion-layout">

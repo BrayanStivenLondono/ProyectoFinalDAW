@@ -62,7 +62,7 @@
                     @else
                         <form action="{{ route('favorito.agregar', $obra->id) }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn-favorito">💖 Agregar a Favoritos</button>
+                            <button type="submit" class="btn-favorito">➕ Agregar a Favoritos</button>
                         </form>
                     @endif
 
@@ -77,7 +77,7 @@
                         @else
                             <form method="POST" action="{{ route('seguir.usuario', $obra->artista->id) }}">
                                 @csrf
-                                <button type="submit" class="btn-seguir">➕ Seguir Artista</button>
+                                <button type="submit" class="btn-seguir">👤➕ Seguir Artista</button>
                             </form>
                         @endif
                     @endif

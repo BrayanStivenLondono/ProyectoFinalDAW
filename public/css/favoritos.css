@@ -1,78 +1,126 @@
 .favoritos-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2%;
+    padding: 2rem;
 }
 
-.titulo {
-    font-size: 2.2em;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    color: #333;
-}
-
-.obras-grid {
+.favoritos-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
 }
 
-.obra-card {
-    background: #fff;
+.tarjeta-favorito {
+    background-color: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.3s ease;
 }
 
-.obra-card:hover {
+.tarjeta-favorito:hover {
     transform: scale(1.02);
 }
 
-.obra-card img {
+.imagen-favorito {
+    background-size: cover;
+    background-position: center;
+    height: 280px; /* MÁS ALTO para destacar la imagen */
     width: 100%;
-    height: 250px;
-    object-fit: cover;
 }
 
-.obra-botones {
+.contenido-favorito {
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    padding: 12px;
-    width: 100%;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.titulo-favorito {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
     text-align: center;
-    gap: 10px;
+}
+
+.botones-favorito {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .btn-ver,
 .btn-quitar {
-    padding: 10px;
-    border-radius: 6px;
-    text-decoration: none;
+    font-family: "Arial", sans-serif;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
     border: none;
-    color: white;
+    border-radius: 6px;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s;
+    color: white;
+    text-decoration: none;
 }
 
 .btn-ver {
-    background-color: #3498db;
+    background-color: #007bff;
+}
+
+.btn-ver:hover {
+    background-color: #0056b3;
 }
 
 .btn-quitar {
-    background-color: #e74c3c;
+    background-color: #dc3545;
 }
 
-@media screen and (max-width: 1024px) {
-    .obras-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.btn-quitar:hover {
+    background-color: #a71d2a;
 }
 
-@media screen and (max-width: 600px) {
-    .obras-grid {
-        grid-template-columns: 1fr;
-    }
+.mensaje-vacio {
+    text-align: center;
+    margin-top: 2rem;
+    font-style: italic;
+    color: #555;
+}
+
+h3{
+    font-family: "Bebas Neue", sans-serif;
+}
+
+.buscador-favoritos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.buscador-favoritos input[type="text"] {
+    padding: 0.5rem 1rem;
+    width: 280px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.buscador-favoritos button {
+    padding: 0.5rem 1rem;
+    background-color: #00897b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buscador-favoritos button:hover {
+    background-color: #43a047;
 }
