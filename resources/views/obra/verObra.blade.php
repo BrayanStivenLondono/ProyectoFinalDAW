@@ -49,7 +49,7 @@
                     </form>
 
                     {{-- Compartir --}}
-                    <button type="button" id="boton-compartir" class="btn-compartir">🔗 Compartir obra</button>
+                    <button type="button" id="boton-compartir" class="btn-compartir">🔗 Compartir</button>
                     <span id="mensaje-copiado" style="display:none; color: green; margin-left: 10px;">¡Enlace copiado!</span>
 
                     {{-- Favorito --}}
@@ -82,10 +82,22 @@
                         @endif
                     @endif
                 </div>
-                <p>{{ $obra->usuarioDaLike()->count() }} likes</p>
             @else
                 <p>Para dar like o comentar esta obra, debes <a style="color: #0056b3" href="{{ route('login') }}">iniciar sesión</a>.</p>
             @endauth
+
+            @if ($obrasMismoTipo->count())
+                <h4>Otras obras:</h4>
+                <div class="lista-obras-similares">
+                    @foreach ($obrasMismoTipo as $obraSim)
+                        <div class="obra-similar">
+                            <a href="{{ route('verObra', Str::slug($obraSim->titulo)) }}">
+                               <p>{{ $obraSim->titulo }}</p>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
 

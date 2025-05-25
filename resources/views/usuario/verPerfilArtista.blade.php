@@ -19,8 +19,8 @@
             <h2 class="nombre">{{ $artista->nombre }} {{ $artista->apellido }}</h2>
             <p class="biografia">{{ $artista->biografia ?? 'Este artista aún no ha agregado una biografía.' }}</p>
 
-            @if(auth()->user()->id !== $artista->id)
-                @if(auth()->user()->siguiendo->contains($artista->id))
+            @if(auth()->check() && auth()->user()->id !== $artista->id)
+            @if(auth()->user()->siguiendo->contains($artista->id))
                     <form method="POST" action="{{ route('dejar.seguir.usuario', $artista->id) }}">
                         @csrf
                         @method('DELETE')

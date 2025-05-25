@@ -40,10 +40,9 @@
             <div class="footer-column">
                 <h3>Sobre Nosotros</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Nuestra Historia</a></li>
-                    <li><a href="#">Equipo</a></li>
-                    <li><a href="#">Contacto</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="{{ route("nuestraHistoria") }}">Nuestra Historia</a></li>
+                    <li><a href="{{ route("equipo") }}">Equipo</a></li>
+                    <li><a href="{{ route("contacto") }}">Contacto</a></li>
                 </ul>
             </div>
             <div class="footer-column">

@@ -35,6 +35,7 @@ class ObraController extends Controller
         return view("obra.verObras");
     }
 
+
     public function verObras(Request $request)
     {
         $query = Obra::query();
@@ -53,6 +54,7 @@ class ObraController extends Controller
 
         // Aquí usamos la query con filtros
         $obras = $query->latest()->paginate(8);
+
 
         return view('obra.verObras', compact('obras', 'tiposObra'));
     }
@@ -201,7 +203,13 @@ class ObraController extends Controller
             abort(404);
         }
 
-        return view('obra.verObra', compact('obra'));
+        $obrasMismoTipo = Obra::where('tipo', $obra->tipo)
+            ->where('id', '!=', $obra->id)
+            ->latest()
+            ->take(6)
+            ->get();
+
+        return view('obra.verObra', compact('obra', 'obrasMismoTipo'));
     }
 
     public function eliminarObra($id)
@@ -213,13 +221,9 @@ class ObraController extends Controller
             return redirect();
         }
 
-        if (auth()->user()->tipo !== 'administrador'|| auth()->user()->tipo !== "artista") {
-            return redirect("/");
-        }
-
         $obra->delete();
 
-        return redirect("/admin/obras");
+        return redirect()->route("panel_obras");
     }
 
     public function eliminarObraArtista($id)

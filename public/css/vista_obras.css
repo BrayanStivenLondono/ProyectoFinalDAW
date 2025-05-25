@@ -32,6 +32,7 @@
 }
 
 .obra-overlay {
+    font-family: "Outfit", sans-serif;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -39,7 +40,7 @@
     color: #fff;
     padding: 1rem;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     opacity: 0;
     transform: translateY(100%);

@@ -80,11 +80,13 @@
 
 .info-obra {
     padding: 15px;
+    font-family: "Arial", sans-serif;
 }
 
 .titulo-obra {
     font-size: 1.2rem;
     margin: 0 0 10px;
+    font-family: "Outfit", sans-serif;
 }
 
 .id-obra,

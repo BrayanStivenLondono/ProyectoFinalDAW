@@ -60,11 +60,16 @@
                         </form>
 
                         @if(strtolower($usuario->tipo) !== 'administrador')
-                            <form action="#" method="POST" style="display:inline-block;">
+                            <form action="{{ route('admin.cambiarRol', $usuario->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirmarCambioRol();">
                                 @csrf
                                 <button type="submit" class="btn-hacer-admin">Hacer Admin</button>
                             </form>
                         @endif
+                        <script>
+                            function confirmarCambioRol() {
+                                return confirm('¿Estás seguro de que quieres convertir a este usuario en administrador? Esta acción no se puede deshacer.');
+                            }
+                        </script>
 
                         <a href="{{ $usuario->tipo === 'artista' ? route('artista.perfil', ['slug' => $slug]) : route('usuario.perfil.publico', ['slug' => $slug]) }}" class="btn-ver-perfil">Ver Perfil</a>
                     </td>

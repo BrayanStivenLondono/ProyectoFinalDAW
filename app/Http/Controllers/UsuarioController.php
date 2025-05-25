@@ -274,13 +274,15 @@ class UsuarioController extends Controller
             });
         }
 
-        $artistas2 = Usuario::where('tipo', 'artista')->get();
-        //return view('artistas.index', compact('artistas'));
+        // Obtener artistas con paginación
+        $artistas = $query->paginate(8); // Puedes ajustar la cantidad por página
 
-        $artistas = $query->get();
+        // Lista completa sin filtro (si la necesitas para otro propósito)
+        $artistas2 = Usuario::where('tipo', 'artista')->get();
 
         return view('usuario.artistas', compact('artistas', 'artistas2'));
     }
+
 
     public function mostrarPanelArtista()
     {
@@ -297,6 +299,19 @@ class UsuarioController extends Controller
             'artista' => $usuario,
             'obras' => $obras
         ]);
+    }
+
+    public function hacerAdmin($id)
+    {
+        if (!auth()->user() || auth()->user()->tipo !== 'administrador') {
+            return redirect()->url('/');
+        }
+
+        $usuario = Usuario::findOrFail($id);
+        $usuario->tipo = 'administrador';
+        $usuario->save();
+
+        return redirect()->route('panel_usuarios');
     }
 
     public function mostrarPanelAdministracion(){
@@ -319,7 +334,7 @@ class UsuarioController extends Controller
         $usuarios = Usuario::findOrFail($id);
         $usuarios->delete();
 
-        return redirect("/admin/usuarios");
+        return redirect()->route("panel_usuarios");
     }
 
 }

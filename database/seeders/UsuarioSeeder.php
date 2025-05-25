@@ -34,32 +34,6 @@ class UsuarioSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        // Crear algunos usuarios artistas usando el factory
-        Usuario::factory()->count(5)->create(['tipo' => 'artista']);
-
-        // Crear algunos usuarios visitantes usando el factory
-        Usuario::factory()->count(5)->create(['tipo' => 'visitante']);
-
-        // Crear un artista específico con datos concretos
-        Usuario::create([
-            'nombre_usuario' => 'artista_ejemplo',
-            'nombre' => 'Elena',
-            'apellido' => 'Pintora',
-            'correo' => 'elena.pintora@arte.com',
-            'contrasena' => Hash::make('123456'),
-            'tipo' => 'artista',
-            'fecha_registro' => now(),
-            'correo_verified_at' => now(),
-            'remember_token' => Str::random(10),
-            'imagen_perfil' => 'imagenes/user_default.jpg',
-            'biografia' => 'Apasionada artista especializada en paisajes urbanos.
-                            Apasionada artista especializada en paisajes urbanos.Apasionada artista especializada en paisajes urbanos.
-                            Apasionada artista especializada en paisajes urbanos.Apasionada artista especializada en paisajes urbanos.',
-            'enlaces_sociales' => 'https://instagram.com/elenapintora',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
         Usuario::create([
             "nombre_usuario" => "brayan27",
             "nombre" => "Brayan",
@@ -80,7 +54,41 @@ class UsuarioSeeder extends Seeder
 
         ]);
 
+        $artistas = [
+            ['nombre' => 'Rembrandt', 'apellido' => 'van Rijn'],
+            ['nombre' => 'Vincent', 'apellido' => 'van Gogh'],
+            ['nombre' => 'Johannes', 'apellido' => 'Vermeer'],
+            ['nombre' => 'Hieronymus', 'apellido' => 'Bosch'],
+            ['nombre' => 'Frans', 'apellido' => 'Hals'],
+            ['nombre' => 'Pieter', 'apellido' => 'Bruegel'],
+            ['nombre' => 'Judith', 'apellido' => 'Leyster'],
+            ['nombre' => 'Rachel', 'apellido' => 'Ruysch'],
+            ['nombre' => 'Willem', 'apellido' => 'Kalf'],
+            ['nombre' => 'Jacob', 'apellido' => 'van Ruisdael'],
+        ];
 
-        // Puedes añadir más usuarios artistas o visitantes según necesites
+        foreach ($artistas as $index => $artista) {
+            $username = strtolower($artista['nombre']) . rand(100, 999);
+
+            Usuario::create([
+                'nombre_usuario' => $username,
+                'nombre' => $artista['nombre'],
+                'apellido' => $artista['apellido'],
+                'correo' => $username . '@gmail.com',
+                'correo_verified_at' => now(),
+                'contrasena' => Hash::make('123456'),
+                'remember_token' => Str::random(10),
+                'tipo' => 'artista',
+                'biografia' => 'Artista holandés reconocido por su aporte al arte europeo.',
+                'enlaces_sociales' => json_encode([
+                    'instagram' => 'https://instagram.com/' . $username,
+                    'twitter' => 'https://twitter.com/' . $username,
+                ]),
+                'imagen_perfil' => 'imagenes/user_prueba.jpg',
+                'fecha_registro' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

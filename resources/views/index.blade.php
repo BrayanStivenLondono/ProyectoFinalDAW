@@ -20,7 +20,6 @@
                     <div class="slide">
                         <a href="{{ route('obras.coleccion', $obra->tipo) }}" class="coleccion-item">
                             <img src="{{ asset($obra->imagen) }}" alt="{{$obra->titulo}}">
-                            <h3>{{ $obra->titulo }}</h3>
                         </a>
                     </div>
                 @endforeach
@@ -31,14 +30,36 @@
         </button>
     </div>
 
+    {{-- Hero principal --}}
+    <div class="hero">
+        <h1>Bienvenido a la Galería Virtual</h1>
+        <p>Explora obras de arte únicas, descubre artistas emergentes y vive una experiencia visual sin igual.</p>
+        @guest
+            <a href="{{ route('login') }}" class="btn">Iniciar sesión</a>
+            <a href="{{ route('registro') }}" class="btn">Registrarse</a>
+        @endguest
+        <br>
+    </div>
+
+
+    {{-- Sección informativa --}}
+    <div class="descripcion">
+        <h2>¿Qué es esta galería?</h2>
+        <p>
+            Esta plataforma es un espacio digital donde artistas pueden compartir sus creaciones
+            y los visitantes pueden explorar diferentes estilos, técnicas y colecciones.
+            Puedes seguir a tus artistas favoritos, descubrir nuevas obras y participar en la comunidad.
+        </p>
+    </div>
+
+    {{-- Carrusel de tipos de obras --}}
     <h1 class="titulo">Colecciones</h1>
-    <div class="carrisel-tipo">
-        <div class="obras">
+    <div class="carrusel-tipo">
+        <div class="obras-carrusel">
             @foreach($obrasPorTipo as $obra)
-                <div class="obra">
-                    <a href="{{ route("obras.coleccion", $obra->tipo) }}">
-                        <img src=" {{ asset($obra->imagen) }}" alt="{{ $obra->titulo }}">
-                        <h4 class="tipo-obra">{{ $obra->tipo }}</h4>
+                <div class="obra-item">
+                    <a href="{{ route('obras.coleccion', $obra->tipo) }}">
+                        <img src="{{ asset($obra->imagen) }}" alt="{{ $obra->titulo }}">
                     </a>
                 </div>
             @endforeach

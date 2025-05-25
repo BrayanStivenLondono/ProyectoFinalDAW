@@ -25,9 +25,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsuarioSeeder::class,
             ObraSeeder::class,
+            ComentarioSeeder::class,
+            ComentarioReporteSeeder::class,
         ]);
 
-        Comentario::factory(15)->create();
-        ComentarioReporte::factory(10)->create();
     }
 }

@@ -21,13 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->routes(function () {
-            Route::middleware(['web', LocaleMiddleware::class])
-                ->group(base_path('routes/web.php'));
-
-            Route::middleware('api')
-                ->group(base_path('routes/api.php'));
-        });
     }
 
     private function routes(\Closure $param)

@@ -5,6 +5,7 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/artistas.css') }}">
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
 @endsection
 
 @section('breadcrumbs')
@@ -20,13 +21,6 @@
             <div class="filtros-barra">
                 <form action="{{ route('artistas.index') }}" method="GET" class="filtros-form">
                     <input type="text" name="nombre" class="filtro-input" placeholder="Buscar por nombre..." value="{{ request('nombre') }}">
-
-                    <select name="orden" class="filtro-select">
-                        <option value="">Ordenar por</option>
-                        <option value="nombre_asc" {{ request('orden') == 'nombre_asc' ? 'selected' : '' }}>Nombre A-Z</option>
-                        <option value="nombre_desc" {{ request('orden') == 'nombre_desc' ? 'selected' : '' }}>Nombre Z-A</option>
-                    </select>
-
                     <button type="submit" class="filtro-boton">Filtrar</button>
                 </form>
             </div>
@@ -45,4 +39,8 @@
             @endforelse
         </div>
     </div>
+    <div class="paginacion">
+        {{ $artistas->appends(request()->query())->links('pagination::simple-bootstrap-5') }}
+    </div>
+    <br>
 @endsection

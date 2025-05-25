@@ -49,7 +49,6 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
 
             {{-- ARTISTAS SEGUIDOS --}}
             @foreach($artistasSeguidos as $artista)
@@ -59,11 +58,11 @@
                         <h3 class="titulo-favorito">{{ $artista->nombre }} {{ $artista->apellido }}</h3>
                         <div class="botones-favorito">
                             <a href="{{ route('artista.perfil', Str::slug($artista->nombre . ' ' . $artista->apellido)) }}" class="btn-ver">Ver Artista</a>
-                            <form action="{{ route('seguir.toggle', $artista->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-quitar">Dejar de seguir</button>
-                            </form>
+                                <form method="POST" action="{{ route('dejar.seguir.usuario', $obra->artista->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-quitar">Dejar de seguir</button>
+                                </form>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,113 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@100..900&display=swap');
 
+.carrusel-tipo {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
 
+.obras-carrusel {
+    display: flex;
+    animation: deslizar 20s linear infinite;
+}
+
+.obra-item {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+}
+
+.obra-item img {
+    width: 200px; /* o ajusta a lo que necesites */
+    height: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+}
+
+.hero {
+    font-family: "Outfit", sans-serif;
+    padding: 10px 20px;
+    text-align: center;
+    color: #444444;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero .btn {
+    padding: 12px 24px;
+    margin: 0 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #ffffffcc;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.hero .btn:hover {
+    background-color: #f0f0f0;
+}
+
+.descripcion {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fafafa;
+}
+
+.descripcion h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.descripcion p {
+    font-family: "Arial", sans-serif;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.carrusel-tipo {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    margin-top: 40px;
+}
+
+.obras-carrusel {
+    display: flex;
+    animation: deslizar 25s linear infinite;
+}
+
+.obra-item {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+}
+
+.obra-item img {
+    width: 220px;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Animación para desplazar imágenes automáticamente */
+@keyframes deslizar {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
 
 

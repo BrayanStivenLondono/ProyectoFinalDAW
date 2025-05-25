@@ -20,7 +20,7 @@
                 <img src="{{ asset(Auth::user()->imagen_perfil) }}" id="userImage" alt="">
             @else
                 <div class="login-register-text">
-                    <a class="login" href="{{ route("login.form") }}">Iniciar Sesion</a> |
+                    <a class="login" href="{{ route("login.form") }}">Iniciar Sesión</a> |
                     <a class="registro" href="{{ route("registro.form") }}">Registro</a>
                 </div>
             @endif
