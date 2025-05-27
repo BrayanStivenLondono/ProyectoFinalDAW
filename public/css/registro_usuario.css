@@ -7,7 +7,6 @@
     border-radius: 20px;
 }
 
-/* Título */
 .registro-container h2 {
     font-family: "Outfit", sans-serif;
     font-weight: lighter;
@@ -16,12 +15,11 @@
     margin-bottom: 25px;
 }
 
-/* Inputs y selects */
 .registro-container input,
 .registro-container select,
 .registro-container textarea {
     border: none;
-    outline: none; /* Eliminar el borde de enfoque por defecto */
+    outline: none;
     width: 100%;
     padding: 10px 12px;
     margin-bottom: 15px;
@@ -29,7 +27,6 @@
     font-size: 14px;
 }
 
-/* Botón */
 .registro-container button {
     width: 100%;
     padding: 10px;
@@ -45,23 +42,18 @@
     background-color: #555;
 }
 
-
-/* Envuelve el contenido en flex */
 .registro-wrapper {
     display: flex;
     height: 100%;
     width: 100%;
 }
 
-/* Formulario: mitad izquierda */
 .registro-container {
     flex: 1;
     padding: 40px;
     display: flex;
     flex-direction: column;
 }
-
-/* Imagen: mitad derecha */
 
 .imagen-fondo img {
     width: 100%;

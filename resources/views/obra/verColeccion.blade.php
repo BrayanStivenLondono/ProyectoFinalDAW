@@ -15,7 +15,6 @@
 
 @section('content')
     <h1 class="titulo"> {{ ucfirst($tipo) }}</h1>
-
     <div class="contenedor">
         <div class="listado-obras">
             @php use Illuminate\Support\Str; @endphp

@@ -16,7 +16,6 @@
 @section('content')
     <h1 class="titulo">Explorar Artistas</h1>
     <div class="artistas-container">
-        {{-- Filtros --}}
         <div class="filtros-wrapper">
             <div class="filtros-barra">
                 <form action="{{ route('artistas.index') }}" method="GET" class="filtros-form">
@@ -25,7 +24,6 @@
                 </form>
             </div>
         </div>
-        {{-- Lista de artistas --}}
         <div class="lista-artistas">
             @forelse ($artistas as $artista)
                 <div class="artista-card">

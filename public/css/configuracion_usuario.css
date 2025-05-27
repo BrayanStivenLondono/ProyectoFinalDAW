@@ -5,7 +5,7 @@
     padding-left: 2%;
     padding-right: 2%;
     margin-top: 2rem;
-    flex-direction: row; /* por defecto fila */
+    flex-direction: row;
 }
 
 .configuracion-opciones {
@@ -79,23 +79,22 @@
 }
 
 
-/* Media query para móviles */
 @media (max-width: 768px) {
     .configuracion-layout {
-        flex-direction: column; /* cambia a columna */
+        flex-direction: column;
         padding-left: 1rem;
         padding-right: 1rem;
     }
     .configuracion-opciones {
-        width: 90%; /* menú ocupa todo el ancho arriba */
+        width: 90%;
         margin-left: 0;
         margin-right: 0;
     }
     .configuracion-contenido {
         margin-left: 0;
         margin-right: 0;
-        width: 86%; /* contenido también ocupa todo el ancho */
-        margin-top: 1.5rem; /* separa contenido del menú */
+        width: 86%;
+        margin-top: 1.5rem;
     }
 
     .configuracion-centro{

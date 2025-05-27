@@ -22,3 +22,33 @@
     margin-bottom: 1rem;
     color: #444;
 }
+
+@media (max-width: 992px) {
+    .historia-container {
+        padding: 1.5rem;
+    }
+
+    .historia-container .titulo {
+        font-size: 1.75rem;
+    }
+
+    .historia-container p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .historia-container {
+        padding: 1rem;
+    }
+
+    .historia-container .titulo {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .historia-container p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+}

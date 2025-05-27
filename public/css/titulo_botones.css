@@ -9,7 +9,7 @@ h1.titulo {
     font-size: 2em;
     text-align: center;
     margin: 30px 0;
-    gap: 10px; /* Espacio entre las líneas y el texto */
+    gap: 10px;
     color: #000;
 
 }

@@ -58,3 +58,66 @@
 p{
     font-family: "Arial", sans-serif;
 }
+
+
+@media (max-width: 992px) {
+    .equipo-container {
+        padding: 1.5rem;
+    }
+
+    .miembro {
+        width: 180px;
+        padding: 0.8rem;
+    }
+
+    .miembro img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .miembro h3 {
+        font-size: 1rem;
+    }
+
+    .miembro p {
+        font-size: 0.9rem;
+    }
+
+    .titulo {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .equipo-container {
+        padding: 1rem;
+    }
+
+    .miembros-equipo {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .miembro {
+        width: 90%;
+        max-width: 300px;
+    }
+
+    .miembro img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .miembro h3 {
+        font-size: 1rem;
+    }
+
+    .miembro p {
+        font-size: 0.9rem;
+    }
+
+    .titulo {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+}

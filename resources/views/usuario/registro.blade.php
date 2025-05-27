@@ -8,7 +8,8 @@
 @endsection
 
 @section('breadcrumbs')
-
+    <a href="{{ url('/') }}">Inicio</a> &gt;
+    <a href="{{ route('registro.form') }}">Registro</a>
 @endsection
 
 @section('content')

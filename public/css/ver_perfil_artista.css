@@ -68,7 +68,7 @@
     align-items: center;
     gap: 0.4rem;
     padding: 0.5rem 1rem;
-    border: 2px solid #00897b; /* verde turquesa */
+    border: 2px solid #00897b;
     border-radius: 8px;
     background-color: white;
     color: #00897b;
@@ -80,7 +80,7 @@
 }
 
 .btn-seguir:hover {
-    background-color: #b2dfdb; /* verde claro al hacer hover */
+    background-color: #b2dfdb;
     color: #00695c;
 }
 
@@ -91,7 +91,7 @@
 
 .galeria-obras {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Fuerza 4 columnas */
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 

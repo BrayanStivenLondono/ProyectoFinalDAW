@@ -34,7 +34,7 @@
         <div class="info-contacto">
             <p><strong>Email:</strong> contacto@galeriavirtual.com</p>
             <p><strong>Teléfono:</strong> +34 600 123 456</p>
-            <p><strong>Dirección:</strong> Calle del Arte, 123, Madrid, España</p>
+            <p><strong>Dirección:</strong> Casco Antiguo, 123, Zaragoza, España</p>
         </div>
     </div>
     <br>

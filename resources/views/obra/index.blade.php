@@ -57,5 +57,5 @@
                 {{ $obras->appends(request()->query())->links('pagination::simple-bootstrap-5') }}
             </div>
     </div>
-    <br><br>
+    <br>
 @endsection

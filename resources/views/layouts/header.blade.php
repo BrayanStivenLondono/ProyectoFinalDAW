@@ -62,14 +62,12 @@
         });
     </script>
 
-    <!-- Menú y logo centrado con menú hamburguesa en móvil -->
     <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" role="button" tabindex="0">
         <span></span>
         <span></span>
         <span></span>
     </div>
     <nav class="container">
-        <!-- Botón hamburguesa solo visible en móvil -->
         <ul class="left-buttons">
             <li><a href="{{ url("/") }}">Inicio</a></li>
             <li><a href="{{ route("verObras") }}">Obras</a></li>
@@ -105,7 +103,6 @@
             mobileMenu.classList.toggle('open');
         });
 
-        // Opcional: cerrar menú al hacer clic en un enlace
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('open');

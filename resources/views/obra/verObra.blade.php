@@ -48,11 +48,9 @@
                         </button>
                     </form>
 
-                    {{-- Compartir --}}
                     <button type="button" id="boton-compartir" class="btn-compartir">🔗 Compartir</button>
                     <span id="mensaje-copiado" style="display:none; color: green; margin-left: 10px;">¡Enlace copiado!</span>
 
-                    {{-- Favorito --}}
                     @if(auth()->user()->favoritos->contains($obra->id))
                         <form action="{{ route('favorito.eliminar', $obra->id) }}" method="POST">
                             @csrf
@@ -66,7 +64,6 @@
                         </form>
                     @endif
 
-                    {{-- Seguir / Dejar de seguir --}}
                     @if(auth()->user()->id !== $obra->artista->id)
                         @if(auth()->user()->siguiendo->contains($obra->artista->id))
                             <form method="POST" action="{{ route('dejar.seguir.usuario', $obra->artista->id) }}">
@@ -210,13 +207,8 @@
 
             botonCompartir.addEventListener('click', async () => {
                 try {
-                    // Copiar la URL actual
                     await navigator.clipboard.writeText(window.location.href);
-
-                    // Mostrar mensaje de éxito
                     mensajeCopiado.style.display = 'inline';
-
-                    // Ocultar después de 2.5 segundos
                     setTimeout(() => {
                         mensajeCopiado.style.display = 'none';
                     }, 2500);

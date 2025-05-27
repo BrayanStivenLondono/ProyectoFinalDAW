@@ -15,7 +15,6 @@
 @section('content')
     <h1 class="titulo">Ajustes</h1>
     @hasSection('config-content')
-        {{-- Mostrar panel completo con menú lateral y contenido --}}
         <div class="configuracion-layout">
             <aside class="configuracion-opciones">
                 <ul>
@@ -69,7 +68,6 @@
         </div>
         <br>
     @else
-        {{-- Mostrar solo las opciones si no se ha cargado contenido --}}
         <div class="configuracion-centro">
             <div class="configuracion-opciones">
                 <ul>

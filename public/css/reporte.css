@@ -115,7 +115,6 @@
         border-bottom: none;
     }
 
-    /* Añadir etiquetas tipo "etiqueta: valor" para cada celda */
     .tabla-reportes tbody tr td::before {
         content: attr(data-label);
         font-weight: 600;

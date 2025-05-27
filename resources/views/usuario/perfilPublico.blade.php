@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
 @endsection
 
+@section('breadcrumbs')
+    <a href="{{ url('/') }}">Inicio</a>
+@endsection
+
 @section('content')
     <h1 class="titulo">Usuario</h1>
     <div class="perfil-publico">
@@ -31,9 +35,7 @@
         @else
             <p>Este usuario no es un artista.</p>
         @endif
-
-        {{-- Aquí podrías incluir comentarios, obras favoritas, etc. --}}
     </div>
-    <br><br>
+    <br>
 @endsection
 

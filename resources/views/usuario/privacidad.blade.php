@@ -13,7 +13,6 @@
 <a href="{{ route("panelPrivacidad") }}">Privacidad</a>
 @endsection
 
-
 @section('config-content')
     <h1 class="titulo">Privacidad</h1>
     <div class="configuracion-container">

@@ -26,7 +26,6 @@
     </div>
     <div class="form-contenedor">
         <div class="btn-wrapper">
-            <!-- Mueve el formulario dentro del contenedor centrado -->
             <form method="POST" action="{{ route('eliminarCuenta') }}" id="deleteForm">
                 @csrf
                 @method('DELETE')
@@ -46,22 +45,18 @@
             const confirmBtn = document.getElementById('confirmBtn');
             const submitBtn = document.getElementById('submitBtn');
 
-            // Abrir modal al hacer click en el botón eliminar
             openModalBtn.addEventListener('click', () => {
                 modal.style.display = 'flex';
             });
 
-            // Cerrar modal sin hacer nada
             cancelBtn.addEventListener('click', () => {
                 modal.style.display = 'none';
             });
 
-            // Confirmar y enviar formulario
             confirmBtn.addEventListener('click', () => {
                 submitBtn.click();
             });
 
-            // También cerrar modal al hacer click fuera del contenido
             window.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     modal.style.display = 'none';

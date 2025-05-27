@@ -1,9 +1,8 @@
-/* Zona de filtros translúcida */
 .zona-filtros {
     max-width: 1200px;
     margin: 30px auto 0;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.75); /* fondo blanco translúcido */
+    background-color: rgba(255, 255, 255, 0.75);
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -36,12 +35,11 @@
     background-color: rgba(85, 85, 85, 0.9);
 }
 
-/* Contenedor principal translúcido */
 .contenedor {
     max-width: 1200px;
     margin: 30px auto;
     padding: 25px;
-    background-color: rgba(255, 255, 255, 0.82); /* translúcido */
+    background-color: rgba(255, 255, 255, 0.82);
     border-radius: 14px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }

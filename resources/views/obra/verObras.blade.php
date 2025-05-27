@@ -17,8 +17,6 @@
 @section('content')
     <div class="contenedor-obras">
         <h1 class="titulo">Obras</h1>
-
-        {{-- Filtros y búsqueda --}}
         <form method="GET" action="{{ route('verObras') }}" class="filtros-busqueda">
             <div class="filtro-busqueda-grupo">
                 <input type="text" name="busqueda" placeholder="Buscar por título..." value="{{ request('busqueda') }}">
@@ -35,7 +33,6 @@
             </div>
         </form>
 
-        {{-- Cuadrícula de obras --}}
         <div class="obras-grid">
             @forelse ($obras as $obra)
                 <div class="obra-card">
@@ -52,7 +49,6 @@
                 <p>No hay obras registradas aún.</p>
             @endforelse
         </div>
-
         <div class="paginacion">
             {{ $obras->appends(request()->query())->links('pagination::simple-bootstrap-5') }}
         </div>

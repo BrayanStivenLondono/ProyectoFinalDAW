@@ -12,13 +12,11 @@
     <a href="{{ route("panel-admin") }}">Administración</a> &gt;
     <a href="{{ route("reportes.index") }}">Reportes</a> &gt;
     <a href="{{ route("reportes.mostrar", $reporte) }}"> Reporte #{{ $reporte->id }}</a>
-
 @endsection
 
 @section('content')
     <div class="detalle-reporte-container">
         <h1>Detalle del Reporte #{{ $reporte->id }}</h1>
-
         <p><strong>Comentario:</strong> {{ $reporte->comentario->contenido ?? 'Comentario eliminado' }}</p>
         <p><strong>Usuario que reporta:</strong> {{ $reporte->usuario->nombre." ".$reporte->usuario->apellido ?? 'Usuario eliminado' }}</p>
         <p><strong>Razón:</strong> {{ $reporte->razon }}</p>

@@ -15,7 +15,6 @@
 @endsection
 
 @section('config-content')
-    <!-- Buscador -->
     <form method="GET" action="{{ route("favoritos.ver") }}" class="buscador-favoritos">
         <input type="text" name="q" placeholder="Buscar obra o artista..." value="{{ request('q') }}">
         <button type="submit">🔍 Buscar</button>
@@ -23,24 +22,20 @@
 
     <div class="favoritos-container">
 
-        {{-- MENSAJES --}}
         @if(session('success'))
             <div class="alert-success">{{ session('success') }}</div>
         @elseif(session('info'))
             <div class="alert-info">{{ session('info') }}</div>
         @endif
 
-        {{-- GRID UNIFICADA --}}
         <div class="favoritos-grid">
-
-            {{-- OBRAS FAVORITAS --}}
             @foreach($obrasFavoritas as $obra)
                 <div class="tarjeta-favorito">
                     <div class="imagen-favorito" style="background-image: url('{{ asset($obra->imagen) }}');"></div>
                     <div class="contenido-favorito">
                         <h3 class="titulo-favorito">{{ $obra->titulo }}</h3>
                         <div class="botones-favorito">
-                            <a href="{{ route('verObra', $obra->titulo) }}" class="btn-ver">Ver Obra</a>
+                            <a href="{{ route('verObra', Str::slug($obra->titulo)) }}" class="btn-ver">Ver Obra</a>
                             <form action="{{ route('favorito.eliminar', $obra->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -51,7 +46,6 @@
                 </div>
             @endforeach
 
-            {{-- ARTISTAS SEGUIDOS --}}
             @foreach($artistasSeguidos as $artista)
                 <div class="tarjeta-favorito">
                     <div class="imagen-favorito" style="background-image: url('{{ asset($artista->imagen_perfil ?? 'imagenes/user_default.png') }}');"></div>
@@ -71,7 +65,6 @@
 
         </div>
 
-        {{-- MENSAJE SI ESTÁ VACÍO --}}
         @if($obrasFavoritas->isEmpty() && $artistasSeguidos->isEmpty())
             <p class="mensaje-vacio">No tienes favoritos todavía.</p>
         @endif

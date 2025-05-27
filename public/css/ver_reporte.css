@@ -17,7 +17,6 @@
     color: #3c8dbc;
 }
 
-/* Detalles del reporte */
 .detalle-reporte-container p {
     font-size: 1rem;
     margin-bottom: 1rem;
@@ -27,7 +26,6 @@
     border-radius: 6px;
 }
 
-/* Acciones (botones) */
 .acciones-reportes {
     display: flex;
     gap: 1rem;
@@ -53,7 +51,6 @@
     background-color: #2a6f94;
 }
 
-/* Botón de rechazar */
 .acciones-reportes form:nth-child(2) button {
     background-color: #d9534f;
 }
@@ -62,7 +59,6 @@
     background-color: #c9302c;
 }
 
-/* Enlace de volver */
 .volver-link {
     margin-top: 2rem;
     text-align: center;

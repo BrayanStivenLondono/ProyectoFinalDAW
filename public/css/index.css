@@ -19,7 +19,7 @@
 }
 
 .obra-item img {
-    width: 200px; /* o ajusta a lo que necesites */
+    width: 200px;
     height: auto;
     display: block;
     margin: 0;
@@ -95,8 +95,8 @@
 
 .obra-item img {
     width: 220px;
-    height: 300px; /* Altura fija para uniformidad */
-    object-fit: cover; /* Recorta manteniendo proporción */
+    height: 300px;
+    object-fit: cover;
     display: block;
 }
 
@@ -105,14 +105,11 @@
     animation: deslizar 20s linear infinite;
 }
 
-/* y ajustamos la animación */
 @keyframes deslizar {
     0%   { transform: translateX(0);   }
-    100% { transform: translateX(-50%);} /* -50% porque tenemos contenido duplicado */
+    100% { transform: translateX(-50%);}
 }
 
-
-/* Estilos base para index */
 
 .hero {
     text-align: center;
@@ -165,10 +162,6 @@
     font-size: 2rem;
     margin-bottom: 20px;
 }
-
-/* ---------------------
-   PARTE RESPONSIVE
-   --------------------- */
 
 @media (max-width: 767px) {
     .hero {

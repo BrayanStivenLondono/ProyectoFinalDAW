@@ -9,7 +9,6 @@
 
 <script>
     function aceptarCookies() {
-        // Enviamos una petición a Laravel para guardar la cookie
         fetch("{{ route('cookies.aceptar') }}", {
             method: 'POST',
             headers: {

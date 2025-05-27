@@ -1,11 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Login | Galería Virtual')
+@section('title', 'Iniciar Sesión | Galería Virtual')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/formulario.css') }}">
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+@endsection
+
+@section('breadcrumbs')
+    <a href="{{ url('/') }}">Inicio</a> &gt;
+    <a href="{{ route("login.form") }}">Iniciar Sesión</a>
 @endsection
 
 @section('content')

@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
     <link rel="stylesheet" href="{{ asset('css/obra.css') }}">
 @endsection
+@section('breadcrumbs')
+    <a href="{{ url('/') }}">Inicio</a> &gt;
+    <a href="{{ route('panel.artista') }}">Panel Artista</a>
+@endsection
 
 @section('content')
     <div class="panel-artista-container">
