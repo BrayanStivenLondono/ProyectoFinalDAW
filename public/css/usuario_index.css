@@ -1,4 +1,4 @@
-/* Tabla contenedora */
+
 .usuarios-table {
     width: 100%;
     border-collapse: collapse;
@@ -8,7 +8,6 @@
     color: #333;
 }
 
-/* Encabezado */
 .usuarios-table thead tr {
     background-color: #2d89ef;
     color: white;
@@ -21,12 +20,10 @@
     vertical-align: middle;
 }
 
-/* Filas alternas */
 .usuarios-table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Imagen perfil */
 .usuario-imagen {
     width: 50px;
     height: 50px;
@@ -34,7 +31,6 @@
     object-fit: cover;
 }
 
-/* Contenedor acciones */
 .acciones-admin-container {
     display: flex;
     gap: 0.5rem;
@@ -42,7 +38,6 @@
     align-items: center;
 }
 
-/* Botones estilos */
 .btn-eliminar, .btn-hacer-admin, .btn-ver-perfil {
     padding: 5px 10px;
     font-size: 0.85rem;
@@ -55,7 +50,6 @@
     display: inline-block;
 }
 
-/* Rojo para eliminar */
 .btn-eliminar {
     background-color: #e74c3c;
 }
@@ -64,7 +58,6 @@
     background-color: #c0392b;
 }
 
-/* Azul para hacer admin */
 .btn-hacer-admin {
     background-color: #2980b9;
 }
@@ -73,7 +66,6 @@
     background-color: #1c5980;
 }
 
-/* Verde para ver perfil */
 .btn-ver-perfil {
     background-color: #27ae60;
 }
@@ -131,3 +123,92 @@ form.form-filtro select:focus {
     outline: none;
 }
 
+
+@media (max-width: 992px) {
+    .usuarios-table {
+        font-size: 0.85rem;
+    }
+
+    .usuarios-table th, .usuarios-table td {
+        padding: 10px;
+    }
+
+    .usuario-imagen {
+        width: 45px;
+        height: 45px;
+    }
+
+    .btn-eliminar, .btn-hacer-admin, .btn-ver-perfil {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .usuarios-table {
+        border: 0;
+    }
+
+    .usuarios-table thead {
+        display: none;
+    }
+
+    .usuarios-table tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 1rem;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .usuarios-table tbody td {
+        display: block;
+        width: 100%;
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+        border-bottom: 1px solid #eee;
+    }
+
+    .usuarios-table tbody td:last-child {
+        border-bottom: none;
+    }
+
+    .usuarios-table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 1rem;
+        font-weight: bold;
+        text-align: left;
+        color: #444;
+    }
+
+    .usuario-imagen {
+        width: 60px;
+        height: 60px;
+        display: block;
+        margin: 0 auto 0.5rem auto;
+    }
+
+    .acciones-admin-container {
+        justify-content: center;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .acciones-admin-container form,
+    .acciones-admin-container a {
+        width: 100%;
+    }
+
+    .btn-eliminar, .btn-hacer-admin, .btn-ver-perfil {
+        display: block;
+        width: 100%;
+        margin-top: 0.3rem;
+        text-align: center;
+    }
+}

@@ -10,7 +10,7 @@
 
 @section('breadcrumbs')
     <a href="{{ url('/') }}">Inicio</a> &gt;
-    <a href="{{ route("configuracion") }}">Configuración</a> &gt;
+    <a href="{{ route("configuracion") }}">Ajustes</a> &gt;
     <a href="{{ route("favoritos.ver") }}">Favoritos</a>
 @endsection
 
@@ -38,7 +38,7 @@
                 <div class="tarjeta-favorito">
                     <div class="imagen-favorito" style="background-image: url('{{ asset($obra->imagen) }}');"></div>
                     <div class="contenido-favorito">
-                        <h3 class="titulo-favorio">{{ $obra->titulo }}</h3>
+                        <h3 class="titulo-favorito">{{ $obra->titulo }}</h3>
                         <div class="botones-favorito">
                             <a href="{{ route('verObra', $obra->titulo) }}" class="btn-ver">Ver Obra</a>
                             <form action="{{ route('favorito.eliminar', $obra->id) }}" method="POST">
@@ -49,6 +49,7 @@
                         </div>
                     </div>
                 </div>
+            @endforeach
 
             {{-- ARTISTAS SEGUIDOS --}}
             @foreach($artistasSeguidos as $artista)
@@ -58,11 +59,11 @@
                         <h3 class="titulo-favorito">{{ $artista->nombre }} {{ $artista->apellido }}</h3>
                         <div class="botones-favorito">
                             <a href="{{ route('artista.perfil', Str::slug($artista->nombre . ' ' . $artista->apellido)) }}" class="btn-ver">Ver Artista</a>
-                                <form method="POST" action="{{ route('dejar.seguir.usuario', $obra->artista->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn-quitar">Dejar de seguir</button>
-                                </form>
+                            <form method="POST" action="{{ route('dejar.seguir.usuario', $artista->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-quitar">Dejar de seguir</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -74,6 +75,5 @@
         @if($obrasFavoritas->isEmpty() && $artistasSeguidos->isEmpty())
             <p class="mensaje-vacio">No tienes favoritos todavía.</p>
         @endif
-
     </div>
 @endsection

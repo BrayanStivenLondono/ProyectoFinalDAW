@@ -225,3 +225,57 @@
     background-color: #23527c;
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+    .usuarios-table thead {
+        display: none; /* Ocultamos encabezado */
+    }
+
+    .usuarios-table,
+    .usuarios-table tbody,
+    .usuarios-table tr,
+    .usuarios-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .usuarios-table tr {
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 1rem;
+    }
+
+    .usuarios-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .usuarios-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        top: 12px;
+        font-weight: bold;
+        color: #555;
+        text-align: left;
+    }
+
+    .acciones-admin-container {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .form-filtro {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0 1rem;
+    }
+
+    .form-filtro input,
+    .form-filtro select,
+    .form-filtro button {
+        width: 100%;
+    }
+}
+

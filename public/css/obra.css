@@ -7,16 +7,16 @@
 }
 
 .obra-imagen{
-    max-width: 100%;      /* Limita el ancho máximo al 100% del contenedor */
-    max-height: 100%;     /* Limita la altura máxima al 100% del contenedor */
+    max-width: 100%;
+    max-height: 100%;
     overflow: hidden;
 }
 
 .obra-imagen img {
-    width: auto;          /* Mantiene el tamaño original */
-    height: auto;         /* Mantiene la proporción original */
-    max-width: 100%;      /* No sobrepasará el tamaño del contenedor */
-    max-height: 100%;     /* No sobrepasará el tamaño del contenedor */
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
     border-radius: 10px;
 }
 
@@ -80,7 +80,6 @@
     color: white;
 }
 
-/* Botón Agregar - Azul */
 .btn-agregar {
     background-color: #007bff;
 }
@@ -124,11 +123,11 @@
     left: 0; top: 0;
     width: 100%; height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* fondo oscuro semi-transparente */
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
-    background: rgba(255, 255, 255, 0.9); /* blanco con 90% opacidad */
+    background: rgba(255, 255, 255, 0.9);
     margin: 8% auto;
     padding: 25px;
     border-radius: 12px;
@@ -136,8 +135,8 @@
     max-width: 550px;
     position: relative;
     font-family: Arial, sans-serif;
-    font-size: 18px; /* letra más grande */
-    color: #000; /* texto negro */
+    font-size: 18px;
+    color: #000;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
@@ -157,4 +156,49 @@
     font-size: 16px;
     display: inline-block;
     margin-top: 10px;
+}
+
+.lista-obras-similares {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.obra-similar {
+    background: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-size: 0.95rem;
+    font-family: "Outfit", sans-serif;
+}
+
+.obra-similar a {
+    text-decoration: none;
+    color: #333;
+}
+
+.obra-similar a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .obra-detalle {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    .obra-info {
+        max-width: 100%;
+    }
+    .obra-imagen {
+        width: 100%;
+        max-height: none;
+    }
+    .obra-imagen img {
+        width: 100%;
+        height: auto;
+    }
 }

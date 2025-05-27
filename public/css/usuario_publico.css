@@ -80,3 +80,10 @@
     margin: 0.2rem 0;
     color: #555;
 }
+
+
+@media (max-width: 8984px) {
+    .perfil-publico{
+        margin: 20px;
+    }
+}

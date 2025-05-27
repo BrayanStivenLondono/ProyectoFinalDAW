@@ -86,10 +86,6 @@
     margin-top: 40px;
 }
 
-.obras-carrusel {
-    display: flex;
-    animation: deslizar 25s linear infinite;
-}
 
 .obra-item {
     flex: 0 0 auto;
@@ -99,15 +95,103 @@
 
 .obra-item img {
     width: 220px;
-    height: auto;
+    height: 300px; /* Altura fija para uniformidad */
+    object-fit: cover; /* Recorta manteniendo proporción */
     display: block;
-    object-fit: cover;
 }
 
-/* Animación para desplazar imágenes automáticamente */
+.obras-carrusel {
+    display: flex;
+    animation: deslizar 20s linear infinite;
+}
+
+/* y ajustamos la animación */
 @keyframes deslizar {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
+    0%   { transform: translateX(0);   }
+    100% { transform: translateX(-50%);} /* -50% porque tenemos contenido duplicado */
 }
 
 
+/* Estilos base para index */
+
+.hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: #f5f5f5;
+    color: #222;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    line-height: 1.5;
+}
+
+.hero .btn {
+    display: inline-block;
+    padding: 12px 30px;
+    margin: 0 10px 10px 10px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.hero .btn:hover,
+.hero .btn:focus {
+    background-color: #555;
+}
+
+.descripcion {
+    max-width: 800px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.descripcion h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* ---------------------
+   PARTE RESPONSIVE
+   --------------------- */
+
+@media (max-width: 767px) {
+    .hero {
+        padding: 40px 15px 30px;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+    .hero .btn {
+        padding: 10px 20px;
+        margin: 5px 5px;
+        font-size: 0.9rem;
+    }
+    .descripcion {
+        margin: 30px 15px 40px;
+        font-size: 1rem;
+        padding: 0 15px;
+    }
+    .descripcion h2 {
+        font-size: 1.5rem;
+    }
+}

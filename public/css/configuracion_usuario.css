@@ -1,14 +1,20 @@
 .configuracion-layout {
     display: flex;
+    align-items: flex-start;
     gap: 2rem;
+    padding-left: 2%;
+    padding-right: 2%;
     margin-top: 2rem;
+    flex-direction: row; /* por defecto fila */
 }
 
 .configuracion-opciones {
-    width: 250px;
-    background-color: #f8f9fa;
+    width: 220px;
+    background-color: #f9f9f9;
     padding: 1rem;
     border-radius: 10px;
+    margin-left: 2%;
+    margin-right: 2%;
     box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
@@ -25,15 +31,21 @@
 .configuracion-opciones a {
     font-family: 'Inter', sans-serif;
     display: block;
-    padding: 0.5rem;
+    padding: 10px;
     color: #333;
     text-decoration: none;
     border-radius: 6px;
-    transition: background 0.2s;
+    transition: background-color 0.3s;
 }
 
 .configuracion-opciones a:hover {
-    background-color: #e2e6ea;
+    background-color: #f0f0f0;
+}
+
+.configuracion-opciones a.active {
+    background-color: #d6d6d6;
+    font-weight: bold;
+    color: #000;
 }
 
 .cerrar-sesion {
@@ -44,81 +56,49 @@
 
 .configuracion-contenido {
     flex: 1;
-    padding: 1rem;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    min-height: 120px
-}
-
-
-.configuracion-layout {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    /* Ya no fijamos altura para permitir que crezca con el contenido */
-}
-
-.configuracion-layout {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    /* Puedes dejar aquí o ajustar según necesidad */
-    padding-left: 2%;
-    padding-right: 2%;
-}
-
-.configuracion-opciones {
-    width: 220px;
-    background-color: #f9f9f9;
-    padding: 1rem;
-    border-radius: 10px;
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
-.configuracion-contenido {
-    flex: 1;
     background-color: #ffffff;
     padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     margin-left: 2%;
     margin-right: 2%;
-}
-
-
-
-.configuracion-opciones a {
-    display: block;
-    padding: 10px;
-    color: #333;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.configuracion-opciones a:hover {
-    background-color: #f0f0f0;
-}
-
-/* Activo (resalta el enlace actual) */
-.configuracion-opciones a.active {
-    background-color: #d6d6d6;
-    font-weight: bold;
-    border-left: 4px solid #555; /* línea para destacar */
-    color: #000;
+    min-height: 120px;
 }
 
 .configuracion-centro {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 50vh; /* Altura mínima para centrar verticalmente */
+    min-height: 20vh;
     padding: 2rem;
 }
 
 .configuracion-centro .configuracion-opciones {
     margin: 0 auto;
-    width: 280px; /* puedes ajustarlo si lo necesitas */
+    width: 280px;
 }
 
+
+/* Media query para móviles */
+@media (max-width: 768px) {
+    .configuracion-layout {
+        flex-direction: column; /* cambia a columna */
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .configuracion-opciones {
+        width: 90%; /* menú ocupa todo el ancho arriba */
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .configuracion-contenido {
+        margin-left: 0;
+        margin-right: 0;
+        width: 86%; /* contenido también ocupa todo el ancho */
+        margin-top: 1.5rem; /* separa contenido del menú */
+    }
+
+    .configuracion-centro{
+        min-height: 5vh;
+    }
+}

@@ -25,11 +25,12 @@
 }
 
 .imagen-perfil img {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     object-fit: cover;
     border-radius: 50%;
     border: 3px solid #007bff;
+    margin-right: 1.5rem;
 }
 
 .detalles {
@@ -68,7 +69,7 @@
 
 .obras-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas fijas */
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
 }
 
@@ -130,7 +131,6 @@
     transition: background-color 0.3s ease;
 }
 
-/* Botón: Ver Detalles (azul) */
 .acciones-artista a[href*="verObra"] {
     background-color: #007bff;
     color: white;
@@ -140,7 +140,6 @@
     background-color: #0056b3;
 }
 
-/* Botón: Editar (amarillo) */
 .acciones-artista a[href*="editar"] {
     background-color: #ffc107;
     color: #333;
@@ -150,7 +149,6 @@
     background-color: #e0a800;
 }
 
-/* Botón: Eliminar (rojo) */
 .acciones-artista .btn-eliminar {
     background-color: #dc3545;
     color: white;
@@ -163,6 +161,7 @@
 @media (max-width: 1024px) {
     .obras-grid {
         grid-template-columns: repeat(3, 1fr);
+        padding: 10px;
     }
 }
 
@@ -171,6 +170,14 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+        margin: 15px;
+    }
+
+    .imagen-perfil img {
+        margin-right: 0;
+        margin-bottom: 1rem;
+        width: 130px;
+        height: 130px;
     }
 
     .obras-grid {

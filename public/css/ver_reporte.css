@@ -78,3 +78,37 @@
 .volver-link a:hover {
     text-decoration: underline;
 }
+
+
+@media (max-width: 768px) {
+    .detalle-reporte-container {
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .detalle-reporte-container h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .detalle-reporte-container p {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+
+    .acciones-reportes {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch;
+    }
+
+    .acciones-reportes button {
+        width: 100%;
+        padding: 0.8rem;
+    }
+
+    .volver-link a {
+        display: inline-block;
+        font-size: 0.95rem;
+    }
+}

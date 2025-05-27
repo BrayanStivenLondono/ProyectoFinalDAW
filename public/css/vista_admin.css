@@ -68,3 +68,39 @@
         text-align: center;
     }
 }
+
+@media (max-width: 768px) {
+    .admin-panel {
+        max-width: 95%;
+        margin: 20px auto;
+        padding: 1rem;
+    }
+
+    .admin-panel .titulo {
+        font-size: 1.5rem;
+    }
+
+    .main-content p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+        padding: 0 10px;
+    }
+
+    .navigation ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .navigation li {
+        width: 90%;
+    }
+
+    .navigation a {
+        padding: 15px 20px;
+    }
+
+    .navigation h2 {
+        font-size: 1.1rem;
+    }
+}
+

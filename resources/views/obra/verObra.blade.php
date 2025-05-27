@@ -41,9 +41,9 @@
                         @csrf
                         <button type="submit" class="btn-like">
                             @if(auth()->user()->likes->contains($obra->id))
-                                💔 Quitar like
+                                💔 No me gusta
                             @else
-                                ❤️ Dar like
+                                ❤ Me gusta
                             @endif
                         </button>
                     </form>

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 a {
     color: inherit;
     text-decoration: none;
@@ -63,4 +64,110 @@ a {
 
 .footer-right a:hover::after {
     width: 100%;
+}
+
+.main-footer {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.9rem;
+}
+
+.main-footer a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.main-footer a:hover,
+.main-footer a:focus {
+    text-decoration: underline;
+}
+
+.footer-top.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-column {
+    flex: 1 1 220px;
+    margin: 15px;
+}
+
+.footer-column h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #555;
+    padding-bottom: 8px;
+}
+
+.footer-links,
+.social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li,
+.social-links li {
+    margin-bottom: 10px;
+}
+
+.social-links li a {
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 0.8rem;
+    color: #777;
+}
+
+
+@media (max-width: 1024px) {
+    .footer-top.container {
+        padding: 0 10px;
+        justify-content: center;
+    }
+    .footer-column {
+        flex: 1 1 45%;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    .footer-top.container {
+        flex-direction: column;
+        padding: 0 15px;
+    }
+    .footer-column {
+        margin: 15px 0;
+        flex: unset;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-top.container {
+        padding: 0 10px;
+    }
+    .footer-column {
+        margin: 10px 0;
+        width: 100%;
+        flex: unset;
+    }
+    .footer-column h3 {
+        font-size: 1rem;
+    }
+    .footer-links li,
+    .social-links li {
+        margin-bottom: 8px;
+    }
+    .footer-bottom {
+        font-size: 0.7rem;
+        padding: 10px 15px;
+    }
 }

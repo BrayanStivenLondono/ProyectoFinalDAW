@@ -47,12 +47,14 @@
                     $slug = Str::slug($nombreCompleto);
                 @endphp
                 <tr>
-                    <td><img src="{{ asset($usuario->imagen_perfil) }}" alt="Imagen de {{ $usuario->nombre_usuario }}" class="usuario-imagen"></td>
-                    <td>{{ $usuario->nombre_usuario }}</td>
-                    <td>{{ $nombreCompleto }}</td>
-                    <td>{{ $usuario->correo }}</td>
-                    <td>{{ ucfirst($usuario->tipo) }}</td>
-                    <td class="acciones-admin-container">
+                    <td data-label="Imagen">
+                        <img src="{{ asset($usuario->imagen_perfil) }}" alt="Imagen de {{ $usuario->nombre_usuario }}" class="usuario-imagen">
+                    </td>
+                    <td data-label="Nombre Usuario">{{ $usuario->nombre_usuario }}</td>
+                    <td data-label="Nombre Completo">{{ $nombreCompleto }}</td>
+                    <td data-label="Correo">{{ $usuario->correo }}</td>
+                    <td data-label="Rol">{{ ucfirst($usuario->tipo) }}</td>
+                    <td data-label="Acciones" class="acciones-admin-container">
                         <form action="{{ route('admin.eliminarUsuario', $usuario->id) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar este usuario?');" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
@@ -65,11 +67,6 @@
                                 <button type="submit" class="btn-hacer-admin">Hacer Admin</button>
                             </form>
                         @endif
-                        <script>
-                            function confirmarCambioRol() {
-                                return confirm('¿Estás seguro de que quieres convertir a este usuario en administrador? Esta acción no se puede deshacer.');
-                            }
-                        </script>
 
                         <a href="{{ $usuario->tipo === 'artista' ? route('artista.perfil', ['slug' => $slug]) : route('usuario.perfil.publico', ['slug' => $slug]) }}" class="btn-ver-perfil">Ver Perfil</a>
                     </td>

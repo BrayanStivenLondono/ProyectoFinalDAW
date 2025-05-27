@@ -1,5 +1,14 @@
 .favoritos-container {
     padding: 2rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
 .favoritos-grid {
@@ -9,23 +18,24 @@
 }
 
 .tarjeta-favorito {
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tarjeta-favorito:hover {
     transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .imagen-favorito {
     background-size: cover;
     background-position: center;
-    height: 280px; /* MÁS ALTO para destacar la imagen */
+    height: 280px;
     width: 100%;
 }
 
@@ -35,14 +45,14 @@
     flex-direction: column;
     align-items: center;
     gap: 0.6rem;
+    text-align: center;
 }
 
 .titulo-favorito {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: #333;
-    text-align: center;
 }
 
 .botones-favorito {
@@ -50,20 +60,22 @@
     gap: 0.5rem;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 0.5rem;
 }
 
 .btn-ver,
 .btn-quitar {
-    font-family: "Arial", sans-serif;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
+    font-family: 'Outfit', sans-serif;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
     border: none;
-    border-radius: 6px;
-    font-weight: bold;
+    border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
-    color: white;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
     text-decoration: none;
+    color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .btn-ver {
@@ -86,11 +98,8 @@
     text-align: center;
     margin-top: 2rem;
     font-style: italic;
-    color: #555;
-}
-
-h3{
-    font-family: "Bebas Neue", sans-serif;
+    color: #777;
+    font-size: 1.1rem;
 }
 
 .buscador-favoritos {
@@ -106,8 +115,9 @@ h3{
     padding: 0.5rem 1rem;
     width: 280px;
     border: 1px solid #ccc;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 1rem;
+    font-family: 'Outfit', sans-serif;
 }
 
 .buscador-favoritos button {
@@ -115,12 +125,24 @@ h3{
     background-color: #00897b;
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Outfit', sans-serif;
 }
 
 .buscador-favoritos button:hover {
     background-color: #43a047;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 480px) {
+    .imagen-favorito {
+        height: 200px;
+    }
+
+    .buscador-favoritos input[type="text"] {
+        width: 100%;
+    }
 }

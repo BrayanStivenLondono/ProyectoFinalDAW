@@ -1,0 +1,106 @@
+@media (min-width: 768px) {
+    .main-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    nav.container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    ul.left-buttons,
+    ul.right-buttons {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .mobile-buttons {
+        display: none !important;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    ul.left-buttons,
+    ul.right-buttons {
+        display: none;
+    }
+
+    .mobile-buttons {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 1000;
+        width: 60%;
+        top: 0px;
+        left: 70px;
+        border-radius: 20px;
+    }
+
+    .mobile-buttons.open {
+        display: flex !important;
+    }
+
+    .mobile-buttons li {
+        list-style: none;
+        margin: 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .mobile-buttons li a {
+        padding: 5px 10px;
+        display: block;
+        text-decoration: none;
+        color: #333;
+        font-family: "Outfit", sans-serif;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 60px;
+        left: 15px;
+        width: 30px;
+        height: 25px;
+        cursor: pointer;
+        z-index: 2000;
+    }
+
+    .menu-toggle span {
+        background: #333;
+        display: block;
+        height: 3px;
+        margin: 5px 0;
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+
+    .logo {
+        margin: 0 15px;
+        z-index: 5;
+        position: relative;
+        text-align: center;
+    }
+
+    .nombre-pagina {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 400px){
+    .mobile-buttons{
+        width: 50%;
+    }
+}

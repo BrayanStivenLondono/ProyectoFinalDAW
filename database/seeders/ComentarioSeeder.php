@@ -15,7 +15,8 @@ class ComentarioSeeder extends Seeder
      */
     public function run(): void
     {
-        $usuarios = Usuario::all();
+        // Excluye al admin por email
+        $usuarios = Usuario::where('nombre_usuario', '!=', 'admin')->get();
         $obras = Obra::all();
 
         if ($usuarios->isEmpty() || $obras->isEmpty()) {

@@ -114,7 +114,7 @@ class ObraSeeder extends Seeder
                 'metadatos_seo' => 'Klimt, el beso, art nouveau',
             ],
             [
-                'titulo' => 'Impresión, sol naciente',
+                'titulo' => 'Impresión sol naciente',
                 'estilo' => 'Impresionismo',
                 'tecnica' => 'Óleo sobre lienzo',
                 'tipo' => 'Paisaje',

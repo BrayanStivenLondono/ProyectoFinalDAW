@@ -36,22 +36,22 @@
                 <tbody>
                 @foreach($reportes as $reporte)
                     <tr class="reporte-card">
-                        <td>{{ $reporte->id }}</td>
-                        <td>{{ Str::limit($reporte->comentario->contenido ?? 'Comentario eliminado', 50) }}</td>
-                        <td><a href="{{ $reporte->usuario->perfilUrl() }}">{{ $reporte->usuario->nombre." ".$reporte->usuario->apellido ?? 'Usuario eliminado' }}</a></td>
-                        <td>{{ $reporte->razon }}</td>
-                        <td>{{ $reporte->created_at->format('d/m/Y H:i') }}</td>
-                        <td class="acciones">
+                        <td data-label="ID">{{ $reporte->id }}</td>
+                        <td data-label="Comentario">{{ Str::limit($reporte->comentario->contenido ?? 'Comentario eliminado', 50) }}</td>
+                        <td data-label="Usuario que reporta">
+                            <a href="{{ $reporte->usuario->perfilUrl() }}">
+                                {{ $reporte->usuario->nombre." ".$reporte->usuario->apellido ?? 'Usuario eliminado' }}
+                            </a>
+                        </td>
+                        <td data-label="Razón">{{ $reporte->razon }}</td>
+                        <td data-label="Fecha">{{ $reporte->created_at->format('d/m/Y H:i') }}</td>
+                        <td data-label="Acciones" class="acciones">
                             <a href="{{ route('reportes.mostrar', $reporte) }}" class="boton-ver">Ver detalle</a>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-
-            <div class="paginacion">
-                {{ $reportes->links() }}
-            </div>
         @else
             <p>No hay reportes pendientes.</p>
         @endif

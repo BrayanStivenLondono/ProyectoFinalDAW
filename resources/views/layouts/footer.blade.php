@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title></title>
 </head>
 <body>
@@ -48,9 +49,9 @@
             <div class="footer-column">
                 <h3>Síguenos</h3>
                 <ul class="social-links">
-                    <li><a href="#" aria-label="Facebook">📘 Facebook</a></li>
-                    <li><a href="#" aria-label="Twitter">🐦 Twitter</a></li>
-                    <li><a href="#" aria-label="Instagram">📸 Instagram</a></li>
+                    <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i>  Facebook</a></li>
+                    <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i>  Twitter</a></li>
+                    <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i>  Instagram</a></li>
                 </ul>
             </div>
         </div>

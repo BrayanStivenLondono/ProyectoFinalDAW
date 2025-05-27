@@ -90,5 +90,24 @@ class UsuarioSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
+
+        for ($i = 1; $i <= 5; $i++) {
+            Usuario::create([
+                'nombre_usuario' => 'user' . $i,
+                'nombre' => 'Usuario' . $i,
+                'apellido' => 'Visitante',
+                'correo' => 'user' . $i . '@gmail.com',
+                'contrasena' => Hash::make('123456'),
+                'tipo' => 'visitante',
+                'fecha_registro' => now(),
+                'correo_verified_at' => now(),
+                'remember_token' => Str::random(10),
+                'imagen_perfil' => 'imagenes/user_default.jpg',
+                'biografia' => 'Amante del arte y visitante frecuente de la galería virtual.',
+                'enlaces_sociales' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }
