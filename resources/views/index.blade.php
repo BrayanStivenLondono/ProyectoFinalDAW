@@ -46,7 +46,7 @@
         <p>
             Esta plataforma es un espacio digital donde artistas pueden compartir sus creaciones
             y los visitantes pueden explorar diferentes estilos, técnicas y colecciones.
-            Puedes seguir a tus artistas favoritos, descubrir nuevas obras y participar en la comunidad.
+            Puedes seguir a tus artistas favoritos, descubrir nuevas obras y participar en nuestra comunidad.
         </p>
     </div>
 
