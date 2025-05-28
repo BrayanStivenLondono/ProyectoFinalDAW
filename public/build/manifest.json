@@ -1,0 +1,17 @@
+{
+  "resources/js/app.js": {
+    "file": "assets/app-DX70Ptgf.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/carrusel_tipo.js"
+    ]
+  },
+  "resources/js/carrusel_tipo.js": {
+    "file": "assets/carrusel_tipo-h7J5gLmk.js",
+    "name": "carrusel_tipo",
+    "src": "resources/js/carrusel_tipo.js",
+    "isDynamicEntry": true
+  }
+}
