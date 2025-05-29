@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
+
 class UsuarioController extends Controller
 {
     //
@@ -42,16 +43,13 @@ class UsuarioController extends Controller
 
     public function darLike(Obra $obra)
     {
-        $usuario = auth()->user(); // Obtener al usuario autenticado
+        $usuario = auth()->user();
 
-        // Verificar si el usuario ya dio like a la obra
         if ($usuario->likes()->where('id_obra', $obra->id)->exists()) {
-            // Si ya ha dado like, lo eliminamos (deshacer el like)
             $usuario->likes()->detach($obra->id);
             return response()->json(['message' => 'Like eliminado']);
         }
 
-        // Si no ha dado like, lo agregamos
         $usuario->likes()->attach($obra->id);
         return response()->json(['message' => 'Like agregado']);
     }
@@ -64,7 +62,6 @@ class UsuarioController extends Controller
 
     public function registrar(Request $request)
     {
-        // Validamos los datos recibidos del formulario
         $request->validate([
             'nombre_usuario' => 'required|string|max:255|unique:usuarios',
             'nombre' => 'required|string|max:255',
@@ -72,9 +69,13 @@ class UsuarioController extends Controller
             'correo' => 'required|email|max:255|unique:usuarios',
             'contrasena' => 'required|string|min:6|confirmed',
             'tipo' => 'required|string|in:artista,visitante',
+        ], [
+            'nombre_usuario.unique' => 'Este nombre de usuario ya está registrado.',
+            'correo.unique' => 'Este correo electrónico ya está en uso.',
+            'contrasena.min' => 'La contraseña debe tener al menos 6 caracteres.',
+            'contrasena.confirmed' => 'Las contraseñas no coinciden.',
         ]);
 
-        // Creamos el nuevo usuario
         $usuario = Usuario::create([
             'nombre_usuario' => $request->nombre_usuario,
             'nombre' => $request->nombre,
@@ -88,10 +89,8 @@ class UsuarioController extends Controller
             'fecha_registro' => now(),
         ]);
 
-        // 🔐 Login automático
         Auth::login($usuario);
 
-        // Redirigimos al usuario
         return redirect("/");
     }
 
@@ -143,7 +142,11 @@ class UsuarioController extends Controller
                 'email',
                 Rule::unique('usuarios')->ignore($usuario->id),
             ],
-            'imagen_perfil' => 'nullable|image|mimes:jpg,jpeg,png',
+            'nombre_usuario.required' => 'El nombre de usuario es obligatorio.',
+            'nombre_usuario.unique' => 'Este nombre de usuario ya está en uso.',
+            'correo.required' => 'El correo es obligatorio.',
+            'correo.email' => 'El correo debe ser una dirección válida.',
+            'correo.unique' => 'Este correo ya está registrado.',
         ]);
 
         $usuario->nombre_usuario = $validate['nombre_usuario'];
@@ -161,8 +164,9 @@ class UsuarioController extends Controller
 
         $usuario->save();
 
-        return redirect()->route("mostrarEditorPerfil");
+        return redirect()->route("usuario.perfil", Str::slug($usuario->nombre . " " . $usuario->apellido));
     }
+
 
     public function formCambiarContrasena()
     {
@@ -174,6 +178,11 @@ class UsuarioController extends Controller
         $request->validate([
             'password_actual' => ['required'],
             'nueva_password' => ['required', 'min:6', 'confirmed'],
+        ], [
+            'password_actual.required' => 'Por favor, ingresa tu contraseña actual.',
+            'nueva_password.required' => 'La nueva contraseña es obligatoria.',
+            'nueva_password.min' => 'La nueva contraseña debe tener al menos 6 caracteres.',
+            'nueva_password.confirmed' => 'La confirmación de la nueva contraseña no coincide.',
         ]);
 
         $usuario = Auth::user();
@@ -218,24 +227,29 @@ class UsuarioController extends Controller
     {
         return view("usuario.login");
     }
+
     public function login(Request $request)
     {
-        {
-            $request->validate([
-                'nombre_usuario' => 'required',
-                'contrasena' => 'required',
-            ]);
+        $request->validate([
+            'nombre_usuario' => 'required|string',
+            'contrasena' => 'required|string',
+        ], [
+            'nombre_usuario.required' => 'Por favor, ingresa tu nombre de usuario.',
+            'contrasena.required' => 'Por favor, ingresa tu contraseña.',
+        ]);
 
-            $usuario = Usuario::where('nombre_usuario', $request->nombre_usuario)->first();
+        $usuario = Usuario::where('nombre_usuario', $request->nombre_usuario)->first();
 
-            if ($usuario && Hash::check($request->contrasena, $usuario->contrasena)) {
-                Auth::login($usuario);
-                return redirect("/");
-            }
-
-            return back();
+        if ($usuario && Hash::check($request->contrasena, $usuario->contrasena)) {
+            Auth::login($usuario);
+            return redirect("/");
         }
+
+        return back()->withErrors([
+            'login_error' => 'Las credenciales no son correctas. Por favor, verifica e intenta de nuevo.',
+        ])->withInput($request->only('nombre_usuario'));
     }
+
 
     public function mostrarConfiguracionUsuario()
     {
@@ -274,10 +288,8 @@ class UsuarioController extends Controller
             });
         }
 
-        // Obtener artistas con paginación
-        $artistas = $query->paginate(8); // Puedes ajustar la cantidad por página
+        $artistas = $query->paginate(8);
 
-        // Lista completa sin filtro (si la necesitas para otro propósito)
         $artistas2 = Usuario::where('tipo', 'artista')->get();
 
         return view('usuario.artistas', compact('artistas', 'artistas2'));
@@ -294,7 +306,6 @@ class UsuarioController extends Controller
 
         $obras = $usuario->obras;
 
-        // Aquí es clave: asegúrate de pasar la variable con el nombre que usas en la vista
         return view('usuario.panelArtista', [
             'artista' => $usuario,
             'obras' => $obras

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ObraController extends Controller
 {
@@ -40,19 +41,16 @@ class ObraController extends Controller
     {
         $query = Obra::query();
 
-        // Búsqueda por título
         if ($request->filled('busqueda')) {
             $query->where('titulo', 'like', '%' . $request->busqueda . '%');
         }
 
-        // Filtro por tipo
         if ($request->filled('tipo')) {
             $query->where('tipo', $request->tipo);
         }
 
         $tiposObra = Obra::select('tipo')->distinct()->pluck('tipo');
 
-        // Aquí usamos la query con filtros
         $obras = $query->latest()->paginate(8);
 
 
@@ -104,30 +102,33 @@ class ObraController extends Controller
 
     public function subirObra(Request $request)
     {
-        // Validar que el usuario es un artista
         if (auth()->user()->tipo !== 'artista') {
             abort(403, 'Solo los artistas pueden subir obras.');
         }
 
-        // Validar formulario
         $request->validate([
-            'titulo' => 'required|string|max:255',
+            'titulo' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('obras', 'titulo')
+            ],
             'estilo' => 'nullable|string|max:255',
             'tecnica' => 'nullable|string|max:255',
             'tipo' => 'nullable|string|max:255',
             'año_creacion' => 'nullable|integer|min:1000|max:' . date('Y'),
             'descripcion' => 'nullable|string',
             'metadatos_seo' => 'nullable|string|max:255',
-            'imagen' => 'nullable|image|max:2048', // Máx. 2MB
+            'imagen' => 'nullable|image|max:2048',
+        ], [
+            'titulo.unique' => 'Ya existe una obra con ese título.',
         ]);
 
-        // Guardar imagen si se subió
-        $rutaImagen = 'imagenes/obra_default.png'; // Por defecto
+        $rutaImagen = 'imagenes/obra_default.png';
         if ($request->hasFile('imagen')) {
             $rutaImagen = $request->file('imagen')->store('obras', 'public');
         }
 
-        // Crear la obra
         $obra = Obra::create([
             'id_artista' => auth()->id(),
             'titulo' => $request->titulo,
@@ -150,8 +151,8 @@ class ObraController extends Controller
     {
         $obrasPorTipo = Obra::select('obras.*')
             ->join(DB::raw('(SELECT MIN(id) as id FROM obras GROUP BY tipo) as sub'), 'obras.id', '=', 'sub.id')
-            ->whereNotNull('obras.tipo') // Filtra los registros donde tipo no es nulo
-            ->where('obras.tipo', '!=', '') // Filtra los registros donde tipo no esté vacío
+            ->whereNotNull('obras.tipo')
+            ->where('obras.tipo', '!=', '')
             ->get();
 
 
@@ -168,11 +169,9 @@ class ObraController extends Controller
 
     public function buscarObra(Request $request)
     {
-        // Recuperamos los filtros
-        $tipo = $request->input('tipo'); // obligatorio
-        $titulo = $request->input('titulo'); // opcional
+        $tipo = $request->input('tipo');
+        $titulo = $request->input('titulo');
 
-        // Retornamos a la misma vista con la variable tipo definida
         return view('obra.verColeccion', compact('tipo'));
     }
 
@@ -186,17 +185,15 @@ class ObraController extends Controller
             ->whereNotNull('obras.tipo')
             ->where('obras.tipo', '!=', '')
             ->orderBy('tipo')
-            ->paginate(4); // Especifica el número de elementos por página (ej: 10)
+            ->paginate(4);
 
         return view('obra.colecciones', compact('obrasPorTipo'));
     }
 
     public function verObra($titulo)
     {
-        // Convertir el nombre de la obra en un slug
         $tituloSlug = str_replace('-', ' ', $titulo);
 
-        // Buscar la obra por título (sin importar mayúsculas o minúsculas)
         $obra = Obra::whereRaw('LOWER(titulo) = ?', [strtolower($tituloSlug)])->first();
 
         if (!$obra) {
@@ -246,29 +243,40 @@ class ObraController extends Controller
 
     public function editarObra($id)
     {
-        $obra = Obra::findOrFail($id); // Busca la obra por ID o lanza 404
+        $obra = Obra::findOrFail($id);
 
         return view('obra.editorObra', compact('obra'));
     }
 
     public function actualizarObra(Request $request, $id)
     {
+        $obra = Obra::findOrFail($id);
+
         $request->validate([
-            'titulo' => 'required|string|max:255',
-            'descripcion' => 'string',
-            'año_creacion' => 'integer',  // Validación para año
+            'titulo' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('obras')->ignore($obra->id),
+            ],
+            'descripcion' => 'nullable|string',
+            'año_creacion' => 'nullable|integer|min:1000|max:' . date('Y'),
+        ], [
+            'titulo.required' => 'El título es obligatorio.',
+            'titulo.unique' => 'Ya existe una obra con ese título.',
+            'descripcion.string' => 'La descripción debe ser un texto.',
+            'año_creacion.integer' => 'El año debe ser un número.',
+            'año_creacion.min' => 'El año debe ser mayor a 999.',
+            'año_creacion.max' => 'El año no puede ser mayor al actual.',
         ]);
 
-        $obra = Obra::findOrFail($id);
         $obra->update([
             'titulo' => $request->titulo,
             'descripcion' => $request->descripcion,
             'año_creacion' => $request->año_creacion,
         ]);
-        // Actualiza otros campos si es necesario
 
-        $obra->save();
-
-        return redirect("/panel-artista");
+        return redirect("/panel-artista")->with('success', 'Obra actualizada correctamente.');
     }
+
 }

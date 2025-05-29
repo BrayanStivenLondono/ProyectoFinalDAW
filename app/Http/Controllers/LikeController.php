@@ -20,10 +20,9 @@ class LikeController extends Controller
             $user->likes()->attach($obraId);
         }
 
-        // Refresca la relación para que en la vista se vea el cambio
         $user->load('likes');
 
-        return back(); // o una respuesta JSON si es AJAX
+        return back();
     }
 
 }

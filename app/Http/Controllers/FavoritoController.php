@@ -12,7 +12,6 @@ class FavoritoController extends Controller
         $obra = Obra::findOrFail($idObra);
         $usuario = auth()->user();
 
-        // Verificar si ya está en favoritos
         if ($usuario->favoritos()->where('obra_id', $obra->id)->exists()) {
             return back()->with('info', 'La obra ya está en tus favoritos.');
         }

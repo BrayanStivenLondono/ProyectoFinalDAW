@@ -3,9 +3,9 @@
 @section('title', ' Darse de Baja | Galeria Virtual')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/baja.css') }}">
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
     <link rel="stylesheet" href="{{ asset('css/configuracion_usuario.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/baja.css') }}">
 @endsection
 
 @section('breadcrumbs')

@@ -13,9 +13,8 @@
 @endsection
 
 @section('content')
+    <h1 class="titulo">Administración</h1>
     <div class="admin-panel">
-            <h1 class="titulo">Administración</h1>
-
             <div class="main-content">
                 <p>Bienvenido al panel de administración. Seleccione una opción del menú para continuar.</p>
             </div>

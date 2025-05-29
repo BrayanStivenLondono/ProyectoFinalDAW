@@ -42,11 +42,11 @@
 
                 <div class="acciones-admin-container">
                     <a href="{{ route('verObra', Str::slug($obra->titulo)) }}" class="acciones">Ver Detalles</a>
-                    <form action="{{ route('admin.eliminarObra', $obra->id) }}" method="POST"
+                    <form  action="{{ route('admin.eliminarObra', $obra->id) }}" method="POST"
                           onsubmit="return confirm('¿Estás seguro de eliminar esta obra?');">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn-eliminar">Eliminar Obra</button>
+                        <button  type="submit" class="btn-eliminar">Eliminar Obra</button>
                     </form>
                 </div>
             </div>

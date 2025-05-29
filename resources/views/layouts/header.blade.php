@@ -18,13 +18,18 @@
                 <img src="{{ asset(Auth::user()->imagen_perfil) }}" id="userImage" alt="">
             @else
                 <div class="login-register-text">
-                    <a class="login" href="{{ route("login.form") }}">Iniciar Sesión</a> |
-                    <a class="registro" href="{{ route("registro.form") }}">Registro</a>
+                    <a class="login" href="{{ route('login.form') }}">Iniciar Sesión</a>
+                    <span class="separador">|</span>
+                    <a class="registro" href="{{ route('registro.form') }}">Registro</a>
                 </div>
             @endif
             @if(Auth::check())
                 <div class="dropdown-menu" id="userDropdown" style="display: none;">
                     <ul>
+
+                        @if(Auth::user()->tipo === "visitante")
+                            <li><a href="{{ route('favoritos.ver') }}">Favoritos </a></li>
+                        @endif
                         <li><a href="{{ route('configuracion') }}">Ajustes</a></li>
 
                         @if(Auth::user()->tipo === "artista")

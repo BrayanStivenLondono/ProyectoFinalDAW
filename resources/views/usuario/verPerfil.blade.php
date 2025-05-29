@@ -11,7 +11,7 @@
 @section('breadcrumbs')
     <a href="{{ url('/') }}">Inicio</a> &gt;
     <a href="{{ route("configuracion") }}">Ajustes</a> &gt;
-    <a href="{{ route("usuario.perfil", $usuario->nombre ." ".$usuario->apellido) }}">Perfil</a>
+    <a href="{{ route("usuario.perfil", Str::slug($usuario->nombre ." ".$usuario->apellido)) }}">Perfil</a>
 @endsection
 
 @section('config-content')

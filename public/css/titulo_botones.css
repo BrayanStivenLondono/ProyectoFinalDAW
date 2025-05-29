@@ -42,3 +42,46 @@ h1.titulo::after {
 .boton-retroceso:hover {
     background-color: #c0392b;
 }
+
+
+@media (max-width: 768px) {
+    h1.titulo {
+        font-size: 1.6em;
+        margin: 25px 0;
+    }
+
+    h1.titulo::before,
+    h1.titulo::after {
+        width: 30%;
+    }
+
+    .boton-retroceso {
+        font-size: 15px;
+        padding: 9px 18px;
+    }
+}
+
+@media (max-width: 576px) {
+    h1.titulo {
+        font-size: 1.3em;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    h1.titulo::before,
+    h1.titulo::after {
+        width: 50%;
+    }
+
+    .boton-retroceso {
+        font-size: 14px;
+        padding: 8px 16px;
+        width: 90%;
+        max-width: 300px;
+    }
+
+    .boton-container {
+        display: flex;
+        justify-content: center;
+    }
+}

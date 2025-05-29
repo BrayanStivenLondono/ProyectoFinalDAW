@@ -84,3 +84,8 @@
 label, p{
     font-family: 'Quicksand', sans-serif;
 }
+
+.text-danger {
+    color: #e74c3c;
+    font-size: 0.875rem;
+}

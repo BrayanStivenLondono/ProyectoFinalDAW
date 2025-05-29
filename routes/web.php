@@ -37,12 +37,13 @@ Route::post('/logout', [UsuarioController::class, 'logout'])->name('logout');
 // Perfiles públicos
 Route::get('/artista/{slug}', [UsuarioController::class, 'verPerfilArtista'])->name('artista.perfil');
 Route::get('/artistas', [UsuarioController::class, 'artistas'])->name('artistas.index');
+Route::get('/usuario/p/{slug}', [UsuarioController::class, 'verPerfilPublico'])->name('usuario.perfil.publico');
+
 
 // Paneles y funciones privadas (usuarios autenticados)
 Route::middleware(UsuarioAutenticadoMiddleware::class)->group(function () {
 
     // Perfil y configuración
-    Route::get('/usuario/p/{slug}', [UsuarioController::class, 'verPerfilPublico'])->name('usuario.perfil.publico');
     Route::get('/ajustes/perfil/{slug}', [UsuarioController::class, 'mostrarPerfil'])->name('usuario.perfil');
     Route::get('/ajustes/actualizar', [UsuarioController::class, 'mostrarEditorPerfil'])->name('mostrarEditorPerfil');
     Route::post('/ajustes/actualizar', [UsuarioController::class, 'actualizarPerfil'])->name('perfil.actualizar');

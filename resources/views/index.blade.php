@@ -69,12 +69,5 @@
                 </div>
             @endforeach
         </div>
-        <br>
-
-        <h1 class="titulo">Artistas</h1>
-        <div class="carrusel-artistas">
-            <!-- -->
-        </div>
-
     </div>
 @endsection

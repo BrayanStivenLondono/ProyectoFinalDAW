@@ -7,10 +7,6 @@
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
 @endsection
 
-@section('breadcrumbs')
-    <a href="{{ url('/') }}">Inicio</a>
-@endsection
-
 @section('content')
     <h1 class="titulo">Usuario</h1>
     <div class="perfil-publico">

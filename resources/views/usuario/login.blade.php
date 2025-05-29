@@ -21,7 +21,10 @@
 
             <div class="form-group">
                 <label for="nombre_usuario">Nombre de Usuario</label>
-                <input type="text" name="nombre_usuario" id="nombre_usuario" class="form-control" required>
+                <input type="text" name="nombre_usuario" id="nombre_usuario" class="form-control" value="{{ old('nombre_usuario') }}" required>
+                @error('nombre_usuario')
+                <small class="error">{{ $message }}</small>
+                @enderror
             </div>
 
             <div class="form-group">
@@ -32,14 +35,24 @@
                         <input type="checkbox" class="toggle-password" onclick="mostrarContrasena()">
                     </label>
                 </div>
+                @error('contrasena')
+                <small class="erro">{{ $message }}</small>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-primary">Iniciar sesión</button>
 
+            @if($errors->has('login_error'))
+                <div class="error" style="margin-top: 1rem;">
+                    {{ $errors->first('login_error') }}
+                </div>
+            @endif
+
             <p> Si No tienes una cuenta  <a style="color: #0056b3" href="{{ route('registro.form') }}">Regístrate</a> </p>
         </form>
+        <br>
     </div>
-    <br>
+
     <script>
         function mostrarContrasena(){
             var tipo = document.getElementById("contrasena");

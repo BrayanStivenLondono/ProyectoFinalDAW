@@ -126,12 +126,53 @@
         font-size: 0.9rem;
         padding: 0.5rem 1rem;
     }
-
 }
 
-@media (max-width: 400px) {
-    .acciones .boton-ver {
+@media (max-width: 516px) {
+    .reportes-container {
+        padding: 0.8rem;
+        margin: 10px;
+        border-radius: 6px;
+    }
+
+    .tabla-reportes {
         font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+    }
+
+    .tabla-reportes tbody tr {
+        margin-bottom: 0.8rem;
+        padding: 0.4rem;
+    }
+
+    .tabla-reportes tbody tr td {
+        padding: 0.4rem 0.6rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .tabla-reportes tbody tr td::before {
+        font-size: 0.8rem;
+        margin-bottom: 2px;
+    }
+
+    .acciones .boton-ver {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.6rem;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .reportes-container p {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .alert.alert-success {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
     }
 }
+

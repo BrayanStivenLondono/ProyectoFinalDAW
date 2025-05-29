@@ -81,9 +81,68 @@
     color: #555;
 }
 
+@media (max-width: 768px) {
+    .perfil-publico {
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
 
-@media (max-width: 8984px) {
-    .perfil-publico{
-        margin: 20px;
+    .perfil-publico .usuario-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .perfil-publico .avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .perfil-publico h1 {
+        font-size: 1.7rem;
+    }
+
+    .perfil-publico .obras h2 {
+        font-size: 1.3rem;
+    }
+
+    .perfil-publico .obra h3 {
+        font-size: 1.1rem;
     }
 }
+
+@media (max-width: 480px) {
+    .perfil-publico {
+        padding: 1rem;
+        box-shadow: none;
+        margin: 0 10px;
+    }
+
+    .perfil-publico .avatar {
+        width: 70px;
+        height: 70px;
+    }
+
+    .perfil-publico h1 {
+        font-size: 1.5rem;
+    }
+
+    .perfil-publico .bio {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+
+    .perfil-publico .obra {
+        padding: 0.8rem;
+    }
+
+    .perfil-publico .obra h3 {
+        font-size: 1rem;
+    }
+
+    .perfil-publico .detalles p {
+        font-size: 0.95rem;
+    }
+}
+
+

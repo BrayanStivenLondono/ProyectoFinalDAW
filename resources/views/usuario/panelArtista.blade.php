@@ -3,9 +3,9 @@
 @section('title', 'Panel del Artista | Galería Virtual')
 
 @section('styles')
+    <link rel="stylesheet" href="{{ asset('css/obra.css') }}">
     <link rel="stylesheet" href="{{ asset('css/panel_artista.css') }}">
     <link rel="stylesheet" href="{{ asset('css/titulo_botones.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/obra.css') }}">
 @endsection
 @section('breadcrumbs')
     <a href="{{ url('/') }}">Inicio</a> &gt;
@@ -13,8 +13,8 @@
 @endsection
 
 @section('content')
+    <h1 class="titulo">Panel Artista</h1>
     <div class="panel-artista-container">
-        <h1 class="titulo">Panel Artista</h1>
         <div class="artista-info">
             <div class="imagen-perfil">
                 <img src="{{ asset($artista->imagen_perfil) }}" alt="Imagen de {{ $artista->nombre_usuario }}">
@@ -30,19 +30,21 @@
         <div class="subir-obra">
             <a href="{{ route('formCrearObra') }}" class="btn-subir">Subir Obra</a>
         </div>
-        <h3 class="seccion-obras">Tus Obras: {{ $artista->nombre ." ". $artista->apellido }}</h3>
+        <h3 class="seccion-obras">Tus Obras: {{ $artista->nombre }}</h3>
         <div class="obra-detalle">
             <div class="obras-grid">
                 @forelse($artista->obras as $obra)
                     <div class="obra-card">
-                         <img src="{{ asset($obra->imagen) }}" alt="{{ $obra->titulo }}">
-                        <div class="obra-info">
-                            <h4>{{ $obra->titulo }}</h4>
-                            <p><strong>Estilo:</strong> {{ $obra->estilo }}</p>
-                        </div>
+                        <a href="{{ route('verObra', Str::slug($obra->titulo)) }}">
+                            <img src="{{ asset($obra->imagen) }}" alt="{{ $obra->titulo }}">
+                            <div class="obra-info">
+                                <h4>{{ $obra->titulo }}</h4>
+                                <p><strong>Estilo:</strong> {{ $obra->estilo }}</p>
+                            </div>
+                        </a>
+
                         <div class="acciones-artista">
-                            <a href="{{ route('verObra', Str::slug($obra->titulo)) }}">Ver detalles</a>
-                            <a href="{{ route("obra.editar", $obra->id) }}">Editar Obra</a>
+                            <a href="{{ route('obra.editar', $obra->id) }}">Editar Obra</a>
                             <form action="{{ route('artista.eliminarObra', $obra->id) }}" method="POST"
                                   onsubmit="return confirm('¿Estás seguro de eliminar esta obra?');">
                                 @csrf
@@ -51,7 +53,6 @@
                             </form>
                         </div>
                     </div>
-
                 @empty
                     <p>Este artista aún no tiene obras registradas.</p>
                 @endforelse

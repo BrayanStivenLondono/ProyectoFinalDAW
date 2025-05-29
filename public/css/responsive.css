@@ -1,4 +1,54 @@
-@media (min-width: 768px) {
+.mobile-buttons{
+    display: none;
+}
+
+
+@media (max-width: 1164px) {
+    .login-register-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .login-register-text a {
+        font-size: 0.85rem;
+        margin: 0;
+    }
+
+    .separador {
+        display: none;
+    }
+
+    .mobile-buttons{
+        display: none;
+    }
+}
+
+    @media (min-width: 768px) {
+
+    .login-register-text {
+        text-align: center;
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+
+    .login-register-text a {
+        text-decoration: none;
+        color: #007bff;
+        margin: 0 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .login-register-text a:hover {
+        color: #0056b3;
+    }
+
+    .separador {
+        margin: 0 0.3rem;
+        color: #888;
+    }
+
     .main-header {
         display: flex;
         justify-content: space-between;
@@ -21,9 +71,6 @@
         padding: 0;
     }
 
-    .mobile-buttons {
-        display: none !important;
-    }
 
     .menu-toggle {
         display: none;
@@ -31,6 +78,24 @@
 }
 
 @media (max-width: 767px) {
+    .login-register-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .login-register-text a {
+        font-size: 0.85rem;
+        margin: 0;
+        color: #007bff;
+        transition: color 0.3s ease;
+    }
+
+    .separador {
+        display: none;
+    }
+
     ul.left-buttons,
     ul.right-buttons {
         display: none;
@@ -39,24 +104,21 @@
     .mobile-buttons {
         display: none;
         flex-direction: column;
-        background: white;
         position: absolute;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         z-index: 1000;
-        width: 60%;
+        width: 41%;
         top: 0px;
         left: 70px;
-        border-radius: 20px;
+        background-color: white;
     }
 
     .mobile-buttons.open {
-        display: flex !important;
+        display: flex;
     }
 
     .mobile-buttons li {
         list-style: none;
         margin: 0;
-        border-bottom: 1px solid #eee;
     }
 
     .mobile-buttons li a {
@@ -97,10 +159,42 @@
     .nombre-pagina {
         font-size: 1.2rem;
     }
+
+    .fondo{
+        margin: 15px;
+        height: calc(100% - 90px);
+        width: calc(100% - 29px);
+        border-radius: 20px;
+        background-color: rgba(255, 255, 255, 0.9);
+    }
 }
 
 @media (max-width: 400px){
-    .mobile-buttons{
-        width: 50%;
+    .mobile-buttons {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        z-index: 1000;
+        width: 39%;
+        top: 0px;
+        left: 70px;
+        background-color: white;
+    }
+
+    .mobile-buttons.open {
+        display: flex;
+    }
+
+    .mobile-buttons li {
+        list-style: none;
+        margin: 0;
+    }
+
+    .mobile-buttons li a {
+        padding: 5px 10px;
+        display: block;
+        text-decoration: none;
+        color: #333;
+        font-family: "Outfit", sans-serif;
     }
 }
