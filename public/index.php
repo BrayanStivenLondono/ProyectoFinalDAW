@@ -12,13 +12,6 @@ if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php'))
 // Register the Composer autoloader...
 require __DIR__.'/../vendor/autoload.php';
 
-//mantenimiento
-if (getenv('APP_MAINTENANCE') === 'true') {
-    http_response_code(503);
-    echo '🛠 Sitio en mantenimiento. Vuelve más tarde.';
-    exit;
-}
-
 // Bootstrap Laravel and handle the request...
 (require_once __DIR__.'/../bootstrap/app.php')
     ->handleRequest(Request::capture());
