@@ -1,9 +1,0 @@
-{
-    "except": [],
-    "redirect": null,
-    "retry": null,
-    "refresh": null,
-    "secret": null,
-    "status": 503,
-    "template": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Sitio en mantenimiento<\/title>\n<\/head>\n<body style=\"text-align: center; font-family: sans-serif; padding-top: 100px;\">\n<h1>\ud83d\udee0 Sitio en mantenimiento<\/h1>\n<p>Estamos trabajando para mejorar tu experiencia. Vuelve pronto.<\/p>\n<\/body>\n<\/html>\n"
-}
