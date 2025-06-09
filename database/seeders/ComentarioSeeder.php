@@ -15,7 +15,6 @@ class ComentarioSeeder extends Seeder
      */
     public function run(): void
     {
-        // Excluye al admin por email
         $usuarios = Usuario::where('nombre_usuario', '!=', 'admin')->get();
         $obras = Obra::all();
 
@@ -39,7 +38,6 @@ class ComentarioSeeder extends Seeder
 
         $comentariosCreados = [];
 
-        // Comentarios base
         foreach ($comentariosBase as $contenido) {
             $comentariosCreados[] = Comentario::create([
                 'id_usuario' => $usuarios->random()->id,
@@ -51,7 +49,6 @@ class ComentarioSeeder extends Seeder
             ]);
         }
 
-        // Comentarios respuesta
         $respuestas = [
             "Totalmente de acuerdo contigo.",
             "¡Gracias por tu comentario!",
