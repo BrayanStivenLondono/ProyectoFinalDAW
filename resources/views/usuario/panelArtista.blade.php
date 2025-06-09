@@ -36,7 +36,7 @@
                 @forelse($artista->obras as $obra)
                     <div class="obra-card">
                         <a href="{{ route('verObra', Str::slug($obra->titulo)) }}">
-                            <img src="{{ asset('storage/' . $obra->imagen) }}" alt="{{ $obra->titulo }}">
+                            <img src="{{ asset($obra->imagen) }}" alt="{{ $obra->titulo }}">
                             <div class="obra-info">
                                 <h4>{{ $obra->titulo }}</h4>
                                 <p><strong>Estilo:</strong> {{ $obra->estilo }}</p>

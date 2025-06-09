@@ -126,7 +126,7 @@ class ObraController extends Controller
 
         $rutaImagen = 'imagenes/obra_default.png';
         if ($request->hasFile('imagen')) {
-            $rutaImagen = $request->file('imagen')->store('obras', 'public');
+            $rutaImagen = $request->file('imagen')->store('obras', 'public/imagenes');
         }
 
         $obra = Obra::create([
